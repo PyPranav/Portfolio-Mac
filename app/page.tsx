@@ -52,7 +52,7 @@ function App() {
       modelRef.current.style.left = `${appCoord[1]}px`;
       modelRef.current.style.bottom = `${appCoord[2]}px`;
       modelRef.current.style.right = `${appCoord[3]}px`;
-      modelRef.current.style.opacity = "0"
+      modelRef.current.style.opacity = "0.5"
       
       modelRef.current.style.clipPath = 'polygon(0 0, 100% 0, 50% 100%, 50% 100%)';
 
@@ -74,7 +74,7 @@ function App() {
           modelRef.current.style.left = `${appCoord[1]}px`;
           modelRef.current.style.bottom = `${appCoord[2]}px`;
           modelRef.current.style.right = `${appCoord[3]}px`;
-          modelRef.current.style.opacity = "0"
+          modelRef.current.style.opacity = "0.5"
           modelRef.current.style.clipPath = 'polygon(0 0, 100% 0, 50% 100%, 50% 100%)';
         }
       },10)
