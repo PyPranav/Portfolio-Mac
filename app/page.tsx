@@ -1,95 +1,126 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+"use client"
+import "./home.css";
+import { useRef } from "react";
+import { scaleValue } from "../utils/scale";
 
-export default function Home() {
+const maxAdditionalSize = 5;
+
+function App() {
+  const dockRef = useRef<HTMLDivElement>(null);
+
+  const handleAppHover = (ev: React.MouseEvent<HTMLLIElement>) => {
+    if (!dockRef.current) return;
+
+    const mousePosition = ev.clientX;
+    const iconPositionLeft = ev.currentTarget.getBoundingClientRect().left;
+    const iconWidth = ev.currentTarget.getBoundingClientRect().width;
+
+    const cursorDistance = (mousePosition - iconPositionLeft) / iconWidth;
+    const offsetPixels = scaleValue(
+      cursorDistance,
+      [0, 1],
+      [maxAdditionalSize * -1, maxAdditionalSize]
+    );
+
+    dockRef.current.style.setProperty(
+      "--dock-offset-left",
+      `${offsetPixels * -1}px`
+    );
+
+    dockRef.current.style.setProperty(
+      "--dock-offset-right",
+      `${offsetPixels}px`
+    );
+  };
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
+    <div className="page">
+      <nav ref={dockRef} className="dock">
+        <ul>
+          <li className="app" onMouseMove={handleAppHover}>
+            <div onClick={()=>{
+              console.log("Finder")
+            }}>
+              <img src="/dock_icons/finder.webp" />
+              <span className="tooltip">Finder</span>
+            </div>
+          </li>
+          <li className="app" onMouseMove={handleAppHover}>
+            <div onClick={()=>{}}>
+              <img src="/dock_icons/arc.webp" />
+              <span className="tooltip">Arc Browser</span>
+            </div>
+          </li>
+          <li className="app" onMouseMove={handleAppHover}>
+            <div onClick={()=>{}}>
+              <img src="/dock_icons/spotify.webp" />
+              <span className="tooltip">Spotify</span>
+            </div>
+          </li>
+          <li className="app" onMouseMove={handleAppHover}>
+            <div onClick={()=>{}}>
+              <img src="/dock_icons/chatgpt.webp" />
+              <span className="tooltip">Personal GPT</span>
+            </div>
+          </li>
+          
+          <li className="app" onMouseMove={handleAppHover}>
+            <div onClick={()=>{}}>
+              <img src="/dock_icons/settings.webp" />
+              <span className="tooltip">Settings</span>
+            </div>
+          </li>
+          <li className="app" onMouseMove={handleAppHover}>
+            <div onClick={()=>{}}>
+              <img src="/dock_icons/photos.webp" />
+              <span className="tooltip">Photos</span>
+            </div>
+          </li>
+          
+          <li className="app" onMouseMove={handleAppHover}>
+            <div onClick={()=>{}}>
+              <img src="https://www.frontend.fyi/playground-assets/macos-dock/icons/vscode.png" />
+              <span className="tooltip">Some Game</span>
+            </div>
+          </li>
+          <li className="app" onMouseMove={handleAppHover}>
+            <div onClick={()=>{}}>
+              <img src="/dock_icons/mail.webp" />
+              <span className="tooltip">Contact Me</span>
+            </div>
+          </li>
+        </ul>
+      </nav>
+
+      {/* <div className="source-links">
+        <a
+          href="https://unsplash.com/photos/4wzRuAb-KWs"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Wallpaper by Mohammad <br />
+          Alizade on Unsplash
+        </a>
+        <a
+          href="https://macosicons.com/#/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Icons by MacOS Icons
+        </a>
+      </div> */}
+      <div className="mobile-message">
         <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
+          What?! MacOS works on mobile?..
+          <br />— Unfortunately it doesn't 😢 Open this site on your desktop to
+          enjoy the amazing animations! Or watch the video{" "}
+          <a href="https://youtu.be/_ZcIFTvLm64" target="_blank">
+            on YouTube
           </a>
-        </div>
+        </p>
       </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+    </div>
   );
 }
+
+export default App;
