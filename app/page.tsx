@@ -47,27 +47,23 @@ function App() {
           </li>
           <li className="app" onMouseMove={handleAppHover}>
             <div onClick={()=>{}}>
-              <img src="/dock_icons/arc.webp" />
-              <span className="tooltip">Arc Browser</span>
-            </div>
-          </li>
-          <li className="app" onMouseMove={handleAppHover}>
-            <div onClick={()=>{}}>
-              <img src="/dock_icons/spotify.webp" />
-              <span className="tooltip">Spotify</span>
-            </div>
-          </li>
-          <li className="app" onMouseMove={handleAppHover}>
-            <div onClick={()=>{}}>
               <img src="/dock_icons/chatgpt.webp" />
               <span className="tooltip">Personal GPT</span>
             </div>
           </li>
+          <li className="app" onMouseMove={handleAppHover}>
+            <div onClick={()=>{}}>
+              <img src="/dock_icons/arc.webp" />
+              <span className="tooltip">Social Media</span>
+            </div>
+          </li>
+          
+          
           
           <li className="app" onMouseMove={handleAppHover}>
             <div onClick={()=>{}}>
               <img src="/dock_icons/settings.webp" />
-              <span className="tooltip">Settings</span>
+              <span className="tooltip">About</span>
             </div>
           </li>
           <li className="app" onMouseMove={handleAppHover}>
@@ -77,6 +73,13 @@ function App() {
             </div>
           </li>
           
+          
+          <li className="app" onMouseMove={handleAppHover}>
+            <div onClick={()=>{}}>
+              <img src="/dock_icons/spotify.webp" />
+              <span className="tooltip">Spotify</span>
+            </div>
+          </li>
           <li className="app" onMouseMove={handleAppHover}>
             <div onClick={()=>{}}>
               <img src="https://www.frontend.fyi/playground-assets/macos-dock/icons/vscode.png" />
