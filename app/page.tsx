@@ -82,7 +82,7 @@ function App() {
         if (modelRef.current)
           modelRef.current.style.transition = "all 0.5s ease-in-out";
 
-      },15)
+      },20)
 
       setTimeout(() => {
         if(modelRef.current){
@@ -93,7 +93,7 @@ function App() {
           modelRef.current.style.opacity = "1";
           modelRef.current.style.clipPath = 'polygon(0 0, 100% 0, 100% 100%, 0 100%)';
         }
-      }, 20);
+      }, 30);
     }
   }
 
