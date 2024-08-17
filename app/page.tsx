@@ -3,6 +3,7 @@ import "./home.css";
 import { useEffect, useRef, useState } from "react";
 import { scaleValue } from "../utils/scale";
 import { dockAppList } from "@/utils/dockApps";
+import SettingsPage from "@/components/apps/settings";
 
 const maxAdditionalSize = 5;
 
@@ -11,6 +12,18 @@ function App() {
   const modelRef = useRef<HTMLDivElement>(null);
 
   const [openedApp, setOpenedApp] = useState<number>(0)
+  const [appStates, setAppStates] = useState<any>({
+    1:{},
+    2:{},
+    3:{},
+    4:{
+      tabValue:'account'
+    },
+    5:{},
+    6:{},
+    7:{},
+    8:{},
+  })
 
   const handleAppHover = (ev: React.MouseEvent<HTMLLIElement>) => {
     if (!dockRef.current) return;
@@ -46,7 +59,8 @@ function App() {
     if(appNum===0)
         return
     let appCoord = getCoords(appNum)
-    setOpenedApp(0)
+    setTimeout(()=>setOpenedApp(0),400)
+    
     console.log({appCoord})
     if (modelRef.current){
       modelRef.current.style.top = `${appCoord[0]}px`;
@@ -98,16 +112,23 @@ function App() {
     }
   }
 
+
+  useEffect(()=>{
+    console.log({appStates})
+  },[appStates])
+
   return (
     <div className="page">
       <div
       ref={modelRef}
       style={{
         position:'absolute',
-        background:'black'
+        background:'black',
+        opacity:0
+        // display:openedApp==0?"none":'block'
       }}
       >
-
+        {openedApp!=0&&(<SettingsPage CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>)}
       </div>
       <nav ref={dockRef} className="dock">
         <ul>
