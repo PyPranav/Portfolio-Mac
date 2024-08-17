@@ -46,6 +46,7 @@ function App() {
     if(appNum===0)
         return
     let appCoord = getCoords(appNum)
+    setOpenedApp(0)
     console.log({appCoord})
     if (modelRef.current){
       modelRef.current.style.top = `${appCoord[0]}px`;
@@ -103,11 +104,11 @@ function App() {
       ref={modelRef}
       style={{
         position:'absolute',
-        // width:0,
-        // height:0,
         background:'black'
       }}
-      ></div>
+      >
+
+      </div>
       <nav ref={dockRef} className="dock">
         <ul>
           {dockAppList.map((dockApp)=>(
