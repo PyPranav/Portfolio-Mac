@@ -1,6 +1,8 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Input } from "@/components/ui/input"
 import WindowCloseButtons from "../custom/windowCloseButtons";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+
 
 function SearchIcon(props:any) {
   return (
@@ -42,12 +44,29 @@ const SettingsPage = ({CloseApp,openedApp,appStates,setAppStates}:{CloseApp:any,
             </div>
           </div>
 
+          <TabsTrigger className="w-full justify-start data-[state=active]:bg-[#195cc5] text-white data-[state=active]:text-white" value="id">
+            <div className="flex gap-3">
+            <Avatar>
+              <AvatarImage src="https://github.com/shadcn.png" />
+              <AvatarFallback>CN</AvatarFallback>
+            </Avatar>
+            <div className="flex flex-col">
+              <p className=" text-left">Pranav Sunil</p>
+              <p className=" text-left text-xs text-[#cfcece] ">Developer</p>
+            </div>
 
-          <TabsTrigger className="w-full justify-start data-[state=active]:bg-[#195cc5] " value="account"><p className=" ">Account</p></TabsTrigger>
-          <TabsTrigger className="w-full justify-start data-[state=active]:bg-[#195cc5] color-white" value="password">Password</TabsTrigger>
+            </div>
+          </TabsTrigger>
+          <TabsTrigger className="pointer-events-none !cursor-not-allowed  mt-5 w-full justify-start data-[state=active]:bg-[#195cc5] text-white data-[state=active]:text-white" value="update">
+              Software Update Available
+              <div className="w-6 h-6 rounded-[20px] ml-2 bg-[#fa605a] flex items-center justify-center">1</div>
+          </TabsTrigger>
+
+          <TabsTrigger className="mt-5 w-full justify-start data-[state=active]:bg-[#195cc5] text-white data-[state=active]:text-white" value="account">Account</TabsTrigger>
+          <TabsTrigger className="w-full justify-start data-[state=active]:bg-[#195cc5] text-white data-[state=active]:text-white " value="password">Password</TabsTrigger>
         </TabsList>
         <div className="bg-black"></div>
-        <TabsContent value="account">Make changes to your account here.</TabsContent>
+        <TabsContent value="account"><div className="cursor-not-allowed">Make changes to your account here. </div></TabsContent>
         <TabsContent value="password">Change your password here.</TabsContent>
     </Tabs> 
       );
