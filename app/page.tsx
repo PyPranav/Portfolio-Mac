@@ -17,7 +17,8 @@ function App() {
     2:{},
     3:{},
     4:{
-      tabValue:'id'
+      tabValue:'id',
+      wifi:true
     },
     5:{},
     6:{},
@@ -68,10 +69,7 @@ function App() {
       modelRef.current.style.bottom = `${appCoord[2]}px`;
       modelRef.current.style.right = `${appCoord[3]}px`;
       modelRef.current.style.opacity = "0.5"
-      
       modelRef.current.style.clipPath = 'polygon(0 0, 100% 0, 50% 100%, 50% 100%)';
-
-
       modelRef.current.style.transition = "all 0.5s ease-in-out";    
     }
   }

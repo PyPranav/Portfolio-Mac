@@ -10,7 +10,7 @@ const WindowCloseButtons = ({CloseApp,openedApp}:{CloseApp:any,openedApp:number}
             src="/close.png"
             width={500}
             height={500}
-            alt="Picture of the author"
+            alt="close"
             />
         </div>   
         <div className="w-4 h-4 rounded-[20px] bg-[#ffb823] group-hover:bg-[#7a5b1a]" onClick={()=>CloseApp(openedApp)}>
@@ -18,7 +18,7 @@ const WindowCloseButtons = ({CloseApp,openedApp}:{CloseApp:any,openedApp:number}
             src="/minimize.png"
             width={500}
             height={500}
-            alt="Picture of the author"
+            alt="minimize"
             />
         </div>
         <div className="w-4 h-4 rounded-[20px] bg-[#2ac53e] group-hover:bg-[#1d6326]" onClick={()=>CloseApp(openedApp)}>
@@ -26,7 +26,7 @@ const WindowCloseButtons = ({CloseApp,openedApp}:{CloseApp:any,openedApp:number}
             src="/maximize.png"
             width={500}
             height={500}
-            alt="Picture of the author"
+            alt="maximize"
             />
         </div>
     </div> 
