@@ -2,6 +2,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Input } from "@/components/ui/input"
 import WindowCloseButtons from "../custom/windowCloseButtons";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import Image from "next/image";
+import { settingsOptions } from "@/utils/settingsOptions";
 
 
 function SearchIcon(props:any) {
@@ -57,17 +59,40 @@ const SettingsPage = ({CloseApp,openedApp,appStates,setAppStates}:{CloseApp:any,
 
             </div>
           </TabsTrigger>
-          <TabsTrigger className="pointer-events-none !cursor-not-allowed  mt-5 w-full justify-start data-[state=active]:bg-[#195cc5] text-white data-[state=active]:text-white" value="update">
+          <TabsTrigger className="mb-5 pointer-events-none !cursor-not-allowed  mt-5 w-full justify-start data-[state=active]:bg-[#195cc5] text-white data-[state=active]:text-white" value="update">
               Software Update Available
               <div className="w-6 h-6 rounded-[20px] ml-2 bg-[#fa605a] flex items-center justify-center">1</div>
           </TabsTrigger>
 
-          <TabsTrigger className="mt-5 w-full justify-start data-[state=active]:bg-[#195cc5] text-white data-[state=active]:text-white" value="account">Account</TabsTrigger>
-          <TabsTrigger className="w-full justify-start data-[state=active]:bg-[#195cc5] text-white data-[state=active]:text-white " value="password">Password</TabsTrigger>
+          
+
+          {settingsOptions.map((app)=>(
+            <TabsTrigger key={app.id} style={
+              app.allowed?{}:
+              {
+                pointerEvents:'none',
+                marginTop:app.id%4==0?'1.25rem':'0'
+              }
+            } className=" w-full justify-start data-[state=active]:bg-[#195cc5] text-white data-[state=active]:text-white " value={app.name.toLowerCase()}>
+              <Image
+              src={app.icon}
+              width={25}
+              height={20}
+              alt="skills"
+              className="mr-2"
+              />
+              {app.name}
+          </TabsTrigger>
+          ))}
+          {/* <TabsTrigger className="w-full justify-start data-[state=active]:bg-[#195cc5] text-white data-[state=active]:text-white " value="password">Password</TabsTrigger> */}
         </TabsList>
         <div className="bg-black"></div>
-        <TabsContent value="account"><div className="cursor-not-allowed">Make changes to your account here. </div></TabsContent>
-        <TabsContent value="password">Change your password here.</TabsContent>
+        <TabsContent value="id"><div>ID</div></TabsContent>
+
+        <TabsContent value="skills"><div>Skills </div></TabsContent>
+        <TabsContent value="experience"><div>experience</div></TabsContent>
+        <TabsContent value="collaborate"><div>Collaborate </div></TabsContent>
+
     </Tabs> 
       );
 }
