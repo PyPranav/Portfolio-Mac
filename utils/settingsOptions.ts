@@ -8,7 +8,7 @@ export const settingsOptions = [
     {
         id:2,
         icon: '/settings_icon/bluetooth.png',
-        name: 'Experience',
+        name: 'Experience & Education',
         allowed: true,
     },
     {

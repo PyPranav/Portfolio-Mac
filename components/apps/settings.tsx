@@ -7,6 +7,7 @@ import { settingsOptions } from "@/utils/settingsOptions";
 import AppleId from "../custom/SettingsTabs/appleId";
 import { PersonalInfo } from "@/utils/personalInfo";
 import SkillTab from "../custom/SettingsTabs/skills";
+import ExperienceTab from "../custom/SettingsTabs/experience";
 
 
 function SearchIcon(props: any) {
@@ -78,7 +79,7 @@ const SettingsPage = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseA
                 pointerEvents: 'none',
                 marginTop: app.id % 4 == 0 ? '1.25rem' : '0'
               }
-          } className=" w-full justify-start data-[state=active]:bg-[#195cc5] text-white data-[state=active]:text-white " value={app.name.toLowerCase()}>
+          } className=" w-full justify-start data-[state=active]:bg-[#195cc5] text-white data-[state=active]:text-white " value={app.name.split(' ')[0].toLowerCase()}>
             <Image
               src={app.icon}
               width={25}
@@ -95,7 +96,7 @@ const SettingsPage = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseA
       <TabsContent value="id" className="overflow-scroll"><AppleId /></TabsContent>
 
       <TabsContent value="skills" className="overflow-scroll"><SkillTab openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/></TabsContent>
-      <TabsContent value="experience" className="overflow-scroll"><div>experience</div></TabsContent>
+      <TabsContent value="experience" className="overflow-scroll"><ExperienceTab openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/></TabsContent>
       <TabsContent value="collaborate" className="overflow-scroll"><div>Collaborate </div></TabsContent>
 
     </Tabs>

@@ -18,7 +18,8 @@ function App() {
     3:{},
     4:{
       tabValue:'id',
-      wifi:true
+      wifi:true,
+      bluetooth: true
     },
     5:{},
     6:{},
