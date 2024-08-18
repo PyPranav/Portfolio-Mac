@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { PhotoDetails } from "@/utils/photos";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,6 +17,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        {PhotoDetails.certificates.map((url,id)=>(
+          <link key={id} rel='preload' href={url?.replace('.jpg','.webp')?.replace('.png','.webp')?.replace('.jpeg','.webp')} as="image"/>
+        ))}
+        {PhotoDetails.personal.map((url,id)=>(
+          <link key={id} rel='preload' href={url?.replace('.jpg','.webp')?.replace('.png','.webp')?.replace('.jpeg','.webp')} as="image"/>
+        ))}
+        {PhotoDetails.projects.map((url,id)=>(
+          <link key={id} rel='preload' href={url?.replace('.jpg','.webp')?.replace('.png','.webp')?.replace('.jpeg','.webp')} as="image"/>
+        ))}
+      </head>
       <body className={inter.className}>{children}</body>
     </html>
   );

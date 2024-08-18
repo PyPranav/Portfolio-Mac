@@ -124,6 +124,11 @@ function App() {
     console.log({appStates})
   },[appStates])
 
+  useEffect(()=>{
+    console.log("FINISHED LOADING!!!")
+
+  },[])
+
 
   const appSelector = [
     (<SettingsPage CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>),

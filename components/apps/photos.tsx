@@ -52,7 +52,6 @@ const PhotosApp = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseApp:
     const debouncedHandleResize = debounce(handleResize, 200); 
 
     window.addEventListener('resize', debouncedHandleResize);
-
     // Cleanup the event listener on component unmount
     return () => window.removeEventListener('resize', debouncedHandleResize);
   }, []);
