@@ -8,11 +8,11 @@ const AlbumView = ({ type ,openedApp, appStates, setAppStates }: { type:('person
                 <img
                   src={(()=>{
                     if (type==='personal')
-                        return PhotoDetails[type][appStates[5].currentPersonalPhotoIndex]?.replace('.jpg','.webp')?.replace('.png','.webp')
+                        return PhotoDetails[type][appStates[5].currentPersonalPhotoIndex]?.replace('.jpg','.webp')?.replace('.png','.webp')?.replace('.jpeg','.webp')
                     else if (type==='certificates')
-                        return PhotoDetails[type][appStates[5].currentCertificatesPhotoIndex]?.replace('.jpg','.webp')?.replace('.png','.webp')
+                        return PhotoDetails[type][appStates[5].currentCertificatesPhotoIndex]?.replace('.jpg','.webp')?.replace('.png','.webp')?.replace('.jpeg','.webp')
                     else
-                        return PhotoDetails[type][appStates[5].currentProjectPhotoIndex]?.replace('.jpg','.webp')?.replace('.png','.webp')
+                        return PhotoDetails[type][appStates[5].currentProjectPhotoIndex]?.replace('.jpg','.webp')?.replace('.png','.webp')?.replace('.jpeg','.webp')
 
                 })()}   
                   // src={'/photos/personal/6.jpg'}

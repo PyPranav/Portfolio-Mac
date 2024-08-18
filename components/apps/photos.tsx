@@ -12,9 +12,53 @@ const CloudinaryImage = () => {
 
 const PhotosApp = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseApp: any, openedApp: number, appStates: any, setAppStates: any }) => {
   const [isLoading, setIsLoading] = useState(true)
-  useEffect(()=>{
-    console.log(isLoading)
-  },[isLoading])
+  const [photoWidth, setPhotoWidth] = useState(0)
+
+  useEffect(() => {
+    const debounce = <T extends (...args: any[]) => void>(func: T, delay: number): (...args: Parameters<T>) => void => {
+      let timeoutId: ReturnType<typeof setTimeout> | undefined;
+    
+      return (...args: Parameters<T>) => {
+        if (timeoutId) clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => {
+          func(...args);
+        }, delay);
+      };
+    };
+
+    const handleResize = () => {
+      let winWidth = window.innerWidth
+      let numberOfPhotoPerRow = 0
+      if (winWidth>=1600)
+        numberOfPhotoPerRow=5
+      else if(winWidth>=1450)
+        numberOfPhotoPerRow=4
+      else if(winWidth>=1000)
+        numberOfPhotoPerRow=3
+      else if(winWidth>=750)
+        numberOfPhotoPerRow=2
+      else
+        numberOfPhotoPerRow=1
+
+      let availWidth = winWidth-80-40*(numberOfPhotoPerRow-1)
+      let perPhotoWidth = availWidth/numberOfPhotoPerRow
+
+      setPhotoWidth(perPhotoWidth)
+      console.log('hey')
+        
+
+    };
+    handleResize()
+    const debouncedHandleResize = debounce(handleResize, 200); 
+
+    window.addEventListener('resize', debouncedHandleResize);
+
+    // Cleanup the event listener on component unmount
+    return () => window.removeEventListener('resize', debouncedHandleResize);
+  }, []);
+
+
+
   return ( 
     <div className="bg-[#232323] h-full overflow-scroll flex flex-col">
         <div className=" sticky top-0 z-[1000] bg-[#232323] mb-5">
@@ -98,14 +142,14 @@ const PhotosApp = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseApp:
           </div>
         )}
         {appStates[5].albumOpened!==null&&appStates[5].photoOpened===null&&(
-          <div className="px-10  flex flex-wrap gap-10">
+          <div className="px-10  flex flex-wrap gap-[40px]">
             {PhotoDetails[(appStates[5].albumOpened) as 'personal'|'certificates'|'projects'].map((url,ind)=>(
               // <div className=" w-full h-[300px] relative rounded-lg flex" key={ind}>
                 <Image
                   src={url}   
                   key={ind}
                   // src={'/photos/personal/6.jpg'}
-                  className="ml-[8px] object-contain rounded-lg cursor-pointer"
+                  className="object-contain rounded-lg cursor-pointer"
                   onClick={()=>{
                     console.log(url)
 
@@ -113,8 +157,8 @@ const PhotosApp = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseApp:
                     setIsLoading(true)
                   }}
                   
-                  height={300}
-                  width={300}
+                  height={photoWidth}
+                  width={photoWidth}
                   // fill={true}
                   alt={url}
                 />

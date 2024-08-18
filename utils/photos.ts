@@ -4,6 +4,7 @@ export const PhotoDetails = {
         '/photos/personal/profile2.jpg',
         '/photos/personal/hackoverflow.jpg',
         '/photos/personal/hackoverflow_stage.jpg',
+        '/photos/personal/Technical Secretary.jpeg',
 
     ] as string[],
     certificates:[
