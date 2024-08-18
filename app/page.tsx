@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { scaleValue } from "../utils/scale";
 import { dockAppList } from "@/utils/dockApps";
 import SettingsPage from "@/components/apps/settings";
+import PhotosApp from "@/components/apps/photos";
 
 const maxAdditionalSize = 5;
 
@@ -21,11 +22,18 @@ function App() {
       wifi:true,
       bluetooth: true
     },
-    5:{},
+    5:{
+      albumOpened:null as (null|'personal'|'projects'|'certificates'),
+      photoOpened:null as (null|number),
+      currentPersonalPhotoIndex:0,
+      currentCertificatesPhotoIndex:0,
+      currentProjectPhotoIndex:0
+    },
     6:{},
     7:{},
     8:{},
   })
+
 
   const handleAppHover = (ev: React.MouseEvent<HTMLLIElement>) => {
     if (!dockRef.current) return;
@@ -116,6 +124,19 @@ function App() {
     console.log({appStates})
   },[appStates])
 
+
+  const appSelector = [
+    (<SettingsPage CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>),
+    (<SettingsPage CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>),
+    (<SettingsPage CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>),
+    (<SettingsPage CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>),
+    (<PhotosApp CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>),
+    (<SettingsPage CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>),
+    (<SettingsPage CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>),
+    (<SettingsPage CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>),
+  ]
+
+
   return (
     <div className="page">
       <div
@@ -127,7 +148,7 @@ function App() {
         // display:openedApp==0?"none":'block'
       }}
       >
-        {openedApp!=0&&(<SettingsPage CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>)}
+        {openedApp!=0&&(appSelector[openedApp-1])}
       </div>
       <nav ref={dockRef} className="dock">
         <ul>
