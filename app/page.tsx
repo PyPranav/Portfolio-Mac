@@ -152,17 +152,29 @@ function App() {
 
   return (
     <div className="page">
+      <div className="h-full w-full absolute black z-0 ">
+        <div className="w-[500px]">
+          <div className="flex">
+            <div className='w-[100px]' >Calender Widget</div>
+            <div className='w-full' >Spotify Widget</div>
+          </div>
+          <div className=' col-span-2' >Name Widget</div>
+        </div>
+      </div>
       <div
       ref={modelRef}
       style={{
         position:'absolute',
         background:'black',
-        opacity:0
+        opacity:0,
         // display:openedApp==0?"none":'block'
+        zIndex:5
       }}
       >
         {openedApp!=0&&(appSelector[openedApp-1])}
       </div>
+      
+      
       <nav ref={dockRef} className="dock">
         <ul>
           {dockAppList.map((dockApp)=>(
