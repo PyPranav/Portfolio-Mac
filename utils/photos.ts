@@ -11,6 +11,7 @@ export const PhotoDetails = {
         "/photos/certificates/Hackoverflow 1.jpg",
         "/photos/certificates/Hackoverflow 2 Participation.jpg",
         "/photos/certificates/Hackoverflow 2 Win.jpg",
+        "/photos/certificates/gccp.png",
         "/photos/certificates/Alegria Technical Head.jpg",
         "/photos/certificates/Coder of the Semester.jpg",
         "/photos/certificates/Linear Data Structure Visualization.jpg",

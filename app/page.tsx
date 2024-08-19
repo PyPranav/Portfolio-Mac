@@ -5,6 +5,7 @@ import { scaleValue } from "../utils/scale";
 import { dockAppList } from "@/utils/dockApps";
 import SettingsPage from "@/components/apps/settings";
 import PhotosApp from "@/components/apps/photos";
+import { getPlayigSong } from "@/utils/fetchData";
 
 const maxAdditionalSize = 5;
 
@@ -12,6 +13,7 @@ function App() {
   const dockRef = useRef<HTMLDivElement>(null);
   const modelRef = useRef<HTMLDivElement>(null);
 
+  const [playingSong, setPlayingSong] = useState<any>(null)
   const [openedApp, setOpenedApp] = useState<number>(0)
   const [appStates, setAppStates] = useState<any>({
     1:{},
@@ -125,9 +127,15 @@ function App() {
   },[appStates])
 
   useEffect(()=>{
-    console.log("FINISHED LOADING!!!")
-
+    const setSong = async()=> {setPlayingSong(await getPlayigSong())}
+    setSong()
+    // const intervalId = setInterval(setSong,252000)
+    // return ()=> clearInterval(intervalId)
   },[])
+
+  useEffect(()=>{
+    console.log(playingSong)
+  },[playingSong])
 
 
   const appSelector = [

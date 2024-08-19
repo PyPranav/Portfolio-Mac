@@ -4,12 +4,6 @@ import { PhotoDetails } from "@/utils/photos";
 import AlbumView from "../custom/PhotosComponents/albumView";
 import { useEffect, useState } from "react";
 
-const CloudinaryImage = () => {
-  const cloudinaryImageLoader = ({ src }: any) => {
-    return `https://res.cloudinary.com/ugwutotheeshoes/image/upload/bo_10px_solid_rgb:f78585,e_blur:290,b_rgb:e1e6e9,c_scale,r_10,h_280,w_450/v1632752254/${src}`;
-  };
-}
-
 const PhotosApp = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseApp: any, openedApp: number, appStates: any, setAppStates: any }) => {
   const [isLoading, setIsLoading] = useState(true)
   const [photoWidth, setPhotoWidth] = useState(0)
