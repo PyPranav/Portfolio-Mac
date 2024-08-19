@@ -6,6 +6,7 @@ import { dockAppList } from "@/utils/dockApps";
 import SettingsPage from "@/components/apps/settings";
 import PhotosApp from "@/components/apps/photos";
 import { getPlayigSong } from "@/utils/fetchData";
+import Image from "next/image";
 
 const maxAdditionalSize = 5;
 
@@ -150,15 +151,39 @@ function App() {
   ]
 
 
+  const currentDate = new Date();
+  const dayOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"][currentDate.getDay()];
+  const month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"][currentDate.getMonth()];
+  const dayOfMonth = currentDate.getDate();
+
   return (
     <div className="page">
-      <div className="h-full w-full absolute black z-0 ">
-        <div className="w-[500px]">
-          <div className="flex">
-            <div className='w-[100px]' >Calender Widget</div>
-            <div className='w-full' >Spotify Widget</div>
+      <div className="h-full w-full absolute black z-0 p-5">
+        <div className="w-[600px]">
+          <div className="flex gap-5">
+            <div className='w-[16rem]' >
+              <div className="flex flex-col items-center justify-center bg-gray-500 bg-opacity-70 backdrop-blur rounded-2xl p-4 text-white">
+                  <div className="text-2xl font-medium flex gap-2 opacity-80">{dayOfWeek} <p className="opacity-50">{month}</p></div>
+                  <div className="text-6xl text-[6rem] font-bold opacity-80">{dayOfMonth}</div>
+              </div>
+            </div>
+            <div className='w-full group' >
+              <div className="flex h-full bg-gray-500 bg-opacity-70 backdrop-blur rounded-2xl p-4 text-white">
+                  <div className="opacity-80 group-hover:opacity-100 relative aspect-square duration-500">
+                    <Image
+                      src={playingSong?.image??"/musicNone.jpg"}
+                      className="object-cover rounded-2xl"
+                      // height={300}
+                      // width={300}
+                      fill={true}
+                      alt={'back'}
+                    />
+                  </div>
+                  {/* <div className="text-6xl text-[6rem] font-bold opacity-80">{dayOfMonth}</div> */}
+              </div>    
+            </div>
           </div>
-          <div className=' col-span-2' >Name Widget</div>
+          <div className=' col-span-2 mt-5' >Name Widget</div>
         </div>
       </div>
       <div
