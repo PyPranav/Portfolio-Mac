@@ -174,7 +174,7 @@ function App() {
       </div>
       
       
-      <nav ref={dockRef} className="dock">
+      <nav ref={dockRef} className="dock backdrop-blur-md">
         <ul>
           {dockAppList.map((dockApp)=>(
             <li key={dockApp.id} className="app" onMouseMove={handleAppHover}>
