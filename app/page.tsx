@@ -5,8 +5,10 @@ import { scaleValue } from "../utils/scale";
 import { dockAppList } from "@/utils/dockApps";
 import SettingsPage from "@/components/apps/settings";
 import PhotosApp from "@/components/apps/photos";
-import { getPlayigSong } from "@/utils/fetchData";
-import Image from "next/image";
+
+import CalenderWidget from "@/components/custom/Widgets/calendarWidget";
+import NameWidget from "@/components/custom/Widgets/nameWidget";
+import SpotifyWidget from "@/components/custom/Widgets/spotifyWidget";
 
 const maxAdditionalSize = 5;
 
@@ -14,7 +16,6 @@ function App() {
   const dockRef = useRef<HTMLDivElement>(null);
   const modelRef = useRef<HTMLDivElement>(null);
 
-  const [playingSong, setPlayingSong] = useState<any>(null)
   const [openedApp, setOpenedApp] = useState<number>(0)
   const [appStates, setAppStates] = useState<any>({
     1:{},
@@ -127,16 +128,8 @@ function App() {
     console.log({appStates})
   },[appStates])
 
-  useEffect(()=>{
-    const setSong = async()=> {setPlayingSong(await getPlayigSong())}
-    setSong()
-    // const intervalId = setInterval(setSong,252000)
-    // return ()=> clearInterval(intervalId)
-  },[])
+  
 
-  useEffect(()=>{
-    console.log(playingSong)
-  },[playingSong])
 
 
   const appSelector = [
@@ -151,39 +144,19 @@ function App() {
   ]
 
 
-  const currentDate = new Date();
-  const dayOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"][currentDate.getDay()];
-  const month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"][currentDate.getMonth()];
-  const dayOfMonth = currentDate.getDate();
+
 
   return (
     <div className="page">
-      <div className="h-full w-full absolute black z-0 p-5">
+      <div className="h-full w-full select-none absolute z-0 p-5">
         <div className="w-[600px]">
-          <div className="flex gap-5">
-            <div className='w-[16rem]' >
-              <div className="flex flex-col items-center justify-center bg-gray-500 bg-opacity-70 backdrop-blur rounded-2xl p-4 text-white">
-                  <div className="text-2xl font-medium flex gap-2 opacity-80">{dayOfWeek} <p className="opacity-50">{month}</p></div>
-                  <div className="text-6xl text-[6rem] font-bold opacity-80">{dayOfMonth}</div>
-              </div>
-            </div>
-            <div className='w-full group' >
-              <div className="flex h-full bg-gray-500 bg-opacity-70 backdrop-blur rounded-2xl p-4 text-white">
-                  <div className="opacity-80 group-hover:opacity-100 relative aspect-square duration-500">
-                    <Image
-                      src={playingSong?.image??"/musicNone.jpg"}
-                      className="object-cover rounded-2xl"
-                      // height={300}
-                      // width={300}
-                      fill={true}
-                      alt={'back'}
-                    />
-                  </div>
-                  {/* <div className="text-6xl text-[6rem] font-bold opacity-80">{dayOfMonth}</div> */}
-              </div>    
-            </div>
+          <NameWidget/>
+
+          <div className="mt-5 flex gap-5">
+            <CalenderWidget/>
+            <SpotifyWidget/>
           </div>
-          <div className=' col-span-2 mt-5' >Name Widget</div>
+         
         </div>
       </div>
       <div

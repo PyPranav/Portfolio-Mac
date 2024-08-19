@@ -1,6 +1,7 @@
 export const PersonalInfo = {
     name:'Pranav Sunil',
     tag:'Software Developer',
+    descriptiveTag:'Computer Engineering (Final Year) | AI ML Engineer @PenPixelLLP',
     profilePic:'/profile.jpg',
     email1:'pypranv.sunil@gmail.com',
     email2:'pranavsunil2103@gmail.com',
