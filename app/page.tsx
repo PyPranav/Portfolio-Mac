@@ -9,6 +9,7 @@ import PhotosApp from "@/components/apps/photos";
 import CalenderWidget from "@/components/custom/Widgets/calendarWidget";
 import NameWidget from "@/components/custom/Widgets/nameWidget";
 import SpotifyWidget from "@/components/custom/Widgets/spotifyWidget";
+import SpotifyApp from "@/components/apps/spotify";
 
 const maxAdditionalSize = 5;
 
@@ -138,7 +139,7 @@ function App() {
     (<SettingsPage CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>),
     (<SettingsPage CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>),
     (<PhotosApp CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>),
-    (<SettingsPage CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>),
+    (<SpotifyApp CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>),
     (<SettingsPage CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>),
     (<SettingsPage CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>),
   ]
