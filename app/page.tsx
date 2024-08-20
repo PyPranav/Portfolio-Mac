@@ -10,6 +10,7 @@ import CalenderWidget from "@/components/custom/Widgets/calendarWidget";
 import NameWidget from "@/components/custom/Widgets/nameWidget";
 import SpotifyWidget from "@/components/custom/Widgets/spotifyWidget";
 import SpotifyApp from "@/components/apps/spotify";
+import ArcPage from "@/components/apps/arc";
 
 const maxAdditionalSize = 5;
 
@@ -136,7 +137,7 @@ function App() {
   const appSelector = [
     (<SettingsPage CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>),
     (<SettingsPage CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>),
-    (<SettingsPage CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>),
+    (<ArcPage CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>),
     (<SettingsPage CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>),
     (<PhotosApp CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>),
     (<SpotifyApp CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>),
@@ -156,6 +157,7 @@ function App() {
           <div className="mt-5 flex gap-5">
             <CalenderWidget/>
             <SpotifyWidget/>
+            
           </div>
          
         </div>
@@ -164,7 +166,8 @@ function App() {
       ref={modelRef}
       style={{
         position:'absolute',
-        background:'black',
+        // background:'black',
+        backdropFilter: "blur(20px)",
         opacity:0,
         // display:openedApp==0?"none":'block'
         zIndex:5

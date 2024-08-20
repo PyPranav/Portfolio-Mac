@@ -8,8 +8,8 @@ const SpotifyWidget = () => {
   useEffect(()=>{
     const setSong = async()=> {setPlayingSong(await getPlayigSong())}
     setSong()
-    // const intervalId = setInterval(setSong,252000)
-    // return ()=> clearInterval(intervalId)
+    const intervalId = setInterval(setSong,20000)
+    return ()=> clearInterval(intervalId)
   },[])
 
   useEffect(()=>{
