@@ -2,6 +2,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import WindowCloseButtons from "../custom/windowCloseButtons";
 import { Input } from "../ui/input";
 import Image from "next/image";
+import InstagramPage from "../custom/ArcPages/instagram";
 function SearchIcon(props: any) {
     return (
         <svg
@@ -22,10 +23,15 @@ function SearchIcon(props: any) {
     )
 }
 
+const getLink = (val:string)=>{
+    if (['instagram', 'x', 'github', 'linkedin'].includes(val))
+        return val+'.com'
+    return ''
+}
 
 const ArcPage = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseApp: any, openedApp: number, appStates: any, setAppStates: any }) => {
     return (
-        <Tabs defaultValue="account" className="grid grid-cols-[170px_1fr] h-full w-full bg-black bg-opacity-85 backdrop-blur-2xl color-white">
+        <Tabs value={appStates[openedApp]['tabValue']} onValueChange={(val) => setAppStates({ ...appStates, [openedApp]: { ...appStates[openedApp], 'tabValue': val } })} className="grid grid-cols-[170px_1fr] h-full w-full bg-black bg-opacity-85 backdrop-blur-2xl color-white">
             <TabsList className="flex flex-col h-full p-2 pt-0 items-start justify-start bg-[#292929] bg-opacity-0 overflow-scroll">
                     <div className="flex w-full">
                         <WindowCloseButtons CloseApp={CloseApp} openedApp={openedApp} />
@@ -53,45 +59,45 @@ const ArcPage = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseApp: a
                     <Input
                         type="search"
                         disabled
-                        value={'www.google.com'.replace('www.','')}
+                        value={getLink(appStates[openedApp]['tabValue'])}
                         placeholder="Search"
                         className=" text-xs my-2 w-full rounded-xl border border-[#2f2f2f] bg-white bg-opacity-20 px-4 py-2 text-white focus:border-gray-500 focus:outline-none dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100"
                     />
                 <div className="grid grid-cols-2 gap-2 w-full">
                     <TabsTrigger value="instagram" className="grid place-items-center w-full h-[3rem]  bg-white bg-opacity-10 hover:bg-opacity-20 data-[state=active]:bg-white data-[state=active]:bg-opacity-30 text-white data-[state=active]:text-white rounded-xl duration-200 " >
                         <Image
-                        src={'/back.svg'}
-                        className="object-cover rounded-xl  invert opacity-35 "
-                        height={20}
-                        width={20}
-                        alt={'back'}
+                        src={'/arc/instagramLogo.png'}
+                        className="object-cover"
+                        height={15}
+                        width={15}
+                        alt={'Instagram'}
                         />
                     </TabsTrigger>
                     <TabsTrigger value="github" className="grid place-items-center w-full h-[3rem] bg-white bg-opacity-10 hover:bg-opacity-20 data-[state=active]:bg-white data-[state=active]:bg-opacity-30 text-white data-[state=active]:text-white rounded-xl duration-200 ">
                     <Image
-                        src={'/back.svg'}
-                        className="object-cover rounded-xl invert opacity-35 "
-                        height={20}
-                        width={20}
-                        alt={'back'}
+                        src={'/arc/githubLogo.png'}
+                        className="object-cover"
+                        height={15}
+                        width={15}
+                        alt={'Github'}
                         />
                     </TabsTrigger>
                     <TabsTrigger value="linkedin" className="grid place-items-center w-full h-[3rem] bg-white bg-opacity-10 hover:bg-opacity-20 data-[state=active]:bg-white data-[state=active]:bg-opacity-30 text-white data-[state=active]:text-white rounded-xl duration-200 ">
                     <Image
-                        src={'/back.svg'}
-                        className="object-cover rounded-xl  invert opacity-35 "
-                        height={20}
-                        width={20}
-                        alt={'back'}
+                        src={'/arc/linkedinLogo.png'}
+                        className="object-cover"
+                        height={15}
+                        width={15}
+                        alt={'Linkedin'}
                         />
                     </TabsTrigger>
-                    <TabsTrigger value="twitter" className="grid place-items-center w-full h-[3rem] bg-white bg-opacity-10 hover:bg-opacity-20 data-[state=active]:bg-white data-[state=active]:bg-opacity-30 text-white data-[state=active]:text-white rounded-xl duration-200 ">
+                    <TabsTrigger value="x" className="grid place-items-center w-full h-[3rem] bg-white bg-opacity-10 hover:bg-opacity-20 data-[state=active]:bg-white data-[state=active]:bg-opacity-30 text-white data-[state=active]:text-white rounded-xl duration-200 ">
                     <Image
-                        src={'/back.svg'}
-                        className="object-cover rounded-xl invert opacity-35 "
-                        height={20}
-                        width={20}
-                        alt={'back'}
+                        src={'/arc/xLogo.png'}
+                        className="object-cover"
+                        height={15}
+                        width={15}
+                        alt={'X'}
                         />
                     </TabsTrigger>
                 </div>
@@ -114,7 +120,9 @@ const ArcPage = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseApp: a
             </TabsList>
             {/* <div className="bg-black"></div> */}
 
-            <TabsContent className="bg-white mb-2 mr-2 rounded-lg" value="account">Make changes to your account here.</TabsContent>
+            <TabsContent className="mb-2 mr-2 rounded-lg overflow-scroll" value="instagram">
+                <InstagramPage/>
+            </TabsContent>
             <TabsContent className="bg-white mb-2 mr-2 rounded-lg" value="password">Change your password here.</TabsContent>
         </Tabs>
     );

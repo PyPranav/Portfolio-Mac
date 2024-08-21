@@ -6,3 +6,10 @@ export const getPlayigSong = async ()=>{
     )
     return data
 }
+
+export const getInstaDetails = async ()=>{
+    const data = await fetch(API_ROOT+'insta').then((res) =>
+        res.json()
+    )
+    return data
+}

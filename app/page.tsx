@@ -22,7 +22,9 @@ function App() {
   const [appStates, setAppStates] = useState<any>({
     1:{},
     2:{},
-    3:{},
+    3:{
+      tabValue:'instagram',
+    },
     4:{
       tabValue:'id',
       wifi:true,

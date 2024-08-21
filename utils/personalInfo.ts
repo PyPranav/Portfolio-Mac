@@ -146,5 +146,12 @@ export const PersonalInfo = {
             duration:'2008 - 2018',
             icon:'/settings_icon/experience/nhps.webp'
         },
+    ],
+    instaPosts:[
+        '/arc/insta/post1.jpg',
+        '/arc/insta/post2.jpg',
+        '/arc/insta/post3.jpg',
+        '/arc/insta/post4.jpg',
+        '/arc/insta/post5.jpg',
     ]
 }
