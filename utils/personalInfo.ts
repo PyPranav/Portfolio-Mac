@@ -153,5 +153,12 @@ export const PersonalInfo = {
         '/arc/insta/post3.jpg',
         '/arc/insta/post4.jpg',
         '/arc/insta/post5.jpg',
+    ],
+    gihubAchivements:[
+        '/arc/github/achievement1.png',
+        '/arc/github/achievement2.png',
+        '/arc/github/achievement3.png',
+        '/arc/github/achievement4.png',
+        '/arc/github/achievement5.png',
     ]
 }

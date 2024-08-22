@@ -3,6 +3,7 @@ import WindowCloseButtons from "../custom/windowCloseButtons";
 import { Input } from "../ui/input";
 import Image from "next/image";
 import InstagramPage from "../custom/ArcPages/instagram";
+import GithubPage from "../custom/ArcPages/github";
 function SearchIcon(props: any) {
     return (
         <svg
@@ -122,6 +123,9 @@ const ArcPage = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseApp: a
 
             <TabsContent className="mb-2 mr-2 rounded-lg overflow-scroll" value="instagram">
                 <InstagramPage/>
+            </TabsContent>
+            <TabsContent className="mb-2 mr-2 rounded-lg overflow-scroll" value="github">
+                <GithubPage/>
             </TabsContent>
             <TabsContent className="bg-white mb-2 mr-2 rounded-lg" value="password">Change your password here.</TabsContent>
         </Tabs>
