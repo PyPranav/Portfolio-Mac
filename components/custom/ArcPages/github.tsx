@@ -36,14 +36,16 @@ const GithubPage = () => {
                     <div className="grid grid-cols-1 lg:grid-cols-[350px_1fr]">
                         <div className="my-7 mx-7">
                             <div className="flex justify-center">
-                                <div>
-                                    <Image
-                                        src={githubData?.avatar_url}
-                                        className="object-cover rounded-[300px] cursor-pointer"
-                                        height={296}
-                                        width={296}
-                                        alt={'Profile'}
-                                    />
+                                <div className="flex flex-col">
+                                    <div className="w-[180px] md:w-[230px] lg:w-full self-center">
+                                        <Image
+                                            src={githubData?.avatar_url}
+                                            className="object-cover rounded-[300px] cursor-pointer border-[#30363d] border-[2px]"
+                                            height={296}
+                                            width={296}
+                                            alt={'Profile'}
+                                        />
+                                    </div>
                                     <p className="mt-5 text-2xl font-semibold">{githubData?.name??''}</p>
                                     <p className="font-thin text-lg">{githubData?.login??''}</p>
                                     <a href="https://www.github.com/pypranav" title='Open github.com' target="_blank">
