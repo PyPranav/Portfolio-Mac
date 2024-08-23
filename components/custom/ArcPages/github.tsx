@@ -33,30 +33,37 @@ const GithubPage = () => {
             <hr className="border-[#30363d]"/>
             <div className="grid place-items-center mb-20">
                 {(githubData&&(
-                    <div className="grid grid-cols-[350px_1fr]">
+                    <div className="grid grid-cols-1 lg:grid-cols-[350px_1fr]">
                         <div className="my-7 mx-7">
-                            <Image
-                                src={githubData?.avatar_url}
-                                className="object-cover rounded-[300px] cursor-pointer"
-                                height={296}
-                                width={296}
-                                alt={'Profile'}
-                            />
-                            <p className="mt-5 text-2xl font-semibold">{githubData?.name??''}</p>
-                            <p className="font-thin text-lg">{githubData?.login??''}</p>
-                            <a href="https://www.github.com/pypranav" title='Open github.com' target="_blank">
-                                <button className="mt-5 w-full font-light text-sm bg-[#21262d] p-2 rounded-lg border-[#30363d] border-[1px]">Follow</button>
-                            </a>
+                            <div className="flex justify-center">
+                                <div>
+                                    <Image
+                                        src={githubData?.avatar_url}
+                                        className="object-cover rounded-[300px] cursor-pointer"
+                                        height={296}
+                                        width={296}
+                                        alt={'Profile'}
+                                    />
+                                    <p className="mt-5 text-2xl font-semibold">{githubData?.name??''}</p>
+                                    <p className="font-thin text-lg">{githubData?.login??''}</p>
+                                    <a href="https://www.github.com/pypranav" title='Open github.com' target="_blank">
+                                        <button className="mt-5 w-full font-light text-sm bg-[#21262d] p-2 rounded-lg border-[#30363d] border-[1px]">Follow</button>
+                                    </a>
+                                    <p className="text-sm mt-5 mb-7 flex items-center gap-2">
+                                        <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true">
+                                            <path fill="#8d96a0" d="M2 5.5a3.5 3.5 0 1 1 5.898 2.549 5.508 5.508 0 0 1 3.034 4.084.75.75 0 1 1-1.482.235 4 4 0 0 0-7.9 0 .75.75 0 0 1-1.482-.236A5.507 5.507 0 0 1 3.102 8.05 3.493 3.493 0 0 1 2 5.5ZM11 4a3.001 3.001 0 0 1 2.22 5.018 5.01 5.01 0 0 1 2.56 3.012.749.749 0 0 1-.885.954.752.752 0 0 1-.549-.514 3.507 3.507 0 0 0-2.522-2.372.75.75 0 0 1-.574-.73v-.352a.75.75 0 0 1 .416-.672A1.5 1.5 0 0 0 11 5.5.75.75 0 0 1 11 4Zm-5.5-.5a2 2 0 1 0-.001 3.999A2 2 0 0 0 5.5 3.5Z"></path>
+                                        </svg>
+                                        <p>{githubData.followers} <span className="font-thin">followers</span> · {githubData.following} <span className="font-thin">following</span></p>
+                                    </p>
+                                </div>
+                            </div>
+                            
+                                
 
                         
 
 
-                            <p className="text-sm mt-5 mb-7 flex items-center gap-2">
-                                <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true">
-                                    <path fill="#8d96a0" d="M2 5.5a3.5 3.5 0 1 1 5.898 2.549 5.508 5.508 0 0 1 3.034 4.084.75.75 0 1 1-1.482.235 4 4 0 0 0-7.9 0 .75.75 0 0 1-1.482-.236A5.507 5.507 0 0 1 3.102 8.05 3.493 3.493 0 0 1 2 5.5ZM11 4a3.001 3.001 0 0 1 2.22 5.018 5.01 5.01 0 0 1 2.56 3.012.749.749 0 0 1-.885.954.752.752 0 0 1-.549-.514 3.507 3.507 0 0 0-2.522-2.372.75.75 0 0 1-.574-.73v-.352a.75.75 0 0 1 .416-.672A1.5 1.5 0 0 0 11 5.5.75.75 0 0 1 11 4Zm-5.5-.5a2 2 0 1 0-.001 3.999A2 2 0 0 0 5.5 3.5Z"></path>
-                                </svg>
-                                <p>{githubData.followers} <span className="font-thin">followers</span> · {githubData.following} <span className="font-thin">following</span></p>
-                            </p>
+                            
                             <hr className="border-[#30363d]"/>
                             <p className="mt-5 font-semibold mb-2">Achivements</p>
                             <div className="flex flex-wrap gap-1">
@@ -77,13 +84,13 @@ const GithubPage = () => {
 
                         </div>
                         <div>
-                            <div className="p-5 bg-[#0d1117] rounded-lg my-7 mr-7 border-[#30363d] border-[1px] max-w-[896px]">
+                            <div className="p-5 bg-[#0d1117] rounded-lg my-7 mr-7 ml-7 lg:ml-0 border-[#30363d] border-[1px] max-w-[896px]">
                                 <p className="text-xs mb-5 font-extralight ">PyPranav / README<span className=" opacity-70 ">.md</span></p>
                                 <MarkdownDisplay markdownContent={githubData?.profile_readme??''}/>
                                 
                             </div>
-                            <p className="text-white mb-2">Pinned</p>
-                            <div className="grid grid-cols-2 gap-2 mr-7 max-w-[896px]">
+                            <p className="text-white mb-2 ml-7 lg:ml-0">Pinned</p>
+                            <div className="grid grid-cols-2 gap-2 mr-7 ml-7 lg:ml-0 max-w-[896px]">
                                 {githubData?.repos?.map((repo:any, key:number)=>(
                                     <div key={key} className="border-[#30363d] border-[1px]  rounded-lg p-5 ">
                                         <div className="flex gap-3 items-center ">
