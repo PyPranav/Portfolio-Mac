@@ -42,16 +42,13 @@ const InstagramPage = () => {
                                 />
                             </div>
                             <div className="w-[400px]">
-                                <p className=" text-xl mb-5 flex">
+                                <p className=" text-xl mb-5 flex items-center">
                                     {instaData.username}
                                     <a href="https://www.instagram.com/pypranav" target="_blank" className="grid place-items-center ml-5 cursor-pointer" title="Open instagram.com">
-                                        <Image
-                                            src='/newTab.png'
-                                            className="object-cover invert"
-                                            height={15}
-                                            width={15}
-                                            alt={'profile pic'}
-                                        />
+                                        
+                                        <button className="font-medium text-sm bg-[#1877f2] py-2 px-5 rounded-lg">
+                                            Follow
+                                        </button>
                                     </a>
                                 </p>
                                 <div className="flex justify-between mb-5">
