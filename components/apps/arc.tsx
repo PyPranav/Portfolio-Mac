@@ -40,7 +40,9 @@ const ArcPage = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseApp: a
                                 width={25}
                                 alt={'back'}
                                 onClick={() => {
-                                    router.back()
+
+                                    if(!['instagram','github', 'linkedin','x'].includes( appStates[openedApp]['tabValue']))
+                                        router.back()
                                 }}
                                 />
                             </div>
