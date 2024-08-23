@@ -170,5 +170,17 @@ export const PersonalInfo = {
         '/arc/github/achievement3.png',
         '/arc/github/achievement4.png',
         '/arc/github/achievement5.png',
+    ],
+    hostedProjects:[
+        {
+            name:'Tower of Hanoi',
+            url:'https://pypranav.github.io/Tower_of_Hanoi/',
+            icon:'/arc/others/toh.png'
+        },
+        {
+            name:'Envision',
+            url:'https://datavisual.pythonanywhere.com/home/',
+            icon:'/arc/others/envision.png'
+        }
     ]
 }

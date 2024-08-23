@@ -69,6 +69,7 @@ const GithubPage = () => {
                             <div className="flex flex-wrap gap-1">
                                 {PersonalInfo.gihubAchivements.map((url, key)=>(
                                     <Image
+                                        key={key}
                                         src={url}
                                         className="object-cover"
                                         height={64}

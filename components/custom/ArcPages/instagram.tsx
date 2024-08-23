@@ -65,9 +65,8 @@ const InstagramPage = () => {
                         <hr className="opacity-20 mb-10 w-full max-w-[900px]" />
                         <div className="mb-10 w-full max-w-[900px] flex flex-wrap gap-[6px] justify-center xl:justify-start ">
                             {PersonalInfo.instaPosts.map((postUrl, key)=>(
-                                <div className='relative before:hover:bg-opacity-40 before:bg-opacity-0 before:content-[""] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-black before:z-30'>
+                                <div key={key} className='relative before:hover:bg-opacity-40 before:bg-opacity-0 before:content-[""] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-black before:z-30'>
                                     <Image
-                                        key={key}
                                         src={postUrl}
                                         className='object-cover h-[296px] w-[296px] '
                                         height={296}
