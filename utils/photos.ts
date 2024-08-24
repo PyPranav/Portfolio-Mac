@@ -27,5 +27,7 @@ export const PhotoDetails = {
         '/photos/projects/gptGoogle2.jpeg',
         '/photos/projects/toh1.jpeg',
         '/photos/projects/toh2.jpeg',
+        '/photos/projects/news.png',
+
     ] as string[]
 }

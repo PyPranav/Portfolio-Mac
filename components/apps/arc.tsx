@@ -8,6 +8,7 @@ import LinkedInPage from "../custom/ArcPages/linkedin";
 import { PersonalInfo } from "@/utils/personalInfo";
 import { useEffect, useState } from "react";
 import { useRouter } from 'next/navigation';
+import IframeComponent from "../custom/iframe";
 
 const getLink = (val:string)=>{
     if (['instagram', 'x', 'github', 'linkedin'].includes(val))
@@ -144,12 +145,7 @@ const ArcPage = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseApp: a
                     return(<div className="hidden" key={key}></div>)
                 return (
                 <TabsContent className=" mb-2 mr-2 rounded-lg overflow-scroll" key={key} value={project.name}>
-                        <iframe
-                            src={project.url}
-                            className="w-full h-full rounded-lg backdrop-blur-none" 
-                            title={project.name}
-                            allowFullScreen>
-                        </iframe>                    
+                        <IframeComponent src={project.url}  title={project.name}/>
                 </TabsContent>
             )})}
         </Tabs>

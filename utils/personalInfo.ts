@@ -158,6 +158,11 @@ export const PersonalInfo = {
             icon:'/arc/others/toh.png'
         },
         {
+            name:'News Headlines',
+            url:'https://newsflaskpyp.pythonanywhere.com/',
+            icon:'/arc/others/newspaper.png'
+        },
+        {
             name:'Envision',
             url:'https://datavisual.pythonanywhere.com/home/',
             icon:'/arc/others/envision.png'
