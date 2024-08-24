@@ -111,7 +111,7 @@ const ArcPage = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseApp: a
                 </div>
                 {PersonalInfo.hostedProjects.map((project,key)=>{
                     if(project.name=='Envision' && isFirfox)
-                        return(<></>)
+                        return(<div className="hidden" key={key}></div>)
                     return (
                     <TabsTrigger key={key} className=" mb-2 flex w-full gap-2 justify-start py-2 data-[state=active]:bg-white data-[state=active]:bg-opacity-20 text-white data-[state=active]:text-white rounded-xl data-[state=inactive]:bg-white data-[state=inactive]:bg-opacity-0 data-[state=inactive]:hover:bg-opacity-10 " value={project.name}>
                         <Image
@@ -141,7 +141,7 @@ const ArcPage = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseApp: a
             </TabsContent>
             {PersonalInfo.hostedProjects.map((project,key)=>{
                 if(project.name=='Envision' && isFirfox)
-                    return(<></>)
+                    return(<div className="hidden" key={key}></div>)
                 return (
                 <TabsContent className=" mb-2 mr-2 rounded-lg overflow-scroll" key={key} value={project.name}>
                         <iframe

@@ -31,8 +31,8 @@ const ExperienceTab = ({openedApp, appStates, setAppStates }: {openedApp:number,
                 <>
                     <p className="pl-4 mt-10 font-bold">Experience</p>
                     <div className="mt-5 rounded-lg w-full bg-[#303030] border-[#575555] border-[1px]">
-                    {PersonalInfo.experience.map((lang)=>(
-                            <div key={lang.id}>
+                    {PersonalInfo.experience.map((lang, key)=>(
+                            <div key={key}>
                                 <div className="flex items-center justify-between">
                                     <div className="px-5 py-3 flex gap-5 items-center">
                                         <Image
@@ -58,7 +58,7 @@ const ExperienceTab = ({openedApp, appStates, setAppStates }: {openedApp:number,
                                     </div> */}
                                 </div>
 
-                                {lang.id!=PersonalInfo.experience.length&&(<hr className="mx-5 border-[#3c3c3c]"/>)}
+                                {key+1!=PersonalInfo.experience.length&&(<hr className="mx-5 border-[#3c3c3c]"/>)}
                             </div>
 
                         ))}
@@ -66,8 +66,8 @@ const ExperienceTab = ({openedApp, appStates, setAppStates }: {openedApp:number,
 
                     <p className="pl-4 mt-10 font-bold">Education</p>
                     <div className="mt-5 rounded-lg w-full bg-[#303030] border-[#575555] border-[1px]">
-                    {PersonalInfo.education.map((lang)=>(
-                            <div key={lang.id}>
+                    {PersonalInfo.education.map((lang,key)=>(
+                            <div key={key}>
                                 <div className="flex items-center justify-between">
                                     <div className="px-5 py-3 flex gap-5 items-center">
                                         <Image
@@ -93,7 +93,7 @@ const ExperienceTab = ({openedApp, appStates, setAppStates }: {openedApp:number,
                                     </div> */}
                                 </div>
 
-                                {lang.id!=PersonalInfo.education.length&&(<hr className="mx-5 border-[#3c3c3c]"/>)}
+                                {key+1!=PersonalInfo.education.length&&(<hr className="mx-5 border-[#3c3c3c]"/>)}
                             </div>
 
                         ))}

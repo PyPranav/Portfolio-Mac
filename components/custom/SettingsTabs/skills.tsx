@@ -36,8 +36,8 @@ const SkillTab = ({openedApp, appStates, setAppStates }: {openedApp:number, appS
                 <>
                     <p className="pl-4 mt-10 font-bold">Languages</p>
                     <div className="mt-5 rounded-lg w-full bg-[#303030] border-[#575555] border-[1px]">
-                        {PersonalInfo.skills.lanuages.map((lang)=>(
-                            <div key={lang.id}>
+                        {PersonalInfo.skills.lanuages.map((lang, key)=>(
+                            <div key={key}>
                                 <div className="flex items-center justify-between">
                                     <div className="px-5 py-3 flex gap-5 items-center">
                                         <Image
@@ -62,7 +62,7 @@ const SkillTab = ({openedApp, appStates, setAppStates }: {openedApp:number, appS
                                     </div>
                                 </div>
 
-                                {lang.id!=PersonalInfo.skills.lanuages.length&&(<hr className="mx-5 border-[#3c3c3c]"/>)}
+                                {key+1!=PersonalInfo.skills.lanuages.length&&(<hr className="mx-5 border-[#3c3c3c]"/>)}
                             </div>
 
                         ))}
@@ -71,8 +71,8 @@ const SkillTab = ({openedApp, appStates, setAppStates }: {openedApp:number, appS
 
                     <p className="pl-4 mt-10 font-bold">Frameworks</p>
                     <div className="mt-5 rounded-lg w-full bg-[#303030] border-[#575555] border-[1px]">
-                        {PersonalInfo.skills.frameworks.map((lang)=>(
-                            <div key={lang.id}>
+                        {PersonalInfo.skills.frameworks.map((lang,key)=>(
+                            <div key={key}>
                                 <div className="flex items-center justify-between">
 
                                     <div className="px-5 py-3 flex gap-5 items-center">
@@ -98,7 +98,7 @@ const SkillTab = ({openedApp, appStates, setAppStates }: {openedApp:number, appS
                                     </div>
                                 </div>
 
-                                {lang.id!=PersonalInfo.skills.frameworks.length&&(<hr className="mx-5 border-[#3c3c3c]"/>)}
+                                {key+1!=PersonalInfo.skills.frameworks.length&&(<hr className="mx-5 border-[#3c3c3c]"/>)}
                             </div>
 
                         ))}

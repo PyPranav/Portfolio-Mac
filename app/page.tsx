@@ -182,15 +182,15 @@ function App() {
       
       <nav ref={dockRef} className="dock backdrop-blur-md">
         <ul>
-          {dockAppList.map((dockApp)=>(
-            <li key={dockApp.id} className="app" onMouseMove={handleAppHover}>
+          {dockAppList.map((dockApp,key)=>(
+            <li key={key} className="app" onMouseMove={handleAppHover}>
               <div onClick={()=>{
                 CloseApp(openedApp)
                 if (openedApp!=0)
                   setTimeout(()=>{
-                    OpenApp(dockApp.id)
+                    OpenApp(key+1)
                   },500)
-                else OpenApp(dockApp.id)
+                else OpenApp(key+1)
               }}>
                 <Image width={100} height={100}  src={dockApp.imageSrc}  alt={'app'}/>
                 <span className="tooltip">{dockApp.tooltip}</span>

@@ -72,12 +72,12 @@ const SettingsPage = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseA
 
 
 
-        {settingsOptions.map((app) => (
-          <TabsTrigger key={app.id} style={
+        {settingsOptions.map((app,key) => (
+          <TabsTrigger key={key} style={
             app.allowed ? {} :
               {
                 pointerEvents: 'none',
-                marginTop: app.id % 4 == 0 ? '1.25rem' : '0'
+                marginTop: (key+1) % 4 == 0 ? '1.25rem' : '0'
               }
           } className=" w-full justify-start data-[state=active]:bg-[#195cc5] text-white data-[state=active]:text-white " value={app.name.split(' ')[0].toLowerCase()}>
             <Image
