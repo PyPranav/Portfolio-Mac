@@ -132,17 +132,19 @@ const PhotosApp = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseApp:
           {/* <AlbumView type={'projects'} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/> */}
           <AlbumView type={'certificates'} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates} />
           <AlbumView type="personal" openedApp={openedApp} appStates={appStates} setAppStates={setAppStates} />
+          <AlbumView type="projects" openedApp={openedApp} appStates={appStates} setAppStates={setAppStates} />
+        
         </div>
       )}
       {appStates[5].albumOpened !== null && appStates[5].photoOpened === null && (
-        <div className="px-10  flex flex-wrap gap-[40px]">
+        <div className="px-10  flex flex-wrap gap-[40px] items-center">
           {PhotoDetails[(appStates[5].albumOpened) as 'personal' | 'certificates' | 'projects'].map((url, ind) => (
             // <div className=" w-full h-[300px] relative rounded-lg flex" key={ind}>
             <Image
               src={url}
               key={ind}
               // src={'/photos/personal/6.jpg'}
-              className="object-contain rounded-lg cursor-pointer"
+              className="object-contain rounded-lg cursor-pointer h-fit"
               onClick={() => {
                 console.log(url)
 

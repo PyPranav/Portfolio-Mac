@@ -23,8 +23,9 @@ export const PhotoDetails = {
 
     ] as string[],
     projects:[
-        '/photos/personal/profile.jpg',
-        '/photos/personal/profile2.jpg',
-        '/photos/personal/hackoverflow.jpg'
+        '/photos/projects/gptGoogle1.jpeg',
+        '/photos/projects/gptGoogle2.jpeg',
+        '/photos/projects/toh1.jpeg',
+        '/photos/projects/toh2.jpeg',
     ] as string[]
 }
