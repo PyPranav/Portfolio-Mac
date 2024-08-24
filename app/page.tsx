@@ -11,6 +11,7 @@ import NameWidget from "@/components/custom/Widgets/nameWidget";
 import SpotifyWidget from "@/components/custom/Widgets/spotifyWidget";
 import SpotifyApp from "@/components/apps/spotify";
 import ArcPage from "@/components/apps/arc";
+import Image from "next/image";
 
 const maxAdditionalSize = 5;
 
@@ -191,7 +192,7 @@ function App() {
                   },500)
                 else OpenApp(dockApp.id)
               }}>
-                <img src={dockApp.imageSrc}  alt={'app'}/>
+                <Image width={100} height={100}  src={dockApp.imageSrc}  alt={'app'}/>
                 <span className="tooltip">{dockApp.tooltip}</span>
               </div>
             </li>

@@ -1,11 +1,13 @@
 import { PhotoDetails } from "@/utils/photos";
+import Image from "next/image";
 
 const AlbumView = ({ type ,openedApp, appStates, setAppStates }: { type:('personal'|'certificates'|'projects'), openedApp: number, appStates: any, setAppStates: any }) => {
 
     return ( 
         <div className="w-[300px]">
             <div className=" w-full h-[300px] relative rounded-lg flex justify-center">
-                <img
+                <Image
+                  unoptimized
                   src={(()=>{
                     if (type==='personal')
                         return PhotoDetails[type][appStates[5].currentPersonalPhotoIndex]?.replace('.jpg','.webp')?.replace('.png','.webp')?.replace('.jpeg','.webp')
@@ -38,7 +40,7 @@ const AlbumView = ({ type ,openedApp, appStates, setAppStates }: { type:('person
                     else
                         setAppStates({ ...appStates, [openedApp]: { ...appStates[openedApp], 'currentProjectPhotoIndex': ind } })
                   }}
-                  // fill={true}
+                  fill={true}
                   alt={type}
                 />
             </div>

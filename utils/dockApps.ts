@@ -31,7 +31,7 @@ export const dockAppList = [
     },
     {
       "id": 7,
-      "imageSrc": "https://www.frontend.fyi/playground-assets/macos-dock/icons/vscode.png",
+      "imageSrc": "/dock_icons/mail.webp",
       "tooltip": "Some Game"
     },
     {
