@@ -137,14 +137,14 @@ function App() {
 
 
   const appSelector = [
-    (<SettingsPage CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>),
-    (<SettingsPage CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>),
-    (<ArcPage CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>),
-    (<SettingsPage CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>),
-    (<PhotosApp CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>),
-    (<SpotifyApp CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>),
-    (<SettingsPage CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>),
-    (<SettingsPage CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>),
+    (<SettingsPage key={1} CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>),
+    (<SettingsPage key={2} CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>),
+    (<ArcPage key={3} CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>),
+    (<SettingsPage key={4} CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>),
+    (<PhotosApp key={5} CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>),
+    (<SpotifyApp key={6} CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>),
+    (<SettingsPage key={7} CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>),
+    (<SettingsPage key={8} CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>),
   ]
 
 
@@ -191,7 +191,7 @@ function App() {
                   },500)
                 else OpenApp(dockApp.id)
               }}>
-                <img src={dockApp.imageSrc} />
+                <img src={dockApp.imageSrc}  alt={'app'}/>
                 <span className="tooltip">{dockApp.tooltip}</span>
               </div>
             </li>
@@ -218,11 +218,11 @@ function App() {
       </div> */}
       <div className="mobile-message">
         <p>
-          What?! MacOS works on mobile?..
-          <br />— Unfortunately it doesn't 😢 Open this site on your desktop to
-          enjoy the amazing animations! Or watch the video{" "}
+          {"What?! MacOS works on mobile?.."}
+          <br />{"— Unfortunately it doesn't 😢 Open this site on your desktop to"}
+          {"enjoy the amazing animations! Or watch the video"}{" "}
           <a href="https://youtu.be/_ZcIFTvLm64" target="_blank">
-            on YouTube
+            {"on YouTube"}
           </a>
         </p>
       </div>

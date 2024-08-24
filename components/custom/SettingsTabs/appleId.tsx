@@ -76,7 +76,7 @@ const AppleId = () => {
                     />
                     <div>
                         <p>MacBook Pro</p>
-                        <p className="text-xs">MacBook Pro 14"</p>
+                        <p className="text-xs">{'MacBook Pro 14"'}</p>
                     </div>
                 </div>
                 <hr className="mx-5 border-[#3c3c3c]"/>
