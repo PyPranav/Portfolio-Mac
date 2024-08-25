@@ -4,10 +4,21 @@ const CalenderWidget = () => {
     const month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"][currentDate.getMonth()];
     const dayOfMonth = currentDate.getDate();
     return ( 
-        <div className='group' >
+        <div className='group'>
               <div className="h-[170px] w-[170px] flex flex-col items-center justify-center bg-gray-500 bg-opacity-70 backdrop-blur rounded-2xl p-4 text-white">
                   <div className="text-2xl font-medium flex gap-2 opacity-80 group-hover:opacity-100 duration-500">{dayOfWeek} <p className="opacity-50">{month}</p></div>
-                  <div className="text-6xl text-[6rem] font-bold opacity-80 group-hover:opacity-100 duration-500">{dayOfMonth}</div>
+                  <div style={{
+                    // backgroundImage:'url("/wallpapers/macos-monterey-wallpaper.webp")',
+                    // backgroundSize: 'cover',
+                    // backgroundAttachment: 'fixed',
+                    // backgroundRepeat: 'no-repeat',
+                    // backgroundPosition:`center`,
+                    // backgroundClip:'text',
+                    // color:"transparent",
+                    
+                    // WebkitBackgroundClip: 'text',
+                    // WebkitTextFillColor: "transparent",
+                  }} className="text-6xl text-[6rem] font-bold opacity-80 group-hover:opacity-100 duration-500 bg-clip-text text-white">{dayOfMonth}</div>
               </div>
             </div>
      );
