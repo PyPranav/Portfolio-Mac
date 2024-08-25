@@ -18,6 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <title>Portfolio | PyPranav</title>
         {PhotoDetails.certificates.map((url,id)=>(
           <link key={id} rel='preload' href={url?.replace('.jpg','.webp')?.replace('.png','.webp')?.replace('.jpeg','.webp')} as="image"/>
         ))}

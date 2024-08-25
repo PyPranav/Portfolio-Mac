@@ -192,22 +192,23 @@ const PhotosApp = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseApp:
                 )}
               </div>
             </div>
-            <Image
-              src={PhotoDetails[(appStates[5].albumOpened) as 'personal' | 'certificates' | 'projects'][appStates[5].photoOpened]}
+              <Image
+                src={PhotoDetails[(appStates[5].albumOpened) as 'personal' | 'certificates' | 'projects'][appStates[5].photoOpened]}
 
-              className="object-contain rounded-lg"
-              fill={true}
-              onLoad={() => setIsLoading(false)}
-              sizes="100vw, 50vw, 33vw"
-              alt={PhotoDetails[(appStates[5].albumOpened) as 'personal' | 'certificates' | 'projects'][appStates[5].photoOpened]}
-            />
+                className="object-contain rounded-lg"
+                fill={true}
+                onLoad={() => setIsLoading(false)}
+                sizes="100vw, 50vw, 33vw"
+                alt={PhotoDetails[(appStates[5].albumOpened) as 'personal' | 'certificates' | 'projects'][appStates[5].photoOpened]}
+              />     
             <div className="w-full  z-[999] flex justify-end px-10">
               <div className="h-[300px] max-h-[50vh] w-full flex items-center group justify-end">
                 {!isLoading && (
 
                   <div onClick={()=>{
-                    setAppStates({ ...appStates, [openedApp]: { ...appStates[openedApp], 'photoOpened': (appStates[openedApp]['photoOpened']+1) % PhotoDetails[(appStates[5].albumOpened) as 'personal' | 'certificates' | 'projects'].length } })
                     setIsLoading(true)
+
+                    setAppStates({ ...appStates, [openedApp]: { ...appStates[openedApp], 'photoOpened': (appStates[openedApp]['photoOpened']+1) % PhotoDetails[(appStates[5].albumOpened) as 'personal' | 'certificates' | 'projects'].length } })
                     
                   }} className=" rounded-xl bg-white opacity-0 group-hover:opacity-100 duration-500">
                     <Image
