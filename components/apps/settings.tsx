@@ -35,7 +35,7 @@ const SettingsPage = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseA
   return (
 
     <Tabs value={appStates[openedApp]['tabValue']} onValueChange={(val) => setAppStates({ ...appStates, [openedApp]: { ...appStates[openedApp], 'tabValue': val } })} defaultValue="account" className="grid grid-cols-[300px_2px_1fr] h-full w-full bg-[#2d2d2d] color-white">
-      <TabsList className="flex flex-col h-full p-3 pt-0 items-start justify-start bg-[#292929] overflow-scroll">
+      <TabsList className="flex flex-col h-full p-3 pt-0 items-start justify-start bg-[#292929] overflow-y-scroll">
         <div className="pt-3 w-full sticky top-0 bg-[#292929] z-[1000]">
           <WindowCloseButtons CloseApp={CloseApp} openedApp={openedApp} />
 

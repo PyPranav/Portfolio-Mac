@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const LinkedInPage = () => {
     return (
-        <section className=" bg-[#fff] h-full text-black overflow-scroll flex flex-col items-center p-10">
+        <section className=" bg-[#fff] h-full text-black overflow-y-scroll flex flex-col items-center p-10">
             <div className=" border-[#ebebeb] border-[1px]  w-full max-w-[1000px] rounded-lg h-fit">
                 <div className="h-[200px] relative rounded-lg">
                     <Image

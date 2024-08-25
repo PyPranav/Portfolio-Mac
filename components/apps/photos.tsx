@@ -34,7 +34,7 @@ const PhotosApp = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseApp:
       else
         numberOfPhotoPerRow = 1
 
-      let availWidth = winWidth - 80 - 40 * (numberOfPhotoPerRow - 1)
+      let availWidth = winWidth - 80 - 40 * (numberOfPhotoPerRow - 1) - 4
       let perPhotoWidth = availWidth / numberOfPhotoPerRow
 
       setPhotoWidth(perPhotoWidth)

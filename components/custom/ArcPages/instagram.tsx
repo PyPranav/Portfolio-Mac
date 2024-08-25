@@ -15,7 +15,7 @@ const InstagramPage = () => {
         console.log(instaData)
     },[instaData])
     return ( 
-        <section className=" bg-black h-full text-white overflow-scroll px-20">
+        <section className=" bg-black h-full text-white overflow-y-scroll px-20">
             <div className="grid place-items-center p-5">
                 <Image
                     src={'/arc/instagramFullLogo.png'}

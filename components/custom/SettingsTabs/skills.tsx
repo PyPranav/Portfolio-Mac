@@ -10,7 +10,7 @@ const SkillTab = ({openedApp, appStates, setAppStates }: {openedApp:number, appS
         'Beginner': '/settings_icon/skills/wifi_2.webp'
     }
     return (
-        <section className="w-full px-10 py-2 pb-[80px]">
+        <section className="w-full px-10 py-2 pb-[80px] ">
             <p className="text-lg font-bold sticky top-0 bg-[#2d2d2d] z-[1000] pb-3">Skills</p>
             <div className="mt-5 rounded-lg w-full bg-[#303030] border-[#575555] border-[1px]">
                 <div className="flex items-center justify-between">

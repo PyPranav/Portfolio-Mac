@@ -29,7 +29,7 @@ const ArcPage = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseApp: a
     },[])
     return (
         <Tabs value={appStates[openedApp]['tabValue']} onValueChange={(val) => setAppStates({ ...appStates, [openedApp]: { ...appStates[openedApp], 'tabValue': val } })} className="grid grid-cols-[170px_1fr] h-full w-full bg-black bg-opacity-85 backdrop-blur-2xl color-white">
-            <TabsList className="flex flex-col h-full p-2 pt-0 items-start justify-start bg-[#292929] bg-opacity-0 overflow-scroll">
+            <TabsList className="flex flex-col h-full p-2 pt-0 items-start justify-start bg-[#292929] bg-opacity-0 overflow-hidden">
                     <div className="flex w-full">
                         <WindowCloseButtons CloseApp={CloseApp} openedApp={openedApp} />
                         <div className="flex w-full justify-center">
@@ -131,20 +131,20 @@ const ArcPage = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseApp: a
             </TabsList>
             {/* <div className="bg-black"></div> */}
 
-            <TabsContent className="mb-2 mr-2 rounded-lg overflow-scroll" value="instagram">
+            <TabsContent className="mb-2 mr-2 rounded-lg overflow-hidden" value="instagram">
                 <InstagramPage/>
             </TabsContent>
-            <TabsContent className="mb-2 mr-2 rounded-lg overflow-scroll" value="github">
+            <TabsContent className="mb-2 mr-2 rounded-lg overflow-hidden" value="github">
                 <GithubPage/>
             </TabsContent>
-            <TabsContent className="mb-2 mr-2 rounded-lg overflow-scroll" value="linkedin">
+            <TabsContent className="mb-2 mr-2 rounded-lg overflow-hidden" value="linkedin">
                 <LinkedInPage/>
             </TabsContent>
             {PersonalInfo.hostedProjects.map((project,key)=>{
                 if(project.name=='Envision' && isFirfox)
                     return(<div className="hidden" key={key}></div>)
                 return (
-                <TabsContent className=" mb-2 mr-2 rounded-lg overflow-scroll" key={key} value={project.name}>
+                <TabsContent className=" mb-2 mr-2 rounded-lg overflow-hidden" key={key} value={project.name}>
                         <IframeComponent src={project.url}  title={project.name}/>
                 </TabsContent>
             )})}

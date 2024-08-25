@@ -5,7 +5,7 @@ import Image from "next/image";
 
 const AppleId = () => {
     return ( 
-        <section className="w-full px-10 py-2 pb-[80px]">
+        <section className="w-full px-10 py-2 pb-[80px] h-full">
                 <p className="text-lg font-bold sticky top-0 bg-[#2d2d2d] z-[1000] pb-3">About</p>
             <div className="grid place-items-center mt-10">
                 <Avatar className="w-[150px] h-[150px]">

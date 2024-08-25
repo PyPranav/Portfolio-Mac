@@ -19,7 +19,7 @@ const GithubPage = () => {
         'TypeScript':'#3178c6'
     }
     return ( 
-        <section className=" bg-[#0d1117] h-full text-white overflow-scroll">
+        <section className=" bg-[#0d1117] h-full text-white overflow-y-scroll">
             <div className="bg-[#010409] p-5 flex items-center gap-5">
                 <Image
                     src={'/arc/githubLogo.png'}
