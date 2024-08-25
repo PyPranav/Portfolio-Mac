@@ -34,7 +34,7 @@ const PhotosApp = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseApp:
       else
         numberOfPhotoPerRow = 1
 
-      let availWidth = winWidth - 80 - 40 * (numberOfPhotoPerRow - 1) - 4
+      let availWidth = winWidth - 80 - 40 * (numberOfPhotoPerRow - 1) - 10
       let perPhotoWidth = availWidth / numberOfPhotoPerRow
 
       setPhotoWidth(perPhotoWidth)
@@ -53,7 +53,7 @@ const PhotosApp = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseApp:
 
 
   return (
-    <div className="bg-[#232323] h-full overflow-scroll flex flex-col">
+    <div className="bg-[#232323] h-full overflow-y-scroll flex flex-col">
       <div className=" sticky top-0 z-[1000] bg-[#232323] mb-5">
         <div className="bg-[#1f1f1f] p-5 flex items-center relative">
           <div className=" absolute">

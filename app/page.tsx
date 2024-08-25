@@ -24,7 +24,7 @@ function App() {
     1:{},
     2:{},
     3:{
-      tabValue:'instagram',
+      tabValue:'x',
     },
     4:{
       tabValue:'id',

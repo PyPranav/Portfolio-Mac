@@ -9,6 +9,7 @@ import { PersonalInfo } from "@/utils/personalInfo";
 import { useEffect, useState } from "react";
 import { useRouter } from 'next/navigation';
 import IframeComponent from "../custom/iframe";
+import TwitterPage from "../custom/ArcPages/twitter";
 
 const getLink = (val:string)=>{
     if (['instagram', 'x', 'github', 'linkedin'].includes(val))
@@ -70,6 +71,15 @@ const ArcPage = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseApp: a
                         className="truncate text-xs my-2 w-full rounded-xl border border-[#2f2f2f] bg-white bg-opacity-20 px-4 py-2 text-white focus:border-gray-500 focus:outline-none dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100"
                     />
                 <div className="grid grid-cols-2 gap-2 w-full">
+                    <TabsTrigger value="x" className="grid place-items-center w-full h-[3rem] bg-white bg-opacity-10 hover:bg-opacity-20 data-[state=active]:bg-white data-[state=active]:bg-opacity-30 text-white data-[state=active]:text-white rounded-xl duration-200 ">
+                        <Image
+                            src={'/arc/xLogo.png'}
+                            className="object-cover"
+                            height={15}
+                            width={15}
+                            alt={'X'}
+                            />
+                    </TabsTrigger>
                     <TabsTrigger value="instagram" className="grid place-items-center w-full h-[3rem]  bg-white bg-opacity-10 hover:bg-opacity-20 data-[state=active]:bg-white data-[state=active]:bg-opacity-30 text-white data-[state=active]:text-white rounded-xl duration-200 " >
                         <Image
                         src={'/arc/instagramLogo.png'}
@@ -97,15 +107,7 @@ const ArcPage = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseApp: a
                         alt={'Linkedin'}
                         />
                     </TabsTrigger>
-                    <TabsTrigger value="x" className="grid place-items-center w-full h-[3rem] bg-white bg-opacity-10 hover:bg-opacity-20 data-[state=active]:bg-white data-[state=active]:bg-opacity-30 text-white data-[state=active]:text-white rounded-xl duration-200 ">
-                    <Image
-                        src={'/arc/xLogo.png'}
-                        className="object-cover"
-                        height={15}
-                        width={15}
-                        alt={'X'}
-                        />
-                    </TabsTrigger>
+                    
                 </div>
                 <div className="w-full px-2">
                     <hr className="opacity-15 my-4"/>
@@ -130,7 +132,10 @@ const ArcPage = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseApp: a
                 
             </TabsList>
             {/* <div className="bg-black"></div> */}
-
+            
+            <TabsContent className="mb-2 mr-2 rounded-lg overflow-hidden" value="x">
+                <TwitterPage/>
+            </TabsContent>
             <TabsContent className="mb-2 mr-2 rounded-lg overflow-hidden" value="instagram">
                 <InstagramPage/>
             </TabsContent>
@@ -140,6 +145,7 @@ const ArcPage = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseApp: a
             <TabsContent className="mb-2 mr-2 rounded-lg overflow-hidden" value="linkedin">
                 <LinkedInPage/>
             </TabsContent>
+            
             {PersonalInfo.hostedProjects.map((project,key)=>{
                 if(project.name=='Envision' && isFirfox)
                     return(<div className="hidden" key={key}></div>)
