@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { cn } from "@/lib/utils"
 
-const IframeComponent = ({src, title}:{src:string, title:string}) => {
+const IframeComponent = ({src, title, className}:{src:string, title:string, className?:string}) => {
     const [isLoaded, setIsLoaded] = useState(false);
     const handleIframeLoad = () => {
         console.log('Iframe has finished loading');
@@ -13,7 +14,10 @@ const IframeComponent = ({src, title}:{src:string, title:string}) => {
             </div>}
             <iframe
                 src={src}
-                className="w-full h-full rounded-lg backdrop-blur-none" 
+                className={cn(
+                    "w-full h-full rounded-lg backdrop-blur-none",
+                    className
+                  )}
                 title={title}
                 onLoad={handleIframeLoad}
                 allowFullScreen>
