@@ -173,6 +173,7 @@ const PhotosApp = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseApp:
                 {!isLoading && (
                   <div onClick={()=>{
                     console.log('prev')
+                    setIsLoading(true)
                     if(appStates[openedApp]['photoOpened']!=0)
                       setAppStates({ ...appStates, [openedApp]: { ...appStates[openedApp], 'photoOpened': appStates[openedApp]['photoOpened']-1 } })
                     else
@@ -206,7 +207,8 @@ const PhotosApp = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseApp:
 
                   <div onClick={()=>{
                     setAppStates({ ...appStates, [openedApp]: { ...appStates[openedApp], 'photoOpened': (appStates[openedApp]['photoOpened']+1) % PhotoDetails[(appStates[5].albumOpened) as 'personal' | 'certificates' | 'projects'].length } })
-
+                    setIsLoading(true)
+                    
                   }} className=" rounded-xl bg-white opacity-0 group-hover:opacity-100 duration-500">
                     <Image
                       src={'/back.svg'}
