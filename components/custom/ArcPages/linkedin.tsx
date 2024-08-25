@@ -28,7 +28,7 @@ const LinkedInPage = () => {
                         <p className=" font-light text-[#666666]">{PersonalInfo.location}</p>
                         <p className="font-light text-[#666666]">519 followers · 500+ connections </p>
                         <a href="https://www.linkedin.com/in/pypranav" target="_blank">
-                            <button className="flex gap-1 bg-[#0a66c2] text-white p-1 px-4 rounded-3xl mt-3" title="Open linkedin.com">
+                            <button className="flex gap-1 bg-[#0a66c2] text-white p-1 px-4 rounded-3xl mt-3 items-center" title="Open linkedin.com">
                                 <div className="grid place-items-center">
                                     <Image
                                         src={'/arc/linkedin/connectLinkedin.png'}
