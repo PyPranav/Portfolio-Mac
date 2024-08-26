@@ -26,42 +26,47 @@ const SpotifyWidget = () => {
                       alt={'thumbnail'}
                     />
               <div className="flex gap-5 h-full bg-black bg-opacity-10 backdrop-blur-[100px] rounded-2xl p-4 text-white">
-                  <div className="opacity-80 group-hover:opacity-100 relative aspect-square h-full duration-500">
-                    <Image
-                      src={playingSong?.image??"/musicNone.jpg"}
-                      className="object-cover rounded-2xl "
-                      // height={300}
-                      // width={300}
-                      fill={true}
-                      alt={'thumbnail'}
-                    />
-                  </div>
-                  {/* <div className="text-6xl text-[6rem] font-bold opacity-80">{dayOfMonth}</div> */}
-                  <div className="flex flex-col w-full justify-between my-2">
-                    <div>
-                      <p className="text-sm opacity-50 font-light">{playingSong?.playing?"Currently listening to":"Last listened to"}</p>
-                      <p className="text-lg opacity-80 font-medium group-hover:opacity-100 duration-500 truncate w-[17ch]">
-                        {playingSong?.track_name ?? ''}
-                      </p>
+                <div className="opacity-80 group-hover:opacity-100 relative aspect-square h-full duration-500">
+                  <Image
+                    src={playingSong?.image??"/musicNone.jpg"}
+                    className="object-cover rounded-2xl "
+                    // height={300}
+                    // width={300}
+                    fill={true}
+                    alt={'thumbnail'}
+                  />
+                </div>
+                  {playingSong&&(
+                    <>
+                      
+                      {/* <div className="text-6xl text-[6rem] font-bold opacity-80">{dayOfMonth}</div> */}
+                      <div className="flex flex-col w-full justify-between my-2">
+                        <div>
+                          <p className="text-sm opacity-50 font-light">{playingSong?.playing?"Currently listening to":"Last listened to"}</p>
+                          <p className="text-lg opacity-80 font-medium group-hover:opacity-100 duration-500 truncate w-[17ch]">
+                            {playingSong?.track_name ?? ''}
+                          </p>
 
-                      <p className="text-lg opacity-50 font-light truncate w-[19ch]">{playingSong?.artist_name??""}</p>
-                    </div>
+                          <p className="text-lg opacity-50 font-light truncate w-[19ch]">{playingSong?.artist_name??""}</p>
+                        </div>
 
-                    <div className="audiogram opacity-80 group-hover:opacity-100 duration-500">
-                      <div className="bar"></div>
-                      <div className="bar"></div>
-                      <div className="bar"></div>
-                      <div className="bar"></div>
-                      <div className="bar"></div>
-                      <div className="bar"></div>
-                      <div className="bar"></div>
-                      <div className="bar"></div>
-                      <div className="bar"></div>
-                      <div className="bar"></div>
-                      <div className="bar"></div>
-                    </div>
+                        <div className="audiogram opacity-80 group-hover:opacity-100 duration-500">
+                          <div className="bar"></div>
+                          <div className="bar"></div>
+                          <div className="bar"></div>
+                          <div className="bar"></div>
+                          <div className="bar"></div>
+                          <div className="bar"></div>
+                          <div className="bar"></div>
+                          <div className="bar"></div>
+                          <div className="bar"></div>
+                          <div className="bar"></div>
+                          <div className="bar"></div>
+                        </div>
 
-                  </div>
+                      </div>
+                    </>
+                  )}
               </div>    
             </div>
      );

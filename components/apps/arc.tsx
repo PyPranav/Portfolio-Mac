@@ -111,6 +111,7 @@ const ArcPage = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseApp: a
                 </div>
                 <div className="w-full px-2">
                     <hr className="opacity-15 my-4"/>
+                    <p className="text-xs mb-4 text-white opacity-50 font-light">🗂️ Hosted Projects</p>
                 </div>
                 {PersonalInfo.hostedProjects.map((project,key)=>{
                     if(project.name=='Envision' && isFirfox)
