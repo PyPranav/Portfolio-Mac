@@ -1,14 +1,6 @@
 import { getPlayigSong } from "@/utils/fetchData";
-import { cn } from "@/lib/utils"
-import localFont from "next/font/local";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-
-
-const appleThinFont = localFont({ src: '../../../public/fonts/Apple/SF-Pro-Text-Thin.otf' })
-const appleRegularFont = localFont({ src: '../../../public/fonts/Apple/SF-Pro-Display-Regular.otf' })
-
-
 
 const SpotifyWidget = () => {
   const [playingSong, setPlayingSong] = useState<any>(null)
@@ -50,12 +42,12 @@ const SpotifyWidget = () => {
                       {/* <div className="text-6xl text-[6rem] font-bold opacity-80">{dayOfMonth}</div> */}
                       <div className="flex flex-col w-full justify-between my-2">
                         <div>
-                          <p className={cn("text-sm opacity-50 font-light", appleThinFont.className)}>{playingSong?.playing?"Currently listening to":"Last listened to"}</p>
-                          <p className={cn("text-lg opacity-80 font-medium group-hover:opacity-100 duration-500 truncate w-[17ch]", appleRegularFont.className)}>
+                          <p className="text-sm opacity-50 font-light">{playingSong?.playing?"Currently listening to":"Last listened to"}</p>
+                          <p className="text-lg opacity-80 font-medium group-hover:opacity-100 duration-500 truncate w-[17ch]">
                             {playingSong?.track_name ?? ''}
                           </p>
 
-                          <p className={cn("text-lg opacity-50 font-light truncate w-[19ch]",appleThinFont.className)}>{playingSong?.artist_name??""}</p>
+                          <p className="text-lg opacity-50 font-light truncate w-[19ch]">{playingSong?.artist_name??""}</p>
                         </div>
 
                         <div className="audiogram opacity-80 group-hover:opacity-100 duration-500">
