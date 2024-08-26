@@ -87,8 +87,8 @@ function App() {
       modelRef.current.style.bottom = `${appCoord[2]}px`;
       modelRef.current.style.right = `${appCoord[3]}px`;
       modelRef.current.style.opacity = "0.5"
-      modelRef.current.style.clipPath = 'polygon(0 0, 100% 0, 50% 100%, 50% 100%)';
-      modelRef.current.style.transition = "all 0.5s ease-in-out";    
+      // modelRef.current.style.clipPath = 'polygon(0 0, 100% 0, 50% 100%, 50% 100%)';
+      modelRef.current.style.transition = "all 0.3s ease-in-out";    
     }
   }
 
@@ -106,12 +106,12 @@ function App() {
           modelRef.current.style.bottom = `${appCoord[2]}px`;
           modelRef.current.style.right = `${appCoord[3]}px`;
           modelRef.current.style.opacity = "0.5"
-          modelRef.current.style.clipPath = 'polygon(0 0, 100% 0, 50% 100%, 50% 100%)';
+          // modelRef.current.style.clipPath = 'polygon(0 0, 100% 0, 50% 100%, 50% 100%)';
         }
       },10)
       setTimeout(()=>{
         if (modelRef.current)
-          modelRef.current.style.transition = "all 0.5s ease-in-out";
+          modelRef.current.style.transition = "all 0.3s ease-in-out";
 
       },20)
 
@@ -122,7 +122,7 @@ function App() {
           modelRef.current.style.bottom = `${0}px`;
           modelRef.current.style.right = `${0}px`;
           modelRef.current.style.opacity = "1";
-          modelRef.current.style.clipPath = 'polygon(0 0, 100% 0, 100% 100%, 0 100%)';
+          // modelRef.current.style.clipPath = 'polygon(0 0, 100% 0, 100% 100%, 0 100%)';
         }
       }, 30);
     }
@@ -185,11 +185,13 @@ function App() {
           {dockAppList.map((dockApp,key)=>(
             <li key={key} className="app" onMouseMove={handleAppHover}>
               <div onClick={()=>{
+                if(openedApp===key+1)
+                  return
                 CloseApp(openedApp)
                 if (openedApp!=0)
                   setTimeout(()=>{
                     OpenApp(key+1)
-                  },500)
+                  },400)
                 else OpenApp(key+1)
               }}>
                 <Image width={100} height={100}  src={dockApp.imageSrc}  alt={'app'}/>
