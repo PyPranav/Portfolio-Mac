@@ -53,8 +53,8 @@
   -webkit-text-size-adjust: 100%;
   background-repeat: no-repeat;
   background-size: cover;
-  background-attachment: fixed;
-  background-position: center;
+  /* background-attachment: fixed; */
+  /* background-position: center; */
 }
 
 body{

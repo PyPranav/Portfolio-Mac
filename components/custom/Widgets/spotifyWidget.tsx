@@ -25,7 +25,7 @@ const SpotifyWidget = () => {
                       width={30}
                       alt={'thumbnail'}
                     />
-              <div className="flex gap-5 h-full bg-gray-500 bg-opacity-70 backdrop-blur rounded-2xl p-4 text-white">
+              <div className="flex gap-5 h-full bg-black bg-opacity-10 backdrop-blur-[100px] rounded-2xl p-4 text-white">
                   <div className="opacity-80 group-hover:opacity-100 relative aspect-square h-full duration-500">
                     <Image
                       src={playingSong?.image??"/musicNone.jpg"}
