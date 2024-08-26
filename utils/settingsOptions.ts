@@ -82,9 +82,14 @@ export const settingsOptions = [
 ]
 
 export const wallpapers = [
-    '/wallpapers/Sonoma Dark.jpg',
-    '/wallpapers/Sonoma Light.jpg',
-    '/wallpapers/Sequoia Light.jpg',
-    '/wallpapers/Sequoia Dark.jpg'
-
+    "/wallpapers/Sequoia Light.jpg",
+    "/wallpapers/Sequoia Dark.jpg",
+    "/wallpapers/Sonoma Light.jpg",
+    "/wallpapers/Sonoma Dark.jpg",
+    "/wallpapers/Ventura Light.jpg",
+    "/wallpapers/Ventura Dark.jpg",
+    "/wallpapers/Monterey Light.jpg",
+    "/wallpapers/Monterey Dark.jpg",
+    "/wallpapers/Big Sur Light.jpg",
+    "/wallpapers/Big Sur Dark.jpg"
 ]

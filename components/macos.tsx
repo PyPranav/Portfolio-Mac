@@ -30,7 +30,7 @@ const MacOS = () => {
       tabValue:'id',
       wifi:true,
       bluetooth: true,
-      bg:'/wallpapers/Sonoma Light.jpg',
+      bg:'/wallpapers/Sequoia Light.jpg',
       bgChanged: true
     },
     5:{
@@ -165,7 +165,7 @@ const MacOS = () => {
     <div className="page">
       <div className="h-full w-full select-none absolute z-0">
         <Image 
-          src={'/wallpapers/Sequoia Dark.jpg'}
+          src={'/wallpapers/Sequoia Light.jpg'}
           className="object-cover object-center"
           sizes="100vw ,75vw , 50vw"
           fill

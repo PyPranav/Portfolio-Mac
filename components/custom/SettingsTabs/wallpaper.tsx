@@ -55,7 +55,7 @@ const WallpaperTab = ({openedApp, appStates, setAppStates }: {openedApp:number, 
     return ( 
     <section className="w-full px-10 py-2 ">
         <p className="text-lg font-bold sticky top-0 bg-[#2d2d2d] z-[1000] pb-3">Wallpaper</p>
-        <div className="flex flex-wrap gap-[40px] items-center mt-[20px]">
+        <div className="flex flex-wrap gap-[40px] items-center mt-[20px] pb-16">
             {wallpapers.map((url, ind) => (
                 <div key={ind}>
                     <div className={cn(url===appStates[openedApp].bg?"relative border-[2px] border-blue-700 before:border-[1.5px] before:border-[black] before:absolute before:top-[0px] before:left-[0px] before:right-[0px] before:bottom-[0px] before:bg-transparent before:z-[10]":'')}>
