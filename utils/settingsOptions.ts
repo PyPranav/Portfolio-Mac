@@ -17,7 +17,7 @@ export const settingsOptions = [
     {
         icon: '/settings_icon/wallpaper.png',
         name: 'Wallpaper',
-        allowed: false,
+        allowed: true,
     },
     {
         icon: '/settings_icon/notifications.png',
@@ -79,4 +79,12 @@ export const settingsOptions = [
         allowed: false,
     },
     
+]
+
+export const wallpapers = [
+    '/wallpapers/Sonoma Dark.jpg',
+    '/wallpapers/Sonoma Light.jpg',
+    '/wallpapers/Sequoia Light.jpg',
+    '/wallpapers/Sequoia Dark.jpg'
+
 ]

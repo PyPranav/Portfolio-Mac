@@ -8,6 +8,7 @@ import AppleId from "../custom/SettingsTabs/appleId";
 import { PersonalInfo } from "@/utils/personalInfo";
 import SkillTab from "../custom/SettingsTabs/skills";
 import ExperienceTab from "../custom/SettingsTabs/experience";
+import WallpaperTab from "../custom/SettingsTabs/wallpaper";
 
 
 function SearchIcon(props: any) {
@@ -34,7 +35,7 @@ const SettingsPage = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseA
 
   return (
 
-    <Tabs value={appStates[openedApp]['tabValue']} onValueChange={(val) => setAppStates({ ...appStates, [openedApp]: { ...appStates[openedApp], 'tabValue': val } })} defaultValue="account" className="grid grid-cols-[300px_2px_1fr] h-full w-full  color-white">
+    <Tabs value={appStates[openedApp]['tabValue']} onValueChange={(val) => setAppStates({ ...appStates, [openedApp]: { ...appStates[openedApp], 'tabValue': val } })} defaultValue="account" className="grid grid-cols-[300px_2px_1fr] h-full w-full  color-white bg-[#2d2d2d]">
       <TabsList className="flex flex-col h-full p-3 pt-0 items-start justify-start bg-[#292929] overflow-y-scroll rounded-none">
         <div className="pt-3 w-full sticky top-0 bg-[#292929] z-[1000]">
           <WindowCloseButtons CloseApp={CloseApp} openedApp={openedApp} />
@@ -93,11 +94,12 @@ const SettingsPage = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseA
         {/* <TabsTrigger className="w-full justify-start data-[state=active]:bg-[#195cc5] text-white data-[state=active]:text-white " value="password">Password</TabsTrigger> */}
       </TabsList>
       <div className="bg-black"></div>
-      <TabsContent value="id" className="overflow-y-scroll bg-[#2d2d2d] mt-0 pt-2"><AppleId /></TabsContent>
+      <TabsContent value="id" className="overflow-y-scroll"><AppleId /></TabsContent>
 
-      <TabsContent value="skills" className="overflow-y-scroll bg-[#2d2d2d] mt-0 pt-2"><SkillTab openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/></TabsContent>
-      <TabsContent value="experience" className="overflow-y-scroll bg-[#2d2d2d] mt-0 pt-2"><ExperienceTab openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/></TabsContent>
-      <TabsContent value="collaborate" className="overflow-y-scroll bg-[#2d2d2d] mt-0 pt-2"><div>Collaborate </div></TabsContent>
+      <TabsContent value="skills" className="overflow-y-scroll"><SkillTab openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/></TabsContent>
+      <TabsContent value="experience" className="overflow-y-scroll"><ExperienceTab openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/></TabsContent>
+      <TabsContent value="collaborate" className="overflow-y-scroll"><div>Collaborate </div></TabsContent>
+      <TabsContent value="wallpaper" className="overflow-y-scroll"><WallpaperTab openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/></TabsContent>
 
     </Tabs>
   );

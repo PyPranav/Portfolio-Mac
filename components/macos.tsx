@@ -1,3 +1,4 @@
+"use client"
 import "./macos.css";
 import { useEffect, useRef, useState } from "react";
 import { scaleValue } from "../utils/scale";
@@ -16,6 +17,7 @@ const maxAdditionalSize = 5;
 const MacOS = () => {
   const dockRef = useRef<HTMLDivElement>(null);
   const modelRef = useRef<HTMLDivElement>(null);
+  const bgRef = useRef<HTMLDivElement>(null);
 
   const [openedApp, setOpenedApp] = useState<number>(0)
   const [appStates, setAppStates] = useState<any>({
@@ -27,14 +29,16 @@ const MacOS = () => {
     4:{
       tabValue:'id',
       wifi:true,
-      bluetooth: true
+      bluetooth: true,
+      bg:'/wallpapers/Sonoma Light.jpg',
+      bgChanged: true
     },
     5:{
       albumOpened:null as (null|'personal'|'projects'|'certificates'),
       photoOpened:null as (null|number),
       currentPersonalPhotoIndex:0,
       currentCertificatesPhotoIndex:0,
-      currentProjectPhotoIndex:0
+      currentProjectPhotoIndex:0,
     },
     6:{},
     7:{},
@@ -129,6 +133,14 @@ const MacOS = () => {
 
   useEffect(()=>{
     console.log({appStates})
+    if(!appStates[4].bgChanged && bgRef?.current){
+      bgRef.current.style.background = `url("${appStates[4].bg}")`
+      bgRef.current.style.backgroundRepeat = 'no-repeat'
+      bgRef.current.style.backgroundSize = 'cover'
+      bgRef.current.style.backgroundPosition = 'center'
+      appStates[4].bgChanged = true
+
+    } 
   },[appStates])
 
   
@@ -150,12 +162,19 @@ const MacOS = () => {
 
 
   return (
-    <div style={{
-        background:`url(/wallpapers/macos-monterey-wallpaper.webp)`,
-        backgroundRepeat:'no-repeat',
-        backgroundSize:'cover'
-    }} className="page">
-      <div className="h-full w-full select-none absolute z-0 p-5">
+    <div className="page">
+      <div className="h-full w-full select-none absolute z-0">
+        <Image 
+          src={'/wallpapers/Sequoia Dark.jpg'}
+          className="object-cover object-center"
+          sizes="100vw ,75vw , 50vw"
+          fill
+          alt='bg'
+          quality={90}
+        />
+      </div>
+      {/* bg-[url(/wallpapers/macos-monterey-wallpaper.webp)] bg-no-repeat bg-cover bg-center */}
+      <div ref={bgRef} className="h-full w-full select-none absolute z-1 p-5">
         <div className="w-[600px]">
           <NameWidget/>
 
@@ -196,7 +215,7 @@ const MacOS = () => {
                   },400)
                 else OpenApp(key+1)
               }}>
-                <Image width={100} height={100}  src={dockApp.imageSrc}  alt={'app'}/>
+                <Image width={100} height={100} src={dockApp.imageSrc}  alt={'app'}/>
                 <span className="tooltip">{dockApp.tooltip}</span>
               </div>
             </li>
