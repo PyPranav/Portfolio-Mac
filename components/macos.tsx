@@ -130,23 +130,6 @@ const MacOS = () => {
     }
   }
 
-
-  useEffect(()=>{
-    console.log({appStates})
-    if(!appStates[4].bgChanged && bgRef?.current){
-      bgRef.current.style.background = `url("${appStates[4].bg}")`
-      bgRef.current.style.backgroundRepeat = 'no-repeat'
-      bgRef.current.style.backgroundSize = 'cover'
-      bgRef.current.style.backgroundPosition = 'center'
-      appStates[4].bgChanged = true
-
-    } 
-  },[appStates])
-
-  
-
-
-
   const appSelector = [
     (<SettingsPage key={1} CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>),
     (<SettingsPage key={2} CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>),
@@ -165,11 +148,12 @@ const MacOS = () => {
     <div className="page">
       <div className="h-full w-full select-none absolute z-0">
         <Image 
-          src={'/wallpapers/Sequoia Light.jpg'}
+          src={appStates[4].bg}
           className="object-cover object-center"
           sizes="100vw ,75vw , 50vw"
           fill
           alt='bg'
+          
           quality={90}
         />
       </div>
