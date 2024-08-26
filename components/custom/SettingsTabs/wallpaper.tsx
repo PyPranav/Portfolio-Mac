@@ -57,7 +57,7 @@ const WallpaperTab = ({openedApp, appStates, setAppStates }: {openedApp:number, 
         <div className="flex flex-wrap gap-[40px] items-center mt-[20px] pb-16">
             {wallpapers.map((url, ind) => (
                 <div key={ind}>
-                    <div className={cn(url===appStates[openedApp].bg?"relative border-[2px] border-blue-700 before:border-[1.5px] before:border-[black] before:absolute before:top-[0px] before:left-[0px] before:right-[0px] before:bottom-[0px] before:bg-transparent before:z-[10]":'')}>
+                    <div className={cn('rounded-xl overflow-hidden',url===appStates[openedApp].bg?"relative border-[3px] border-blue-700 before:border-[2px] before:border-[black] before:absolute before:top-[0px] before:left-[0px] before:right-[0px] before:bottom-[0px] before:bg-transparent before:z-[10] before:rounded-lg before:overflow-hidden":'')}>
                         <Image
                             src={url}
                             className={'object-cover  cursor-pointer border-[0px] '}
@@ -70,11 +70,11 @@ const WallpaperTab = ({openedApp, appStates, setAppStates }: {openedApp:number, 
                             }}
 
                             height={photoWidth}
-                            width={url===appStates[openedApp].bg?photoWidth-4: photoWidth}
+                            width={url===appStates[openedApp].bg?photoWidth-6: photoWidth}
                             alt={url}
                         />
                     </div>
-                    <p className={cn("text-center font-light pt-3",url===appStates[openedApp].bg?'mt-[-4px]':'')}>{url.split('/').at(-1)?.split('.')[0]}</p>
+                    <p className={cn("text-center font-light pt-3",url===appStates[openedApp].bg?'mt-[-6px]':'')}>{url.split('/').at(-1)?.split('.')[0]}</p>
                 </div>
             ))}
         </div>
