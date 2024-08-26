@@ -1,5 +1,4 @@
 import { cn } from "@/lib/utils";
-import { PhotoDetails } from "@/utils/photos";
 import { wallpapers } from "@/utils/settingsOptions";
 import Image from "next/image";
 import { useEffect, useState } from "react";
