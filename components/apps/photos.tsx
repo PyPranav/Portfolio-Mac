@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 const PhotosApp = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseApp: any, openedApp: number, appStates: any, setAppStates: any }) => {
   const [isLoading, setIsLoading] = useState(true)
   const [photoWidth, setPhotoWidth] = useState(0)
+  const [reloadImg, setReloadImg] = useState(false)
 
   useEffect(() => {
     const debounce = <T extends (...args: any[]) => void>(func: T, delay: number): (...args: Parameters<T>) => void => {
@@ -38,8 +39,6 @@ const PhotosApp = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseApp:
       let perPhotoWidth = availWidth / numberOfPhotoPerRow
 
       setPhotoWidth(perPhotoWidth)
-      console.log('hey')
-
 
     };
     handleResize()
@@ -89,7 +88,6 @@ const PhotosApp = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseApp:
                   src={'/back.svg'}
                   className="object-cover rounded-lg cursor-pointer invert"
                   onClick={() => {
-                    console.log('back')
                     setAppStates({ ...appStates, [openedApp]: { ...appStates[openedApp], 'albumOpened': null } })
 
                   }}
@@ -110,7 +108,6 @@ const PhotosApp = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseApp:
                   src={'/back.svg'}
                   className="object-cover rounded-lg cursor-pointer invert"
                   onClick={() => {
-                    console.log('back')
                     setAppStates({ ...appStates, [openedApp]: { ...appStates[openedApp], 'photoOpened': null } })
 
                   }}
@@ -118,7 +115,7 @@ const PhotosApp = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseApp:
                   width={30}
                   alt={'back'}
                 />
-                <p className="text-2xl font-bold ">{PhotoDetails[(appStates[5].albumOpened) as 'personal' | 'certificates' | 'projects'][appStates[5].photoOpened].split('/').at(-1)}</p>
+                <p className="text-2xl font-bold ">{PhotoDetails[(appStates[5].albumOpened) as 'personal' | 'certificates' | 'projects'][appStates[5].photoOpened]?.split('/')?.at(-1)}</p>
               </div>
               <p className="text-sm opacity-70 mt-2 ml-[50px]">{appStates[5].photoOpened + 1} of {PhotoDetails[(appStates[5].albumOpened) as 'personal' | 'certificates' | 'projects'].length}</p>
             </>
@@ -146,7 +143,6 @@ const PhotosApp = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseApp:
               // src={'/photos/personal/6.jpg'}
               className="object-contain rounded-lg cursor-pointer h-fit"
               onClick={() => {
-                console.log(url)
 
                 setAppStates({ ...appStates, [openedApp]: { ...appStates[openedApp], 'photoOpened': ind } })
                 setIsLoading(true)
@@ -166,18 +162,23 @@ const PhotosApp = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseApp:
         <>
           <div className="w-full flex-1 relative grid place-items-center grid-cols-2">
             {isLoading && (
-              <div className=" absolute top-[50%] left-[50%] w-16 h-16 border-4 border-gray-200 border-t-blue-500 rounded-full animate-spin"></div>
+              <div className="absolute top-0 left-0 right-0 bottom-0 grid place-items-center">
+                <div className="w-16 h-16 border-4 border-gray-200 border-t-blue-500 rounded-full animate-spin"></div>
+              </div>
             )}
             <div className="w-full  z-[999] px-10 flex">
               <div className="h-[300px] max-h-[50vh] w-full flex items-center group">
                 {!isLoading && (
                   <div onClick={()=>{
-                    console.log('prev')
-                    setIsLoading(true)
+                    setReloadImg(true)
                     if(appStates[openedApp]['photoOpened']!=0)
                       setAppStates({ ...appStates, [openedApp]: { ...appStates[openedApp], 'photoOpened': appStates[openedApp]['photoOpened']-1 } })
                     else
                       setAppStates({ ...appStates, [openedApp]: { ...appStates[openedApp], 'photoOpened': PhotoDetails[(appStates[5].albumOpened) as 'personal' | 'certificates' | 'projects'].length-1 } })
+                    setIsLoading(true)
+                    setTimeout(()=>{
+                      setReloadImg(false)
+                    },10)
 
 
                   }} className="rounded-xl bg-white opacity-0 group-hover:opacity-100 duration-500">
@@ -192,7 +193,8 @@ const PhotosApp = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseApp:
                 )}
               </div>
             </div>
-              <Image
+
+              {!reloadImg&&(<Image
                 src={PhotoDetails[(appStates[5].albumOpened) as 'personal' | 'certificates' | 'projects'][appStates[5].photoOpened]}
 
                 className="object-contain rounded-lg"
@@ -200,15 +202,19 @@ const PhotosApp = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseApp:
                 onLoad={() => setIsLoading(false)}
                 sizes="100vw, 50vw, 33vw"
                 alt={PhotoDetails[(appStates[5].albumOpened) as 'personal' | 'certificates' | 'projects'][appStates[5].photoOpened]}
-              />     
+              />)}    
+
             <div className="w-full  z-[999] flex justify-end px-10">
               <div className="h-[300px] max-h-[50vh] w-full flex items-center group justify-end">
                 {!isLoading && (
 
                   <div onClick={()=>{
-                    setIsLoading(true)
-
+                    setReloadImg(true)
                     setAppStates({ ...appStates, [openedApp]: { ...appStates[openedApp], 'photoOpened': (appStates[openedApp]['photoOpened']+1) % PhotoDetails[(appStates[5].albumOpened) as 'personal' | 'certificates' | 'projects'].length } })
+                    setIsLoading(true)
+                    setTimeout(()=>{
+                      setReloadImg(false)
+                    },10)
                     
                   }} className=" rounded-xl bg-white opacity-0 group-hover:opacity-100 duration-500">
                     <Image

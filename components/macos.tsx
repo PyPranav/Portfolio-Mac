@@ -12,6 +12,7 @@ import SpotifyWidget from "@/components/custom/Widgets/spotifyWidget";
 import SpotifyApp from "@/components/apps/spotify";
 import ArcPage from "@/components/apps/arc";
 import Image from "next/image";
+import { wallpapers } from "@/utils/settingsOptions";
 
 const maxAdditionalSize = 5;
 const MacOS = () => {
@@ -30,7 +31,7 @@ const MacOS = () => {
       tabValue:'id',
       wifi:true,
       bluetooth: true,
-      bg:'/wallpapers/Sequoia Light.jpg',
+      bg: wallpapers[0],
       bgChanged: true
     },
     5:{
@@ -141,6 +142,15 @@ const MacOS = () => {
     (<SettingsPage key={8} CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>),
   ]
 
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const url = localStorage.getItem("background");
+      if (url && wallpapers.includes(url)) {
+        setAppStates({ ...appStates, [4]: { ...appStates[openedApp], 'bg': url, 'bgChanged': false } })
+      }
+    }
+  }, []);
 
 
 

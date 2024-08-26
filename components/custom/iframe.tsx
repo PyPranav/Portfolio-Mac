@@ -4,7 +4,6 @@ import { cn } from "@/lib/utils"
 const IframeComponent = ({src, title, className}:{src:string, title:string, className?:string}) => {
     const [isLoaded, setIsLoaded] = useState(false);
     const handleIframeLoad = () => {
-        console.log('Iframe has finished loading');
         setIsLoaded(true);
     };
     return (  

@@ -36,8 +36,6 @@ const WallpaperTab = ({openedApp, appStates, setAppStates }: {openedApp:number, 
         let perPhotoWidth = availWidth / numberOfPhotoPerRow
 
         setPhotoWidth(perPhotoWidth)
-        console.log('hey')
-
 
         };
         handleResize()
@@ -67,6 +65,12 @@ const WallpaperTab = ({openedApp, appStates, setAppStates }: {openedApp:number, 
                                 
                             onClick={() => {
                                 setAppStates({ ...appStates, [openedApp]: { ...appStates[openedApp], 'bg': url, 'bgChanged': false } })
+                                if (typeof window !== "undefined") {
+                                    if (url!=wallpapers[0])
+                                        window.localStorage.setItem('background',url)
+                                    else
+                                        window.localStorage.removeItem('background')
+                                }
                             }}
 
                             height={photoWidth}

@@ -18,7 +18,6 @@ export const getInstaDetails = cache(async ()=>{
     }).then((res) =>
         res.json()
     )
-    console.log(data)
     return data
 })
 
