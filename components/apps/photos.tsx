@@ -154,8 +154,8 @@ const PhotosApp = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseApp:
               alt={url}
 
               
-              // placeholder="blur"
-              // blurDataURL={`/_next/image?url=${url}&w=16&q=1`}
+              placeholder="blur"
+              blurDataURL={`/_next/image?url=${url}&w=16&q=1`}
             />
             // </div>
           ))}
