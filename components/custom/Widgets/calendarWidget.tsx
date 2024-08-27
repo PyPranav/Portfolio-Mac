@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils"
 import localFont from 'next/font/local'
 const CalenderWidget = () => {
-    const currentDate = new Date(2024, 2, 14);
+    const currentDate = new Date();
     const dayOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"][currentDate.getDay()];
     const month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"][currentDate.getMonth()];
     const dayOfMonth = currentDate.getDate();
