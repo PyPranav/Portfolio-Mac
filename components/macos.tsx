@@ -216,24 +216,6 @@ const MacOS = () => {
           ))}
         </ul>
       </nav>
-
-      {/* <div className="source-links">
-        <a
-          href="https://unsplash.com/photos/4wzRuAb-KWs"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Wallpaper by Mohammad <br />
-          Alizade on Unsplash
-        </a>
-        <a
-          href="https://macosicons.com/#/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Icons by MacOS Icons
-        </a>
-      </div> */}
       <div className="mobile-message">
         <p>
           {"What?! MacOS works on mobile?.."}
