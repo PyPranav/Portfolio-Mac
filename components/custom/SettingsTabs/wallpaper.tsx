@@ -76,6 +76,10 @@ const WallpaperTab = ({openedApp, appStates, setAppStates }: {openedApp:number, 
                             height={photoWidth}
                             width={url===appStates[openedApp].bg?photoWidth-6: photoWidth}
                             alt={url}
+
+                            
+                            // placeholder="blur"
+                            // blurDataURL={`/_next/image?url=${url}&w=16&q=1`}
                         />
                     </div>
                     <p className={cn("text-center font-light pt-3",url===appStates[openedApp].bg?'mt-[-6px]':'')}>{url.split('/').at(-1)?.split('.')[0]}</p>

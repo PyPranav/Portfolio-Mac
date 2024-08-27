@@ -152,6 +152,10 @@ const PhotosApp = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseApp:
               width={photoWidth}
               // fill={true}
               alt={url}
+
+              
+              // placeholder="blur"
+              // blurDataURL={`/_next/image?url=${url}&w=16&q=1`}
             />
             // </div>
           ))}

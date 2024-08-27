@@ -36,7 +36,7 @@ export const PersonalInfo = {
             },
             {
                 name:'CSS',
-                level:'Beginner',
+                level:'Intermediate',
                 icon:'/settings_icon/skills/css3.webp'
             },
         ]) as {name:string, level:("Expert"|"Intermediate"|"Beginner"),icon:string}[],
@@ -73,9 +73,19 @@ export const PersonalInfo = {
                 icon:'/settings_icon/skills/torch.webp'
             },
             {
+                name:'TailwindCSS',
+                level:'Intermediate',
+                icon:'/settings_icon/skills/tailwind.svg'
+            },
+            {
                 name:'Express.js',
                 level:'Beginner',
                 icon:'/settings_icon/skills/express.webp'
+            },
+            {
+                name:'React Native',
+                level:'Beginner',
+                icon:'/settings_icon/skills/react.svg'
             },
            
         ]) as {name:string, level:("Expert"|"Intermediate"|"Beginner") ,icon:string}[]
