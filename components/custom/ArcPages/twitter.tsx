@@ -2,7 +2,7 @@
 import { createClient } from "@supabase/supabase-js";
 import { useEffect, useState } from "react";
 const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!,process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!);
-
+// re
 const TwitterPage = () => {
     const [tweets, setTweets] = useState<any>([])
     useEffect(()=>{
