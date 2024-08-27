@@ -59,9 +59,14 @@
   }
 }
 
+html{
+  height:  100%;
+}
+
 body{
   
 font-smooth: always;
+height: 100%;
 }
 /* 
 @layer base {
@@ -99,3 +104,4 @@ font-smooth: always;
 ::-webkit-scrollbar-thumb:hover {
   background-color: rgba(85, 85, 85, 0.7); /* Darker and more opaque when hovered */
 }
+
