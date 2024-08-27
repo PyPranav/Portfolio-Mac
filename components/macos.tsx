@@ -1,4 +1,3 @@
-"use client"
 import "./macos.css";
 import { useEffect, useRef, useState } from "react";
 import { scaleValue } from "../utils/scale";
@@ -13,6 +12,7 @@ import SpotifyApp from "@/components/apps/spotify";
 import ArcPage from "@/components/apps/arc";
 import Image from "next/image";
 import { wallpapers } from "@/utils/settingsOptions";
+import { PhotoDetails } from "@/utils/photos";
 
 const maxAdditionalSize = 5;
 const MacOS = () => {
@@ -150,6 +150,24 @@ const MacOS = () => {
         setAppStates({ ...appStates, [4]: { ...appStates[openedApp], 'bg': url, 'bgChanged': false } })
       }
     }
+
+    (['certificates','personal','projects'] as (('personal'|'certificates'|'projects')[])).forEach((type)=>{
+      PhotoDetails[type].forEach((url,ind)=>{
+        const img =  document.createElement('img');
+        img.style.height='0px'
+        img.style.width = '0px'
+        img.src = url?.replace('.jpg','.webp')?.replace('.png','.webp')?.replace('.jpeg','.webp')??'';
+        img.alt = url??'';
+        img.addEventListener('load', () => {
+          console.log('loaded', url)
+          // img.remove();
+        });
+  
+        document.body.appendChild(img);
+  
+      })
+    })
+    
   }, []);
 
 
@@ -216,16 +234,6 @@ const MacOS = () => {
           ))}
         </ul>
       </nav>
-      <div className="mobile-message">
-        <p>
-          {"What?! MacOS works on mobile?.."}
-          <br />{"— Unfortunately it doesn't 😢 Open this site on your desktop to"}
-          {"enjoy the amazing animations! Or watch the video"}{" "}
-          <a href="https://youtu.be/_ZcIFTvLm64" target="_blank">
-            {"on YouTube"}
-          </a>
-        </p>
-      </div>
     </div>
   );
 }

@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
+      {/* <head>
           {PhotoDetails.certificates.map((url,id)=>(
             <link key={id} rel='preload' href={url?.replace('.jpg','.webp')?.replace('.png','.webp')?.replace('.jpeg','.webp')} as="image"/>
           ))}
@@ -29,7 +29,7 @@ export default function RootLayout({
           {PhotoDetails.projects.map((url,id)=>(
             <link key={id} rel='preload' href={url?.replace('.jpg','.webp')?.replace('.png','.webp')?.replace('.jpeg','.webp')} as="image"/>
           ))}
-      </head>
+      </head> */}
       <body className={inter.className}>
         {children}
         <SpeedInsights />
