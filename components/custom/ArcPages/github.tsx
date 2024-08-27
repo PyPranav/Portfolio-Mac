@@ -39,6 +39,7 @@ const GithubPage = () => {
                                 <div className="flex flex-col">
                                     <div className="w-[180px] md:w-[230px] lg:w-full self-center">
                                         <Image
+                                            unoptimized
                                             src={githubData?.avatar_url}
                                             className="object-cover rounded-[300px] cursor-pointer border-[#30363d] border-[2px]"
                                             height={296}

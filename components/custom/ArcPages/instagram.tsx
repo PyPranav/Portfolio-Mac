@@ -34,6 +34,7 @@ const InstagramPage = () => {
                         <div className="flex gap-[100px]">
                             <div>
                                 <Image
+                                    unoptimized
                                     src={instaData.profile_pic_url}
                                     className="object-cover rounded-[150px]"
                                     height={150}
