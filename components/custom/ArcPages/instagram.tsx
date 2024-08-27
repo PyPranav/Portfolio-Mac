@@ -35,7 +35,7 @@ const InstagramPage = () => {
                             <div>
                                 <Image
                                     unoptimized
-                                    src={instaData.profile_pic_url}
+                                    src={`data:image/png;base64,${instaData.profile_pic_base64}`}
                                     className="object-cover rounded-[150px]"
                                     height={150}
                                     width={150}
