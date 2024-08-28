@@ -7,7 +7,9 @@ const CalenderWidget = () => {
     const dayOfMonth = currentDate.getDate();
     
     return ( 
-        <div className='group'>
+        <div style={{
+            fontFamily: 'San Francisco Bold'
+        }} className='group'>
               <div className="h-[170px] w-[170px] flex flex-col items-center justify-center bg-black bg-opacity-10 backdrop-blur-[100px] rounded-2xl p-4 text-white ">
                   <div className="text-2xl text-[1.7rem] font-medium flex gap-2 opacity-80 group-hover:opacity-100 duration-500">{dayOfWeek} <p className="opacity-50">{month}</p></div>
                   <div className="text-6xl text-[6rem] font-bold opacity-80 group-hover:opacity-100 duration-500 ">{dayOfMonth}</div>

@@ -9,13 +9,19 @@ const NameWidget = () => {
               <AvatarFallback>CN</AvatarFallback>
             </Avatar>
             <div className="px-5 w-full flex flex-col justify-center">
-              <p style={{}} className="text-5xl opacity-80 font-medium group-hover:opacity-100 duration-500 ">
+              <p style={{
+                fontFamily:'San Francisco Bold'
+              }} className="text-5xl opacity-80 font-medium group-hover:opacity-100 duration-500 ">
                 {PersonalInfo.name}
               </p>
-              <p className="font-light text-xl opacity-50  group-hover:opacity-70 duration-500 ">
+              <p style={{
+            fontFamily: 'San Francisco Regular'
+        }} className="font-light text-xl opacity-50  group-hover:opacity-70 duration-500 ">
                 {PersonalInfo.tag}
               </p>
-              <p className="font-light text-xs opacity-50 group-hover:opacity-70 duration-500 ">
+              <p style={{
+            fontFamily: 'San Francisco Regular'
+        }} className="font-light text-xs opacity-50 group-hover:opacity-70 duration-500 ">
                 {PersonalInfo.descriptiveTag}
 
               </p>
