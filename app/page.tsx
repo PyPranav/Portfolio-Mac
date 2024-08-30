@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 
 function App() {
   const [isMobile, setIsMobile] = useState<boolean|null>(null)
-  const isLoaded = true;
+  const [isLoaded, setIsLoaded] = useState(false)
   const [twoSecondDone, setTwoSecondDone] = useState<boolean>(false)
 
   useEffect(()=>{
@@ -47,6 +47,12 @@ function App() {
     window.addEventListener('resize', handleResize);
     handleResize();
 
+    const bgImg = document.getElementById('bgImage')
+    if(bgImg)
+      bgImg.onload = ()=>{
+        // console.log('hello')
+      }
+
     return () => {
       window.removeEventListener('resize', handleResize);
     };
@@ -56,7 +62,7 @@ function App() {
   
   return isMobile!==null?(
     <>
-      {isMobile?(<IOS/>):(<MacOS loaded={isLoaded&&twoSecondDone}/>)}
+      {isMobile?(<IOS/>):(<MacOS loaded={isLoaded&&twoSecondDone} setIsLoaded={setIsLoaded}/>)}
     </>    
   ):(<></>)
 }

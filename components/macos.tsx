@@ -1,5 +1,5 @@
 import "./macos.css";
-import { useEffect, useRef, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 import { scaleValue } from "../utils/scale";
 import { dockAppList } from "@/utils/dockApps";
 import SettingsPage from "@/components/apps/settings";
@@ -16,7 +16,7 @@ import { PhotoDetails } from "@/utils/photos";
 import Finder from "./apps/finder";
 
 const maxAdditionalSize = 5;
-const MacOS = ({loaded}:{loaded:boolean}) => {
+const MacOS = ({loaded,setIsLoaded}:{loaded:boolean, setIsLoaded:Dispatch<SetStateAction<boolean>>}) => {
   const dockRef = useRef<HTMLDivElement>(null);
   const modelRef = useRef<HTMLDivElement>(null);
   const bgRef = useRef<HTMLDivElement>(null);
@@ -167,6 +167,10 @@ const MacOS = ({loaded}:{loaded:boolean}) => {
       <div className="h-full w-full select-none absolute z-0">
         <Image 
           src={appStates[4].bg}
+          id={'bgImage'}
+          onLoad={()=>{
+            setIsLoaded(true)
+          }}
           className="object-cover object-center"
           sizes="100vw ,75vw , 50vw"
           fill

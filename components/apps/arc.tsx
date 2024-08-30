@@ -6,7 +6,7 @@ import InstagramPage from "../custom/ArcPages/instagram";
 import GithubPage from "../custom/ArcPages/github";
 import LinkedInPage from "../custom/ArcPages/linkedin";
 import { PersonalInfo } from "@/utils/personalInfo";
-import { useEffect, useState } from "react";
+import { Dispatch, useEffect, useState } from "react";
 import { useRouter } from 'next/navigation';
 import IframeComponent from "../custom/iframe";
 import TwitterPage from "../custom/ArcPages/twitter";
@@ -18,7 +18,7 @@ const getLink = (val:string)=>{
     return PersonalInfo.hostedProjects.filter((proj)=>proj.name===val)[0].url
 }
 
-const ArcPage = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseApp: any, openedApp: number, appStates: any, setAppStates: any }) => {
+const ArcPage = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseApp: (appNum: number) => void, openedApp: number, appStates: any, setAppStates: Dispatch<any> }) => {
     const [isFirfox, setIsFirfox] = useState(false)
     const router = useRouter();
     const [count, setCount] = useState(0)

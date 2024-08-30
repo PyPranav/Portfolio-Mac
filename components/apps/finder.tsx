@@ -2,13 +2,13 @@ import Image from "next/image";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import WindowCloseButtons from "../custom/windowCloseButtons";
 import { cn } from "@/lib/utils";
-import { useEffect, useState } from "react";
+import { Dispatch, useEffect, useState } from "react";
 import { getGithubDetails } from "@/utils/fetchData";
 import { languageColors } from "@/utils/settingsOptions";
 import FolderComponent from "../custom/Finder/folder";
 import DocumentComponent from "../custom/Finder/document";
 
-const Finder = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseApp: any, openedApp: number, appStates: any, setAppStates: any }) => {
+const Finder = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseApp: (appNum: number) => void, openedApp: number, appStates: any, setAppStates: Dispatch<any> }) => {
     const [githubData, setGithubData] = useState<any[]>([])
     const [languages, setLaguages] = useState<any>({})
     useEffect(() => {
