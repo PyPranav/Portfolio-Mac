@@ -24,7 +24,7 @@ const DocumentComponent = ({ openedApp, appStates, setAppStates, tabIndex, fileN
                 height={90}
                 width={90}
             />
-            <p className="text-sm text-center group-focus:bg-blue-700 rounded">{fileName}</p>
+            <p className="text-sm text-center group-focus:bg-blue-700 rounded text-wrap max-w-[90px]">{fileName.split(/[-,_]/).join(' ')}</p>
             <Dialog open={openDoc} onOpenChange={()=>setOpenDoc(!openDoc)}>
                 <DialogContent className="bg-[#0d1117] w-[50%] max-w-[50%]">
                     <DialogTitle className="sticky">{fileName}</DialogTitle>
