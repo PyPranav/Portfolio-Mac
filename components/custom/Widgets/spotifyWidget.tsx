@@ -16,7 +16,7 @@ const SpotifyWidget = ({loaded}:{loaded:boolean}) => {
     useEffect(()=>{
       if(!playingSong || !loaded)
         return
-      new Promise(resolve => setTimeout(resolve, ind==0?100:10)).then(()=>{
+      new Promise(resolve => setTimeout(resolve,10)).then(()=>{
         if (ind<=Math.max(playingSong?.track_name?.length??0,playingSong?.artist_name?.length??0, 'Currently listening to'.length))
           setInd(ind+1)
         
