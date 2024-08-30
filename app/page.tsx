@@ -82,6 +82,10 @@ function App() {
     if(isLoaded){
       console.log("Loaded!!!!")
       const loader = document.getElementById('whiteLoader')
+      const timer = setTimeout(()=>{
+        setTwoSecondDone(true)
+      },500)
+      
       if (loader){
         loader.style.removeProperty('animation')
 
@@ -90,16 +94,9 @@ function App() {
           loader.style.width = '100%'
         },10)
       }
+      return ()=>clearTimeout(timer)
     }
   },[isLoaded])
-
-  useEffect(()=>{
-    const timer = setTimeout(()=>{
-      setTwoSecondDone(true)
-    },1500)
-    return ()=>clearTimeout(timer)
-  },[])
-
 
   useEffect(()=>{
     if(isLoaded&&twoSecondDone)
@@ -127,9 +124,6 @@ function App() {
   
   return isMobile!==null?(
     <>
-      {/* {(!isLoaded||!twoSecondDone)&&(
-        
-    )} */}
       {isMobile?(<IOS/>):(<MacOS loaded={isLoaded&&twoSecondDone}/>)}
     </>    
   ):(<></>)
