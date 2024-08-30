@@ -79,16 +79,36 @@ function App() {
 
   useEffect(()=>{
     console.log(isLoaded, ';)')
-    if(isLoaded)
+    if(isLoaded){
       console.log("Loaded!!!!")
+      const loader = document.getElementById('whiteLoader')
+      if (loader){
+        loader.style.removeProperty('animation')
+
+        loader.style.width = '50%'
+        setTimeout(()=>{
+          loader.style.width = '100%'
+        },10)
+      }
+    }
   },[isLoaded])
 
   useEffect(()=>{
     const timer = setTimeout(()=>{
       setTwoSecondDone(true)
-    },1000)
+    },1500)
     return ()=>clearTimeout(timer)
   },[])
+
+
+  useEffect(()=>{
+    if(isLoaded&&twoSecondDone)
+    {
+      const loader = document.getElementById('loader')
+      if (loader)
+        loader.style.display = 'none'
+    }
+  },[isLoaded, twoSecondDone])
 
   useEffect(()=>{
     const handleResize = () => {
@@ -107,27 +127,9 @@ function App() {
   
   return isMobile!==null?(
     <>
-      {(!isLoaded||!twoSecondDone)&&(<div className="absolute top-0 left-0 right-0 bottom-0 z-[10001] bg-black">
-        <div className="relative grid place-items-center h-full">
-          <Image
-            priority
-            unoptimized
-            src={'/apple.svg'}
-            className="invert"
-            width={64}
-            height={64}
-            alt='apple'
-          />
-          <div className="absolute bottom-10 w-full h-10 grid place-items-center">
-            <div className="h-2 w-[200px] bg-gray-400 rounded-xl">
-              <div style={{
-                animation: 'widthExpand 1s ease-in-out forwards',
-              }}  className=" h-full bg-white rounded-xl">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>)}
+      {/* {(!isLoaded||!twoSecondDone)&&(
+        
+    )} */}
       {isMobile?(<IOS/>):(<MacOS loaded={isLoaded&&twoSecondDone}/>)}
     </>    
   ):(<></>)
