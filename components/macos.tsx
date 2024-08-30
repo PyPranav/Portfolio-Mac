@@ -39,6 +39,7 @@ const MacOS = ({loaded}:{loaded:boolean}) => {
       bgChanged: true
     },
     5:{
+      photosLoaded:false,
       albumOpened:null as (null|'personal'|'projects'|'certificates'),
       photoOpened:null as (null|number),
       currentPersonalPhotoIndex:0,
@@ -157,24 +158,6 @@ const MacOS = ({loaded}:{loaded:boolean}) => {
         setAppStates({ ...appStates, [4]: { ...appStates[openedApp], 'bg': url, 'bgChanged': false } })
       }
     }
-
-    (['certificates','personal','projects'] as (('personal'|'certificates'|'projects')[])).forEach((type)=>{
-      PhotoDetails[type].forEach((url,ind)=>{
-        const img =  document.createElement('img');
-        img.style.height='0px'
-        img.style.width = '0px'
-        img.src = url?.replace('.jpg','.webp')?.replace('.png','.webp')?.replace('.jpeg','.webp')??'';
-        img.alt = url??'';
-        img.addEventListener('load', () => {
-          console.log('loaded', url)
-          // img.remove();
-        });
-  
-        document.body.appendChild(img);
-  
-      })
-    })
-    
   }, []);
 
 

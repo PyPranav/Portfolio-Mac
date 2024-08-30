@@ -50,6 +50,27 @@ const PhotosApp = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseApp:
   }, []);
 
 
+  useEffect(()=>{
+    if(!appStates[5].photosLoaded)
+      (['certificates','personal','projects'] as (('personal'|'certificates'|'projects')[])).forEach((type)=>{
+        PhotoDetails[type].forEach((url,ind)=>{
+          const img =  document.createElement('img');
+          img.style.height='0px'
+          img.style.width = '0px'
+          img.src = url?.replace('.jpg','.webp')?.replace('.png','.webp')?.replace('.jpeg','.webp')??'';
+          img.alt = url??'';
+          img.addEventListener('load', () => {
+            console.log('loaded', url)
+            // img.remove();
+          });
+    
+          document.body.appendChild(img);
+    
+        })
+      })
+    setAppStates({ ...appStates, [openedApp]: { ...appStates[openedApp], 'photosLoaded': true } })
+  },[])
+
 
   return (
     <div className="bg-[#232323] h-full overflow-y-scroll flex flex-col">
