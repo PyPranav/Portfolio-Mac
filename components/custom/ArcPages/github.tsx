@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import MarkdownDisplay from "../markDownDisplay";
 import Image from "next/image";
 import { PersonalInfo } from "@/utils/personalInfo";
+import { languageColors } from "@/utils/settingsOptions";
 
 
 
@@ -12,12 +13,7 @@ const GithubPage = () => {
     useEffect(()=>{
         (async ()=>setGithubData( await getGithubDetails()))()
     },[])
-    const langColor = {
-        'Python':'#f1e05a',
-        'JavaScript':'#3572a5',
-        'CSS':'#563d7c',
-        'TypeScript':'#3178c6'
-    }
+    const langColor = languageColors
     return ( 
         <section className=" bg-[#0d1117] h-full text-white overflow-y-scroll">
             <div className="bg-[#010409] p-5 flex items-center gap-5">
@@ -95,7 +91,7 @@ const GithubPage = () => {
                             </div>
                             <p className="text-white mb-2 ml-7 lg:ml-0">Pinned</p>
                             <div className="grid grid-cols-2 gap-2 mr-7 ml-7 lg:ml-0 max-w-[896px]">
-                                {githubData?.repos?.map((repo:any, key:number)=>(
+                                {githubData?.repos?.slice(0,6)?.map((repo:any, key:number)=>(
                                     <div key={key} className="border-[#30363d] border-[1px]  rounded-lg p-5 ">
                                         <div className="flex gap-3 items-center ">
                                             <svg className="hidden sm:block" aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true">

@@ -15,10 +15,6 @@ const NameWidget = ({loaded}:{loaded:boolean}) => {
     },[ind, loaded])
     return ( 
          <div className='group h-[170px] flex bg-black bg-opacity-10 backdrop-blur-[100px] rounded-2xl p-4 text-white  ' >
-            {/* <Avatar className="w-[139px] h-[139px] opacity-80 group-hover:opacity-100 duration-500">
-              <AvatarImage src={PersonalInfo.profilePic} />
-              <AvatarFallback>CN</AvatarFallback>
-            </Avatar> */}
             <Image
                 src={PersonalInfo.profilePic}
                 className="object-cover rounded-[130px] opacity-80 group-hover:opacity-100 duration-500"

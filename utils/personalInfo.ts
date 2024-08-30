@@ -176,6 +176,17 @@ export const PersonalInfo = {
             name:'Envision',
             url:'https://datavisual.pythonanywhere.com/home/',
             icon:'/arc/others/envision.png'
+        },
+        {
+            name:'Random Advice',
+            url:'https://pypranav.github.io/Random-Advice-Site/',
+            icon:'/arc/others/random.webp'
+        },
+        {
+            name:'Netflix Clone',
+            url:'https://netflix-clone-a8773.web.app/',
+            icon:'/arc/others/netflix.png'
         }
+
     ]
 }

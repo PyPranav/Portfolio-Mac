@@ -13,6 +13,7 @@ import ArcPage from "@/components/apps/arc";
 import Image from "next/image";
 import { wallpapers } from "@/utils/settingsOptions";
 import { PhotoDetails } from "@/utils/photos";
+import Finder from "./apps/finder";
 
 const maxAdditionalSize = 5;
 const MacOS = ({loaded}:{loaded:boolean}) => {
@@ -22,7 +23,10 @@ const MacOS = ({loaded}:{loaded:boolean}) => {
 
   const [openedApp, setOpenedApp] = useState<number>(0)
   const [appStates, setAppStates] = useState<any>({
-    1:{},
+    1:{
+      tabValue:'Home',
+      forwardStack: []
+    },
     2:{},
     3:{
       tabValue:'x',
@@ -45,6 +49,9 @@ const MacOS = ({loaded}:{loaded:boolean}) => {
     7:{},
     8:{},
   })
+  useEffect(()=>{
+    console.log({appStates})
+  },[appStates])
 
 
   const handleAppHover = (ev: React.MouseEvent<HTMLLIElement>) => {
@@ -132,7 +139,7 @@ const MacOS = ({loaded}:{loaded:boolean}) => {
   }
 
   const appSelector = [
-    (<SettingsPage key={1} CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>),
+    (<Finder key={1} CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>),
     (<SettingsPage key={2} CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>),
     (<ArcPage key={3} CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>),
     (<SettingsPage key={4} CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>),

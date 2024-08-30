@@ -93,3 +93,10 @@ export const wallpapers = [
     "/wallpapers/Big Sur Light.jpg",
     "/wallpapers/Big Sur Dark.jpg"
 ]
+
+export const languageColors = {
+    'Python':'#f1e05a',
+    'JavaScript':'#3572a5',
+    'CSS':'#563d7c',
+    'TypeScript':'#3178c6'
+}
