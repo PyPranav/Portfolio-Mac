@@ -41,9 +41,11 @@ export default function RootLayout({
           </svg>
           <div className="absolute bottom-10 w-full h-10 grid place-items-center">
             <div className="h-2 w-[200px] bg-gray-400 rounded-xl">
-              <div style={{
-                animation: 'widthExpand 1s ease-in-out forwards',
-              }} id={'whiteLoader'}  className=" h-full bg-white rounded-xl duration-500">
+              <div className=" h-full rounded-xl animate-pulse duration-700">
+                <div style={{
+                  animation: 'widthExpand 1s ease-in-out forwards',
+                }} id={'whiteLoader'}  className="h-full bg-white rounded-xl duration-500">
+                </div>
               </div>
             </div>
           </div>
