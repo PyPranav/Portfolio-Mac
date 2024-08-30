@@ -2,7 +2,7 @@ import { getPlayigSong } from "@/utils/fetchData";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-const SpotifyWidget = () => {
+const SpotifyWidget = ({loaded}:{loaded:boolean}) => {
   const [playingSong, setPlayingSong] = useState<any>(null)
 
   useEffect(() => {
@@ -12,16 +12,16 @@ const SpotifyWidget = () => {
     // return ()=> clearInterval(intervalId)
   }, [])
 
-  const [ind, setInd] = useState(1);
+  const [ind, setInd] = useState(0);
     useEffect(()=>{
-      if(!playingSong)
+      if(!playingSong || !loaded)
         return
-      new Promise(resolve => setTimeout(resolve, 10)).then(()=>{
+      new Promise(resolve => setTimeout(resolve, ind==0?100:10)).then(()=>{
         if (ind<=Math.max(playingSong?.track_name?.length??0,playingSong?.artist_name?.length??0, 'Currently listening to'.length))
           setInd(ind+1)
         
       })
-    },[ind,playingSong])
+    },[ind,playingSong,loaded])
 
   useEffect(() => {
     console.log(playingSong)

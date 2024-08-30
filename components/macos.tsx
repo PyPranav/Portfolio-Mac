@@ -15,7 +15,7 @@ import { wallpapers } from "@/utils/settingsOptions";
 import { PhotoDetails } from "@/utils/photos";
 
 const maxAdditionalSize = 5;
-const MacOS = () => {
+const MacOS = ({loaded}:{loaded:boolean}) => {
   const dockRef = useRef<HTMLDivElement>(null);
   const modelRef = useRef<HTMLDivElement>(null);
   const bgRef = useRef<HTMLDivElement>(null);
@@ -188,11 +188,11 @@ const MacOS = () => {
       {/* bg-[url(/wallpapers/macos-monterey-wallpaper.webp)] bg-no-repeat bg-cover bg-center */}
       <div ref={bgRef} className="h-full w-full select-none absolute z-1 p-5">
         <div className="w-[600px]">
-          <NameWidget/>
+          <NameWidget loaded={loaded}/>
 
           <div className="mt-5 flex gap-5">
             <CalenderWidget/>
-            <SpotifyWidget/>
+            <SpotifyWidget loaded={loaded}/>
             
           </div>
          

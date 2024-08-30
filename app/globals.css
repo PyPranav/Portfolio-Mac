@@ -92,6 +92,16 @@ body{
 font-smooth: always;
 height: 100%;
 }
+
+@keyframes widthExpand {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
 /* 
 @layer base {
   * {

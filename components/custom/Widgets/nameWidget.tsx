@@ -2,15 +2,16 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { PersonalInfo } from "@/utils/personalInfo";
 import { useEffect, useState } from "react";
 
-const NameWidget = () => {
-    const [ind, setInd] = useState(1);
+const NameWidget = ({loaded}:{loaded:boolean}) => {
+    const [ind, setInd] = useState(0);
     useEffect(()=>{
-      new Promise(resolve => setTimeout(resolve, 10)).then(()=>{
+      if(!loaded)
+        return
+      new Promise(resolve => setTimeout(resolve, ind===0?100:10)).then(()=>{
         if (ind<=Math.max(PersonalInfo.name.length,PersonalInfo.tag.length, PersonalInfo.descriptiveTag.length/2))
           setInd(ind+1)
-        
       })
-    },[ind])
+    },[ind, loaded])
     return ( 
          <div className='group h-[170px] flex bg-black bg-opacity-10 backdrop-blur-[100px] rounded-2xl p-4 text-white  ' >
             <Avatar className="w-[139px] h-[139px] opacity-80 group-hover:opacity-100 duration-500">
