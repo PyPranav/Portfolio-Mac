@@ -12,8 +12,8 @@ const GamePage = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseApp: 
           <p className='w-full text-center'>2048</p>
 
         </div>
-        <div className="bg-[#faf8ef] h-full grid place-items-center rounded-[12px] ">
-            <IframeComponent className="h-[700px] max-h-[80vh] rounded-[12px] bg-red border-0" src="https://funhtml5games.com?embed=2048bit" title="2048"/>
+        <div className="bg-[#faf8ef] h-full pb-[120px] pt-10 rounded-[12px] ">
+            <IframeComponent className="h-full rounded-[12px] bg-red border-0" src="https://funhtml5games.com?embed=2048bit" title="2048"/>
         </div>
         {/* <IframeComponent className="h-full rounded-[12px] bg-red border-0" src="https://preview.codepad.co/playground/preview/2048-game/1" title="2048"/> */}
     </div> 
