@@ -3,7 +3,7 @@ import WindowCloseButtons from "../custom/windowCloseButtons";
 
 const SpotifyApp = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseApp: any, openedApp: number, appStates: any, setAppStates: any }) => {
     return ( 
-    <div className="h-full pb-[75px] bg-[#242424] overflow-hidden"> 
+    <div className="h-full bg-[#242424] overflow-hidden"> 
         <div className="bg-[#242424] p-5 flex items-center relative">
           <div className=" absolute">
             <WindowCloseButtons CloseApp={CloseApp} openedApp={openedApp} />

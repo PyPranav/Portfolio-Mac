@@ -14,6 +14,7 @@ import Image from "next/image";
 import { wallpapers } from "@/utils/settingsOptions";
 import { PhotoDetails } from "@/utils/photos";
 import Finder from "./apps/finder";
+import GamePage from "./apps/game";
 
 const maxAdditionalSize = 5;
 const MacOS = ({loaded,setIsLoaded}:{loaded:boolean, setIsLoaded:Dispatch<SetStateAction<boolean>>}) => {
@@ -147,7 +148,7 @@ const MacOS = ({loaded,setIsLoaded}:{loaded:boolean, setIsLoaded:Dispatch<SetSta
     (<SettingsPage key={4} CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>),
     (<PhotosApp key={5} CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>),
     (<SpotifyApp key={6} CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>),
-    (<SettingsPage key={7} CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>),
+    (<GamePage key={7} CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>),
     (<SettingsPage key={8} CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>),
   ]
 

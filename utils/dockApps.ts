@@ -31,8 +31,8 @@ export const dockAppList = [
     },
     {
       "id": 7,
-      "imageSrc": "/dock_icons/mail.webp",
-      "tooltip": "Some Game"
+      "imageSrc": "/dock_icons/2048.png",
+      "tooltip": "2048"
     },
     {
       "id": 8,
