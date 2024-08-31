@@ -5,6 +5,7 @@ import { PhotoDetails } from "@/utils/photos";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics } from "@vercel/analytics/react"
 import Loader from "@/components/custom/loader";
+import { Toaster } from "@/components/ui/toaster";
 
 const inter = Inter({ subsets: ["latin"] });
 // const inter = Poppins({ subsets: ["latin"] , weight:['300','400','500','600']});
@@ -37,6 +38,7 @@ export default function RootLayout({
       >
         <Loader/>
         {children}
+        <Toaster />
         <SpeedInsights />
         <Analytics />
       </body>

@@ -34,7 +34,7 @@ const DocumentComponent = ({ openedApp, appStates, setAppStates, tabIndex, fileN
                         )}
                         {!content&&(
                              <iframe
-                             src={'/finder/'+fileName}
+                             src={'/finder/'+fileName+'.pdf'}
                              width="100%"
                              className="max-h-[80vh] h-[80vh] rounded"
                            />

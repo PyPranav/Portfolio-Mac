@@ -10,6 +10,7 @@ import { Dispatch, useEffect, useState } from "react";
 import { useRouter } from 'next/navigation';
 import IframeComponent from "../custom/iframe";
 import TwitterPage from "../custom/ArcPages/twitter";
+import { useToast } from "@/hooks/use-toast";
 
 const getLink = (val:string)=>{
     if (['instagram', 'x', 'github', 'linkedin'].includes(val))
@@ -22,6 +23,9 @@ const ArcPage = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseApp: (
     const [isFirfox, setIsFirfox] = useState(false)
     const router = useRouter();
     const [count, setCount] = useState(0)
+
+    const { toast } = useToast()
+
     useEffect(()=>{
         const userAgent = navigator.userAgent.toLowerCase();
         if (userAgent.indexOf('firefox') > -1) {
@@ -70,13 +74,19 @@ const ArcPage = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseApp: (
                         placeholder="Search"
                         className="truncate text-xs my-2 w-full rounded-xl border border-[#2f2f2f] bg-white bg-opacity-20 px-4 py-2 text-white focus:border-gray-500 focus:outline-none dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100"
                     /> */}
-                    <p className=" cursor-pointer truncate text-xs my-2 w-full rounded-xl  bg-white bg-opacity-10 px-4 py-3 text-white text-opacity-60" onClick={()=>{
+                    <p className=" cursor-pointer truncate text-xs my-2 w-full rounded-xl  bg-white bg-opacity-10 px-4 py-3 text-white text-opacity-60" title="Copy URL" onClick={()=>{
                         let link = getLink(appStates[openedApp]['tabValue'])
                         if (['instagram', 'x', 'github'].includes(appStates[openedApp]['tabValue']))
                             link = link+'/pypranav'
                         else if (appStates[openedApp]['tabValue']==='linkedin')
                             link = link+'/in/pypranav'
                         navigator.clipboard.writeText(link)
+                        toast({
+                            title: "Copied Current URL",
+                            duration: 1000,
+                            className:'rounded-xl w-fit fixed top-8 right-8 p-3 bg-gray-500 text-white border-0'
+
+                          })
                     }}>{getLink(appStates[openedApp]['tabValue'])}</p>
                 <div className="grid grid-cols-2 gap-2 w-full">
                     <TabsTrigger value="x" title={"X"} className="grid place-items-center w-full h-[3rem] bg-white bg-opacity-10 hover:bg-opacity-20 data-[state=active]:bg-white data-[state=active]:bg-opacity-30 text-white data-[state=active]:text-white rounded-xl duration-200 ">
