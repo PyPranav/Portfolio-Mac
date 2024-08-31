@@ -157,7 +157,7 @@ const MacOS = ({loaded,setIsLoaded}:{loaded:boolean, setIsLoaded:Dispatch<SetSta
     if (typeof window !== "undefined") {
       const url = localStorage.getItem("background");
       if (url && wallpapers.includes(url)) {
-        setAppStates({ ...appStates, [4]: { ...appStates[openedApp], 'bg': url, 'bgChanged': false } })
+        setAppStates({ ...appStates, [4]: { ...appStates[4], 'bg': url, 'bgChanged': false } })
       }
     }
   }, []);
