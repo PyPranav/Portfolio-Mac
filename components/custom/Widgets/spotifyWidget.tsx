@@ -63,7 +63,7 @@ const SpotifyWidget = ({loaded}:{loaded:boolean}) => {
               </div>
 
               <div style={{
-                opacity: ind/Math.max(playingSong?.track_name?.length??0,playingSong?.artist_name?.length??0, 'Currently listening to'.length)
+                opacity: Math.min(ind/Math.max(playingSong?.track_name?.length??0,playingSong?.artist_name?.length??0, 'Currently listening to'.length),0.8)
               }} className="audiogram opacity-80 group-hover:opacity-100 duration-500">
                 <div className="bar"></div>
                 <div className="bar"></div>
