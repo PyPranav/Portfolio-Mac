@@ -74,7 +74,7 @@ const ArcPage = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseApp: (
                         placeholder="Search"
                         className="truncate text-xs my-2 w-full rounded-xl border border-[#2f2f2f] bg-white bg-opacity-20 px-4 py-2 text-white focus:border-gray-500 focus:outline-none dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100"
                     /> */}
-                    <p className=" cursor-pointer truncate text-xs my-2 w-full rounded-xl  bg-white bg-opacity-10 px-4 py-3 text-white text-opacity-60" title="Copy URL" onClick={()=>{
+                    <p className=" cursor-pointer truncate text-xs my-2 w-full rounded-xl  bg-white bg-opacity-10 px-4 py-3 text-white text-opacity-60 select-none" title="Copy URL" onClick={()=>{
                         let link = getLink(appStates[openedApp]['tabValue'])
                         if (['instagram', 'x', 'github'].includes(appStates[openedApp]['tabValue']))
                             link = link+'/pypranav'
