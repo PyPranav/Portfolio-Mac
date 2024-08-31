@@ -26,11 +26,18 @@ const DocumentComponent = ({ openedApp, appStates, setAppStates, tabIndex, fileN
             />
             <p className="text-sm text-center group-focus:bg-blue-700 rounded text-wrap max-w-[90px]">{fileName.split(/[-,_]/).join(' ')}</p>
             <Dialog open={openDoc} onOpenChange={()=>setOpenDoc(!openDoc)}>
-                <DialogContent className="bg-[#0d1117] w-[50%] max-w-[50%]">
+                <DialogContent className="bg-[#0d1117] w-[60%] max-w-[60%]">
                     <DialogTitle className="sticky">{fileName}</DialogTitle>
                     <DialogDescription className={" overflow-y-scroll max-h-[80vh]"}>
                         {content&&(
                             <MarkdownDisplay markdownContent={content}/>
+                        )}
+                        {!content&&(
+                             <iframe
+                             src={'/finder/'+fileName}
+                             width="100%"
+                             className="max-h-[80vh] h-[80vh] rounded"
+                           />
                         )}
                     </DialogDescription>
                 </DialogContent>

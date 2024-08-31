@@ -132,7 +132,8 @@ const Finder = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseApp: (a
                 </TabsContent>
                 <TabsContent className=" mb-0  overflow-hidden" value="Home/Resume">
                     <div className="w-full flex flex-wrap gap-5 mx-5">
-                        <DocumentComponent fileName={'resume.pdf'} tabIndex={1} appStates={appStates} openedApp={openedApp} setAppStates={setAppStates} />
+                        <DocumentComponent fileName={'Resume.pdf'} tabIndex={1} appStates={appStates} openedApp={openedApp} setAppStates={setAppStates} />
+                        <DocumentComponent fileName={'Daynt_Certificate.pdf'} tabIndex={2} appStates={appStates} openedApp={openedApp} setAppStates={setAppStates} />
                     </div>
                 </TabsContent>
 
