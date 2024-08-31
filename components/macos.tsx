@@ -25,7 +25,8 @@ const MacOS = ({loaded,setIsLoaded}:{loaded:boolean, setIsLoaded:Dispatch<SetSta
   const [appStates, setAppStates] = useState<any>({
     1:{
       tabValue:'Home',
-      forwardStack: []
+      forwardStack: [],
+      openedDoc: (null) as null|string
     },
     2:{},
     3:{
@@ -89,7 +90,7 @@ const MacOS = ({loaded,setIsLoaded}:{loaded:boolean, setIsLoaded:Dispatch<SetSta
     if(appNum===0)
         return
     let appCoord = getCoords(appNum)
-    setTimeout(()=>setOpenedApp(0),400)
+    setTimeout(()=>setOpenedApp(0),250)
     
     console.log({appCoord})
     if (modelRef.current){

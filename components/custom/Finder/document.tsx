@@ -13,10 +13,9 @@ import MarkdownDisplay from "../markDownDisplay";
 
 const DocumentComponent = ({ openedApp, appStates, setAppStates, tabIndex, fileName, content }: { openedApp: number, appStates: any, setAppStates: any, tabIndex:number, fileName:string, content?:string}) => {
     console.log({content})
-    const [openDoc, setOpenDoc] = useState(false)
     return ( 
         <div tabIndex={tabIndex} className=" group rounded focus:bg-white focus:bg-opacity-10  flex flex-col items-center" onDoubleClick={()=>{
-           setOpenDoc(true  )
+            setAppStates({ ...appStates, [openedApp]: { ...appStates[openedApp], 'openedDoc':fileName} })
         }}>
             <Image
                 src='/finder/pdfIcon.png'
@@ -25,7 +24,7 @@ const DocumentComponent = ({ openedApp, appStates, setAppStates, tabIndex, fileN
                 width={90}
             />
             <p className="text-sm text-center group-focus:bg-blue-700 rounded text-wrap max-w-[90px]">{fileName.split(/[-,_]/).join(' ')}</p>
-            <Dialog open={openDoc} onOpenChange={()=>setOpenDoc(!openDoc)}>
+            <Dialog open={appStates[openedApp].openedDoc === fileName} onOpenChange={()=>setAppStates({ ...appStates, [openedApp]: { ...appStates[openedApp], 'openedDoc':null} })}>
                 <DialogContent className="bg-[#0d1117] w-[60%] max-w-[60%]">
                     <DialogTitle className="sticky">{fileName}</DialogTitle>
                     <DialogDescription className={" overflow-y-scroll max-h-[80vh]"}>
