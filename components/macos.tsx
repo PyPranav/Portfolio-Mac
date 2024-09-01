@@ -24,24 +24,24 @@ const MacOS = ({loaded,setIsLoaded}:{loaded:boolean, setIsLoaded:Dispatch<SetSta
   const bgRef = useRef<HTMLDivElement>(null);
 
   const [openedApp, setOpenedApp] = useState<number>(0)
-  const [appStates, setAppStates] = useState<appStateType>({
+  const [appStates, setAppStates] = useState<any>({
     1:{
       tabValue:'Home',
       forwardStack: [],
       openedDoc: null
     },
     2:{
-      chats:[]
-    },
-    3:{
-      tabValue:'x',
-    },
-    4:{
       tabValue:'id',
       wifi:true,
       bluetooth: true,
       bg: wallpapers[0],
       bgChanged: true
+    },
+    3:{
+      tabValue:'x',
+    },
+    4:{
+      chats:[]
     },
     5:{
       photosLoaded:false,
@@ -146,9 +146,9 @@ const MacOS = ({loaded,setIsLoaded}:{loaded:boolean, setIsLoaded:Dispatch<SetSta
 
   const appSelector = [
     (<Finder key={1} CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>),
-    (<GPTPage key={2} CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>),
+    (<SettingsPage key={2} CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>),
     (<ArcPage key={3} CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>),
-    (<SettingsPage key={4} CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>),
+    (<GPTPage key={4} CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>),
     (<PhotosApp key={5} CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>),
     (<SpotifyApp key={6} CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>),
     (<GamePage key={7} CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>),
@@ -160,7 +160,7 @@ const MacOS = ({loaded,setIsLoaded}:{loaded:boolean, setIsLoaded:Dispatch<SetSta
     if (typeof window !== "undefined") {
       const url = localStorage.getItem("background");
       if (url && wallpapers.includes(url)) {
-        setAppStates({ ...appStates, [4]: { ...appStates[4], 'bg': url, 'bgChanged': false } })
+        setAppStates({ ...appStates, [2]: { ...appStates[2], 'bg': url, 'bgChanged': false } })
       }
     }
   }, []);
@@ -171,7 +171,7 @@ const MacOS = ({loaded,setIsLoaded}:{loaded:boolean, setIsLoaded:Dispatch<SetSta
     <div className="page">
       <div className="h-full w-full select-none absolute z-0">
         <Image 
-          src={appStates[4].bg}
+          src={appStates[2].bg}
           id={'bgImage'}
           onLoad={()=>{
             setIsLoaded(true)
