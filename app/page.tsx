@@ -76,7 +76,7 @@ function App() {
   
   return isMobile!==null?(
     <>
-      {isMobile?(<IOS/>):(<MacOS loaded={isLoaded&&twoSecondDone} setIsLoaded={setIsLoaded}/>)}
+      {isMobile?(<IOS loaded={isLoaded&&twoSecondDone} setIsLoaded={setIsLoaded}/>):(<MacOS loaded={isLoaded&&twoSecondDone} setIsLoaded={setIsLoaded}/>)}
     </>    
   ):(<></>)
 }

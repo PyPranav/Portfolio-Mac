@@ -21,7 +21,6 @@ const maxAdditionalSize = 5;
 const MacOS = ({loaded,setIsLoaded}:{loaded:boolean, setIsLoaded:Dispatch<SetStateAction<boolean>>}) => {
   const dockRef = useRef<HTMLDivElement>(null);
   const modelRef = useRef<HTMLDivElement>(null);
-  const bgRef = useRef<HTMLDivElement>(null);
 
   const [openedApp, setOpenedApp] = useState<number>(0)
   const [appStates, setAppStates] = useState<any>({
@@ -41,7 +40,16 @@ const MacOS = ({loaded,setIsLoaded}:{loaded:boolean, setIsLoaded:Dispatch<SetSta
       tabValue:'x',
     },
     4:{
-      chats:[]
+      chats:[
+          // {
+          //     "role": "user",
+          //     "content": "what can you do?"
+          // },
+          // {
+          //     "role": "assistant",
+          //     "content": "As Pranav's personal chatbot, I can:\n\n1. Provide information about Pranav's skills, experience, and education.\n2. Assist with getting in touch with Pranav through his email or other contact details.\n3. Offer general information about his interests, projects, and areas of expertise.\n4. Help explore his hosted projects or collaborations he's been a part of.\n5. Discuss or provide insights on AI, ML, web development, and other tech-related topics.\n\nFeel free to ask me anything, and I'll do my best to assist!"
+          // }
+      ]
     },
     5:{
       photosLoaded:false,
@@ -185,7 +193,7 @@ const MacOS = ({loaded,setIsLoaded}:{loaded:boolean, setIsLoaded:Dispatch<SetSta
         />
       </div>
       {/* bg-[url(/wallpapers/macos-monterey-wallpaper.webp)] bg-no-repeat bg-cover bg-center */}
-      <div ref={bgRef} className="h-full w-full select-none absolute z-1 p-5">
+      <div className="h-full w-full select-none absolute z-1 p-5">
         <div className="w-[600px]">
           <NameWidget loaded={loaded}/>
 
