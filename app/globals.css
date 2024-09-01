@@ -93,6 +93,16 @@ font-smooth: always;
 height: 100%;
 }
 
+.landingText {
+  opacity: 0;
+}
+
+@keyframes fadeInOut {
+  0%, 100% { opacity: 0; }
+  3%, 11% { opacity: 1; }
+  14%, 97% { opacity: 0; }
+}
+
 @keyframes widthExpand {
   from {
     width: 0%;

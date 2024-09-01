@@ -16,7 +16,7 @@ function App() {
       const loader = document.getElementById('whiteLoader')
       const timer = setTimeout(()=>{
         setTwoSecondDone(true)
-      },500)
+      },1000)
       
       if (loader){
         loader.style.removeProperty('animation')

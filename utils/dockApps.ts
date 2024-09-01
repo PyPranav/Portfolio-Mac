@@ -2,7 +2,7 @@ export const dockAppList = [
     {
       "id": 1,
       "imageSrc": "/dock_icons/finder.webp",
-      "tooltip": "Finder"
+      "tooltip": "Projects/Resume"
     },
     {
       "id": 2,
