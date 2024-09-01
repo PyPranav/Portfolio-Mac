@@ -1,6 +1,8 @@
 "use client"
 import IOS from "@/components/ios";
 import MacOS from "@/components/macos";
+import { toast } from "@/hooks/use-toast";
+import { ToastAction } from "@radix-ui/react-toast";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
@@ -16,6 +18,17 @@ function App() {
       const loader = document.getElementById('whiteLoader')
       const timer = setTimeout(()=>{
         setTwoSecondDone(true)
+        if(!isMobile)
+          toast({
+            title: "For an immersive experience",
+            className:'w-fit fixed top-8 right-8 p-3 pb-0 border-0 bg-black bg-opacity-10 backdrop-blur-[100px] rounded-2xl p-4 text-white ', 
+            action: <ToastAction onClick={()=>{
+              var elem = document.documentElement;
+              if (elem.requestFullscreen) 
+                elem.requestFullscreen()
+            }} className="bg-red-500 bg-opacity-40 p-2 mb-0 rounded-xl hover:bg-opacity-50 duration-500" altText="Try again">Go Fullscreen!</ToastAction>,
+            
+          })
       },1000)
       //can go to a min of 500ms
       
