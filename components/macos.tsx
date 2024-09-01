@@ -15,6 +15,7 @@ import { wallpapers } from "@/utils/settingsOptions";
 import { PhotoDetails } from "@/utils/photos";
 import Finder from "./apps/finder";
 import GamePage from "./apps/game";
+import GPTPage from "./apps/gpt";
 
 const maxAdditionalSize = 5;
 const MacOS = ({loaded,setIsLoaded}:{loaded:boolean, setIsLoaded:Dispatch<SetStateAction<boolean>>}) => {
@@ -23,13 +24,15 @@ const MacOS = ({loaded,setIsLoaded}:{loaded:boolean, setIsLoaded:Dispatch<SetSta
   const bgRef = useRef<HTMLDivElement>(null);
 
   const [openedApp, setOpenedApp] = useState<number>(0)
-  const [appStates, setAppStates] = useState<any>({
+  const [appStates, setAppStates] = useState<appStateType>({
     1:{
       tabValue:'Home',
       forwardStack: [],
-      openedDoc: (null) as null|string
+      openedDoc: null
     },
-    2:{},
+    2:{
+      chats:[]
+    },
     3:{
       tabValue:'x',
     },
@@ -42,8 +45,8 @@ const MacOS = ({loaded,setIsLoaded}:{loaded:boolean, setIsLoaded:Dispatch<SetSta
     },
     5:{
       photosLoaded:false,
-      albumOpened:null as (null|'personal'|'projects'|'certificates'),
-      photoOpened:null as (null|number),
+      albumOpened:null,
+      photoOpened:null,
       currentPersonalPhotoIndex:0,
       currentCertificatesPhotoIndex:0,
       currentProjectPhotoIndex:0,
@@ -143,7 +146,7 @@ const MacOS = ({loaded,setIsLoaded}:{loaded:boolean, setIsLoaded:Dispatch<SetSta
 
   const appSelector = [
     (<Finder key={1} CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>),
-    (<SettingsPage key={2} CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>),
+    (<GPTPage key={2} CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>),
     (<ArcPage key={3} CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>),
     (<SettingsPage key={4} CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>),
     (<PhotosApp key={5} CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>),

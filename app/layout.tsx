@@ -22,8 +22,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      {/* <head>
-          {PhotoDetails.certificates.map((url,id)=>(
+      <head>
+          {/* {PhotoDetails.certificates.map((url,id)=>(
             <link key={id} rel='preload' href={url?.replace('.jpg','.webp')?.replace('.png','.webp')?.replace('.jpeg','.webp')} as="image"/>
           ))}
           {PhotoDetails.personal.map((url,id)=>(
@@ -31,8 +31,9 @@ export default function RootLayout({
           ))}
           {PhotoDetails.projects.map((url,id)=>(
             <link key={id} rel='preload' href={url?.replace('.jpg','.webp')?.replace('.png','.webp')?.replace('.jpeg','.webp')} as="image"/>
-          ))}
-      </head> */}
+          ))} */}
+          <base target="_blank"></base>
+      </head>
       <body 
       className={inter.className}
       >
