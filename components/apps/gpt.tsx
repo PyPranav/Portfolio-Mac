@@ -26,12 +26,14 @@ const GPTPage = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseApp: a
         setAppStates({ ...appStates, [openedApp]: { ...appStates[openedApp], chats: chats } })
         setInputVal('')
         const response = await getGroqResponse(chats)
-
+        const scroller = document.getElementById('scroller')
         if (chats.length > 0){
             let c = 0;
             for(let i=1;i<=response.length/5 + 1;i++){
                 chats[chats.length - 1].content = response.slice(0,i*5)
                 setAppStates({ ...appStates, [openedApp]: { ...appStates[openedApp], chats: chats } })
+                if (scroller)
+                    scroller.scrollTop = scroller.scrollHeight
                 await new Promise(resolve => setTimeout(resolve, 10))
                 c++
             }
@@ -69,7 +71,7 @@ const GPTPage = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseApp: a
                 <div className="bg-[#212121] text-white  h-full pb-[150px] rounded-[12px] flex justify-center">
                     <div className="h-full w-[780px] max-w-full">
 
-                        <div style={{
+                        <div id={'scroller'} style={{
                             height: 'calc( 100% - 52px )',
                             maxHeight: 'calc( 100% - 52px )',
                             overflowY: 'scroll'
