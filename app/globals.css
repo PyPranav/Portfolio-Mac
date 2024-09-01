@@ -59,6 +59,8 @@
   }
 }
 
+
+
 /* @font-face {
   font-family: "San Francisco";
   font-weight: 300;
@@ -79,9 +81,9 @@
   font-weight: 600;
   src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscotext-bold-webfont.woff");
 } */
-*{
-  /* font-family: 'San Francisco'; */
-}
+/* *{
+  font-family: 'San Francisco';
+} */
 
 html{
   height:  100%;

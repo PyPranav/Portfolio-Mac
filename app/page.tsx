@@ -17,6 +17,7 @@ function App() {
       const timer = setTimeout(()=>{
         setTwoSecondDone(true)
       },1000)
+      //can go to a min of 500ms
       
       if (loader){
         loader.style.removeProperty('animation')
