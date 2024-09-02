@@ -2,6 +2,7 @@ import { wallpapers } from "@/utils/settingsOptions";
 import Image from "next/image";
 import { Dispatch, SetStateAction } from "react";
 import NameWidget from "./custom/Widgets/nameWidget";
+import SpotifyWidget from "./custom/Widgets/spotifyWidget";
 
 const IOS = ({loaded,setIsLoaded}:{loaded:boolean, setIsLoaded:Dispatch<SetStateAction<boolean>>}) => {
     return ( 
@@ -22,9 +23,11 @@ const IOS = ({loaded,setIsLoaded}:{loaded:boolean, setIsLoaded:Dispatch<SetState
             />
         </div>
         <div className="h-full w-full select-none absolute z-1 p-5">
-            <div className="w-full">
-                <NameWidget loaded={loaded}/>
-            </div>
+            {/* <NameWidget loaded={loaded}/>
+            <div className="mt-5 flex gap-5">
+
+            <SpotifyWidget loaded={loaded} />
+            </div> */}
         </div>
     </div> 
     );
