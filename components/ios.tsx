@@ -3,6 +3,8 @@ import Image from "next/image";
 import { Dispatch, SetStateAction } from "react";
 import NameWidget from "./custom/Widgets/nameWidget";
 import SpotifyWidget from "./custom/Widgets/spotifyWidget";
+import { PersonalInfo } from "@/utils/personalInfo";
+import IOSNameWidget from "./ios/widgets/nameWidgetIos";
 
 const IOS = ({loaded,setIsLoaded}:{loaded:boolean, setIsLoaded:Dispatch<SetStateAction<boolean>>}) => {
     return ( 
@@ -22,12 +24,8 @@ const IOS = ({loaded,setIsLoaded}:{loaded:boolean, setIsLoaded:Dispatch<SetState
             quality={90}
             />
         </div>
-        <div className="h-full w-full select-none absolute z-1 p-5">
-            {/* <NameWidget loaded={loaded}/>
-            <div className="mt-5 flex gap-5">
-
-            <SpotifyWidget loaded={loaded} />
-            </div> */}
+        <div className="h-full w-full select-none absolute z-1 p-5 grid grid-cols-4 grid-rows-8 gap-3">
+            <IOSNameWidget/>
         </div>
     </div> 
     );
