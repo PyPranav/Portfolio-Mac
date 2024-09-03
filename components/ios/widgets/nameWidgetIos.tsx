@@ -1,7 +1,7 @@
 import { PersonalInfo } from "@/utils/personalInfo";
 import Image from "next/image";
 
-const IOSNameWidget = () => {
+const IOSNameWidget = ({loaded}:{loaded:boolean}) => {
     return ( 
         <div className="col-span-2 row-span-2 flex flex-col gap-1 items-center justify-center">
                 <div style={{

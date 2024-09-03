@@ -2,7 +2,7 @@ import { getPlayigSong } from "@/utils/fetchData";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-const SpotifyWidget = ({loaded}:{loaded:boolean}) => {
+const SpotifyWidget = ({ loaded }: { loaded: boolean }) => {
   const [playingSong, setPlayingSong] = useState<any>(null)
 
   useEffect(() => {
@@ -13,15 +13,15 @@ const SpotifyWidget = ({loaded}:{loaded:boolean}) => {
   }, [])
 
   const [ind, setInd] = useState(0);
-    useEffect(()=>{
-      if(!playingSong || !loaded)
-        return
-      new Promise(resolve => setTimeout(resolve,10)).then(()=>{
-        if (ind<=Math.max(playingSong?.track_name?.length??0,playingSong?.artist_name?.length??0, 'Currently listening to'.length))
-          setInd(ind+1)
-        
-      })
-    },[ind,playingSong,loaded])
+  useEffect(() => {
+    if (!playingSong || !loaded)
+      return
+    new Promise(resolve => setTimeout(resolve, 10)).then(() => {
+      if (ind <= Math.max(playingSong?.track_name?.length ?? 0, playingSong?.artist_name?.length ?? 0, 'Currently listening to'.length))
+        setInd(ind + 1)
+
+    })
+  }, [ind, playingSong, loaded])
 
   useEffect(() => {
     console.log(playingSong)
@@ -52,18 +52,18 @@ const SpotifyWidget = ({loaded}:{loaded:boolean}) => {
           <>
 
             {/* <div className="text-6xl text-[6rem] font-bold opacity-80">{dayOfMonth}</div> */}
-            <div  className="flex flex-col w-full justify-between my-2">
+            <div className="flex flex-col w-full justify-between my-2">
               <div>
-                <p className="text-sm opacity-50 font-light text-start">{playingSong?.playing ? "Currently listening to".slice(0,ind) : "Last listened to".slice(0,ind)}</p>
+                <p className="text-sm opacity-50 font-light text-start">{playingSong?.playing ? "Currently listening to".slice(0, ind) : "Last listened to".slice(0, ind)}</p>
                 <p className=" text-start text-lg opacity-80 font- font-medium group-hover:opacity-100 duration-500 truncate w-[15ch]  sm:w-[17ch]">
-                  {playingSong?.track_name.slice(0,ind) ?? ''}
+                  {playingSong?.track_name.slice(0, ind) ?? ''}
                 </p>
 
-                <p className=" text-start text-lg opacity-50 font-light truncate w-[19ch]">{playingSong?.artist_name.slice(0,ind) ?? ""}</p>
+                <p className=" text-start text-lg opacity-50 font-light truncate w-[19ch]">{playingSong?.artist_name.slice(0, ind) ?? ""}</p>
               </div>
 
               <div style={{
-                opacity: Math.min(ind/Math.max(playingSong?.track_name?.length??0,playingSong?.artist_name?.length??0, 'Currently listening to'.length),0.8)
+                opacity: Math.min(ind / Math.max(playingSong?.track_name?.length ?? 0, playingSong?.artist_name?.length ?? 0, 'Currently listening to'.length), 0.8)
               }} className="audiogram opacity-80 group-hover:opacity-100 duration-500">
                 <div className="bar"></div>
                 <div className="bar"></div>
