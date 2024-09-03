@@ -7,16 +7,16 @@ const IOSNameWidget = () => {
                 <div style={{
                         textShadow: "0px 0px 15px black, 0px 0px 30px black, 0px 0px 45px black"
                         // textShadow:" 10px 10px 20px #000000, 10px 10px 20px #000000, 10px 10px 20px #000000"
-                    }} className="w-[40vw] aspect-square relative rounded-2xl ">
+                    }} className="w-[40vw] aspect-square relative rounded-3xl ">
                     <Image
                         src={PersonalInfo.profilePic}
                         alt="profile"
-                        className="rounded-2xl object-cover"
+                        className="rounded-3xl object-cover"
                         
                         fill
                         sizes="20vw, 40vw"
                     />
-                    <div  className="absolute inset-0 rounded-2xl flex justify-start items-end">
+                    <div  className="absolute inset-0 rounded-3xl flex justify-start items-end">
                         <div className="p-3 ">
                             <p className="text-sm text-start">{PersonalInfo.name}</p>
                             <p className="text-xs text-[0.6rem] text-start font-light">{PersonalInfo.tag}</p>
