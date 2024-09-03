@@ -40,7 +40,7 @@ const IOSSpotifyWidget = ({ loaded }: { loaded: boolean }) => {
                 <div className="absolute inset-0 rounded-3xl flex justify-start items-end">
                     <div className="p-3 ">
                         <p className="text-xs text-[0.6rem] text-start font-light">{playingSong?.playing ? "Currently listening to".slice(0, ind) : "Last listened to".slice(0, ind)}</p>
-                        <p className="text-sm text-start truncate w-[35vw]">{playingSong?.track_name.slice(0, ind) ?? ''}</p>
+                        <p className="text-sm text-start text-nowrap">{(playingSong?.track_name.slice(0, ind) ?? '').length>16?(playingSong?.track_name.slice(0, ind) ?? '').slice(0,16)+'...':(playingSong?.track_name.slice(0, ind) ?? '')}</p>
                     </div>
 
                 </div>
