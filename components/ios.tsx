@@ -15,7 +15,7 @@ const IOS = ({ loaded, setIsLoaded }: { loaded: boolean, setIsLoaded: Dispatch<S
         return [rect.top + 30, rect.left + 30, window.innerHeight - rect.bottom + 30, window.innerWidth - rect.right + 30]
     }
     return (
-        <div className="bg-black h-full text-white text-3xl text-center font-semibold grid place-items-center">
+        <div className="bg-black h-full font-light text-white text-3xl text-center  grid place-items-center">
             <div className="h-full w-full select-none absolute z-0">
                 <Image
                     src={wallpapers[1]}
@@ -35,7 +35,9 @@ const IOS = ({ loaded, setIsLoaded }: { loaded: boolean, setIsLoaded: Dispatch<S
                 <IOSNameWidget loaded={loaded} />
                 <IOSSpotifyWidget loaded={loaded} />
                 <div className="h-full w-full flex flex-col gap-1 items-center justify-center">
-                    <div className="iosApp relative w-[16vw] aspect-square">
+                    <div style={{
+                        width: '16vw'
+                    }} className="iosApp relative aspect-square">
                         <Image
                             src='/arc/githubLogo.png'
                             className="object-contain"

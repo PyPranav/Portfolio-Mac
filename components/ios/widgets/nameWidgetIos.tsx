@@ -30,7 +30,7 @@ const IOSNameWidget = ({loaded}:{loaded:boolean}) => {
                     />
                     <div  className="absolute inset-0 rounded-3xl flex justify-start items-end">
                         <div className="p-3 ">
-                            <p className="text-sm text-start">{PersonalInfo.name.slice(0,ind)}</p>
+                            <p className="text-sm text-start  font-semibold">{PersonalInfo.name.slice(0,ind)}</p>
                             <p className="text-xs text-[0.6rem] text-start font-light">{PersonalInfo.tag.slice(0,ind)}</p>
                         </div>
 
