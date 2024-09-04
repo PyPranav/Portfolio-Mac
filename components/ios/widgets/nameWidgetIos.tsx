@@ -19,7 +19,7 @@ const IOSNameWidget = ({loaded}:{loaded:boolean}) => {
                 <div style={{
                         textShadow: "0px 0px 15px black, 0px 0px 30px black, 0px 0px 45px black"
                         // textShadow:" 10px 10px 20px #000000, 10px 10px 20px #000000, 10px 10px 20px #000000"
-                    }} className="w-[40vw] aspect-square relative rounded-3xl ">
+                    }} className="w-[40vw]  aspect-square relative rounded-3xl ">
                     <Image
                         src={PersonalInfo.profilePic}
                         alt="profile"
