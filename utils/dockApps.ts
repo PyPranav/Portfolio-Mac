@@ -32,4 +32,19 @@ export const dockAppList = [
       "tooltip": "Contact Me"
     }
   ]
-  
+
+
+  export const iosApps = [
+    {
+      'imageSrc':'/ios/github.png',
+      'tooltip':'Github'
+    },
+    {
+      'imageSrc':'/ios/linkedin.png',
+      'tooltip':'LinkedIn'
+    },
+    {
+      'imageSrc':'/ios/insta.png',
+      'tooltip':'Instagram'
+    }
+  ]

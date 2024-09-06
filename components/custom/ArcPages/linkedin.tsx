@@ -3,9 +3,9 @@ import Image from "next/image";
 
 const LinkedInPage = () => {
     return (
-        <section className=" bg-[#fff] h-full text-black overflow-y-scroll flex flex-col items-center p-10">
+        <section className=" text-start bg-[#fff] h-full text-black overflow-y-scroll flex flex-col items-center p-3 sm:p-10">
             <div className=" border-[#ebebeb] border-[1px]  w-full max-w-[1000px] rounded-lg h-fit">
-                <div className="h-[200px] relative rounded-lg">
+                <div className="h-[130px] sm:h-[200px] relative rounded-lg">
                     <Image
                         src={PersonalInfo.cover}
                         className="object-cover rounded-t-lg"
@@ -24,9 +24,9 @@ const LinkedInPage = () => {
                             alt="Pranav"
                         />
                         <p className="mt-7 text-2xl font-semibold">{PersonalInfo.name}</p>
-                        <p className="mt-1 font-light">{PersonalInfo.descriptiveTag}</p>
-                        <p className=" font-light text-[#666666]">{PersonalInfo.location}</p>
-                        <p className="font-light text-[#666666]">519 followers · 500+ connections </p>
+                        <p className="mt-1 font-light text-sm sm:text-normal">{PersonalInfo.descriptiveTag}</p>
+                        <p className=" font-light text-[#666666] text-sm sm:text-normal">{PersonalInfo.location}</p>
+                        <p className="font-light text-[#666666] text-sm sm:text-normal">519 followers · 500+ connections </p>
                         <a href="https://www.linkedin.com/in/pypranav" target="_blank">
                             <button className="flex gap-1 bg-[#0a66c2] text-white p-1 px-4 rounded-3xl mt-3 items-center" title="Open linkedin.com">
                                 <div className="grid place-items-center">
@@ -38,7 +38,7 @@ const LinkedInPage = () => {
                                         alt={'connect'}
                                     />
                                 </div>
-                                <p className="font-medium">
+                                <p className="font-medium text-sm sm:text-normal">
                                     Connect
                                 </p>
                             </button>
@@ -69,8 +69,8 @@ const LinkedInPage = () => {
                 </div>
             </div>
             <div className="w-full max-w-[1000px] py-10 px-5">
-                <p className="text-2xl font-light">About</p>
-                <p className=" mt-2 font-light">{PersonalInfo.description}</p>
+                <p className="text-2xl font-light ">About</p>
+                <p className=" mt-2 font-light text-sm sm:text-normal">{PersonalInfo.description}</p>
                 <hr className="border-[#ebebeb] mt-10" />
 
                 <p className="mt-10 text-2xl font-light mb-4">Experience </p>

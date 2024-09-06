@@ -226,7 +226,7 @@ const MacOS = ({loaded,setIsLoaded}:{loaded:boolean, setIsLoaded:Dispatch<SetSta
             <li key={key} className="app" onMouseMove={handleAppHover}>
               <div onClick={()=>{
                 if(openedApp===key+1)
-                  return
+                  return CloseApp(openedApp)
                 CloseApp(openedApp)
                 if (openedApp!=0)
                   setTimeout(()=>{
