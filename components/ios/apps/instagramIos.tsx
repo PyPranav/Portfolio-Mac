@@ -57,7 +57,7 @@ const IOSInsta = () => {
                                 <div key={key} className='realtive h-full w-full'>
                                     <Image
                                         src={postUrl}
-                                        className='object-cover h-full aspect-square'
+                                        className='object-cover h-full w-full aspect-square'
                                         // fill
                                         height={150}
                                         width={150}

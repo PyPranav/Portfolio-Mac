@@ -12,17 +12,44 @@ import GithubPage from "./custom/ArcPages/github";
 import LinkedInPage from "./custom/ArcPages/linkedin";
 import InstagramPage from "./custom/ArcPages/instagram";
 import IOSInsta from "./ios/apps/instagramIos";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+
 
 const IOS = ({ loaded, setIsLoaded }: { loaded: boolean, setIsLoaded: Dispatch<SetStateAction<boolean>> }) => {
     const [openedApp, setOpenedApp] = useState<number>(0)
     const modelRef = useRef<HTMLDivElement>(null);
     const gridBoxRef = useRef<HTMLDivElement>(null)
     const [flag, setFlag] = useState(true)
+
+    const searchParams = useSearchParams();
+    const pathname = usePathname()
+    const router = useRouter()
+
+
     const getCoords = (appNum: number): [number, number, number, number] => {
         let appCoord = document.querySelectorAll('.iosApp')
         let rect = appCoord[appNum - 1].getBoundingClientRect();
         return [rect.top + 30, rect.left + 30, window.innerHeight - rect.bottom + 30, window.innerWidth - rect.right + 30]
     }
+
+    useEffect(()=>{
+        const params = new URLSearchParams(searchParams)
+        const iosApps = parseInt(params.get('iosApp')??"0")??0
+        if (iosApps!==0){
+            if(openedApp===iosApps)
+            return 
+                CloseApp(openedApp)
+            if (openedApp!=0)
+                setTimeout(()=>{
+                    OpenApp(iosApps)
+                },400)
+            else OpenApp(iosApps)
+        }
+        else{
+            CloseApp(openedApp)
+        }
+
+    },[searchParams, pathname])
     useEffect(()=>{
         if(gridBoxRef.current){
             console.log(gridBoxRef.current.clientWidth, gridBoxRef.current.clientHeight)
@@ -128,14 +155,12 @@ const IOS = ({ loaded, setIsLoaded }: { loaded: boolean, setIsLoaded: Dispatch<S
                 {iosApps.map((app, key)=>(
                     <div key={key} className=" h-full w-full flex flex-col gap-1 items-center justify-center">
                         <div onClick={()=>{
-                            if(openedApp===key+1)
-                            return 
-                                CloseApp(openedApp)
-                            if (openedApp!=0)
-                                setTimeout(()=>{
-                                    OpenApp(key+1)
-                                },400)
-                            else OpenApp(key+1)
+                           
+                            const params = new URLSearchParams(searchParams)
+                            params.set('iosApp', ''+(key+1))
+                            // replace(`${pathname}?${params.toString()}`)
+                            router.push(`${pathname}?${params.toString()}`)
+
                         }} className="iosApp w-[16vw] max-h-[70%] relative aspect-square">
                             <Image
                                 src={app.imageSrc}
@@ -164,7 +189,12 @@ const IOS = ({ loaded, setIsLoaded }: { loaded: boolean, setIsLoaded: Dispatch<S
                 {openedApp!=0&&(
                     <>
                     <div onClick={()=>{
-                        CloseApp(openedApp)
+                        // CloseApp(openedApp)
+                        const params = new URLSearchParams(searchParams)
+                        params.delete('iosApp')
+                        router.push(`${pathname}?${params.toString()}`)
+                        router
+
                     }} className="text-start text-sm flex items-center w-full h-[25px] bg-black">
                         X Close
                     </div>
