@@ -37,7 +37,7 @@ const MacOS = ({loaded,setIsLoaded}:{loaded:boolean, setIsLoaded:Dispatch<SetSta
       bgChanged: true
     },
     3:{
-      tabValue:'x',
+      tabValue:'instagram',
     },
     4:{
       chats:[
