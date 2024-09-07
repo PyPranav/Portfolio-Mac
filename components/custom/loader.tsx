@@ -4,11 +4,10 @@ const Loader = ({ speed = 4 }) => {
     { id: 'en', text: 'Hello' },
     { id: 'hi', text: 'नमस्ते' },
     { id: 'fr', text: 'Bonjour' },
-    { id: 'it', text: 'Ciao' },
     { id: 'jp', text: 'やあ' },
-    { id: 'sw', text: 'Hallå' },
-    { id: 'ar', text: 'مرحبًا' },
+    { id: 'it', text: 'Ciao' },
     { id: 'gr', text: 'Hallo' },
+    { id: 'kr', text: '여보' },
     { id: 'pr', text: 'Olá' },
   ];
   const totalDuration = 18 / speed; // Total duration for one complete cycle
