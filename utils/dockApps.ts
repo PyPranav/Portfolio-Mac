@@ -48,6 +48,11 @@ export const dockAppList = [
       'tooltip':'Instagram'
     },
     {
+      'imageSrc':'/dock_icons/2048.png',
+      'scale':true,
+      'tooltip':'2048'
+    },
+    {
       'imageSrc':'/ios/chatgpt.png',
       'tooltip':'GPT'
     }

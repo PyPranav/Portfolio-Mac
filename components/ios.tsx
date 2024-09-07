@@ -15,6 +15,7 @@ import IOSInsta from "./ios/apps/instagramIos";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import GPTPage from "./apps/gpt";
 import IOSGPT from "./ios/apps/gptIos";
+import IOSGame from "./ios/apps/gameIos";
 
 
 const IOS = ({ loaded, setIsLoaded }: { loaded: boolean, setIsLoaded: Dispatch<SetStateAction<boolean>> }) => {
@@ -138,7 +139,8 @@ const IOS = ({ loaded, setIsLoaded }: { loaded: boolean, setIsLoaded: Dispatch<S
     <GithubPage key={1}/>,
     <LinkedInPage key={2}/>,
     <IOSInsta key={3}/>,
-    <IOSGPT key={4} appStates={appStates} setAppStates={setAppStates}/>
+    <IOSGame key={4}/>,
+    <IOSGPT key={5} appStates={appStates} setAppStates={setAppStates}/>
   ]
 
       
@@ -176,6 +178,9 @@ const IOS = ({ loaded, setIsLoaded }: { loaded: boolean, setIsLoaded: Dispatch<S
                         }} className="iosApp w-[16vw] max-h-[70%] relative aspect-square">
                             <Image
                                 src={app.imageSrc}
+                                style={{
+                                    scale:app.scale?'1.2':'1'
+                                }}
                                 className="object-contain"
                                 alt='github'
                                 fill
