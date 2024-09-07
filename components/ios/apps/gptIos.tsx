@@ -47,7 +47,8 @@ const IOSGPT = ({appStates, setAppStates }: { appStates: any, setAppStates: any 
         height: '100%'
     }} className="grid bg-[#242424]  grid-rows-[1fr_54px] pb-2 text-base text-start">
         <div id={'scroller'} style={{
-                            height:'calc( 100dvh - 95px )',
+                            height:'100%',
+                            maxHeight:'calc( 100dvh - 95px )',
                             overflowY: 'scroll'
                         }} className="pt-5 px-5">
                             {appStates['gpt'].chats.map((chat:any, key:number) => (
