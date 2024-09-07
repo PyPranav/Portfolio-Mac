@@ -46,5 +46,9 @@ export const dockAppList = [
     {
       'imageSrc':'/ios/insta.png',
       'tooltip':'Instagram'
+    },
+    {
+      'imageSrc':'/ios/chatgpt.png',
+      'tooltip':'GPT'
     }
   ]

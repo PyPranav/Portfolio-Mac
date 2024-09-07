@@ -13,6 +13,8 @@ import LinkedInPage from "./custom/ArcPages/linkedin";
 import InstagramPage from "./custom/ArcPages/instagram";
 import IOSInsta from "./ios/apps/instagramIos";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import GPTPage from "./apps/gpt";
+import IOSGPT from "./ios/apps/gptIos";
 
 
 const IOS = ({ loaded, setIsLoaded }: { loaded: boolean, setIsLoaded: Dispatch<SetStateAction<boolean>> }) => {
@@ -20,10 +22,17 @@ const IOS = ({ loaded, setIsLoaded }: { loaded: boolean, setIsLoaded: Dispatch<S
     const modelRef = useRef<HTMLDivElement>(null);
     const gridBoxRef = useRef<HTMLDivElement>(null)
     const [flag, setFlag] = useState(true)
+    const [appStates, setAppStates] = useState<any>({
+        'gpt':{
+            chats:[]
+        }
+    })
 
     const searchParams = useSearchParams();
     const pathname = usePathname()
     const router = useRouter()
+
+    
 
 
     const getCoords = (appNum: number): [number, number, number, number] => {
@@ -102,10 +111,12 @@ const IOS = ({ loaded, setIsLoaded }: { loaded: boolean, setIsLoaded: Dispatch<S
         if(appNum===0)
             return
         let appCoord = getCoords(appNum)
-        setTimeout(()=>setOpenedApp(0),250)
+        // setOpenedApp(0)
+        setTimeout(()=>setOpenedApp(0),170)
         
         console.log({appCoord})
         if (modelRef.current){
+            
           modelRef.current.style.top = `${appCoord[0]}px`;
           modelRef.current.style.left = `${appCoord[1]}px`;
           modelRef.current.style.bottom = `${appCoord[2]}px`;
@@ -126,7 +137,8 @@ const IOS = ({ loaded, setIsLoaded }: { loaded: boolean, setIsLoaded: Dispatch<S
   const appSelector = [
     <GithubPage key={1}/>,
     <LinkedInPage key={2}/>,
-    <IOSInsta key={3}/>
+    <IOSInsta key={3}/>,
+    <IOSGPT key={4} appStates={appStates} setAppStates={setAppStates}/>
   ]
 
       
@@ -187,19 +199,21 @@ const IOS = ({ loaded, setIsLoaded }: { loaded: boolean, setIsLoaded: Dispatch<S
             }}
             >
                 {openedApp!=0&&(
-                    <>
-                    <div onClick={()=>{
-                        // CloseApp(openedApp)
-                        const params = new URLSearchParams(searchParams)
-                        params.delete('iosApp')
-                        router.push(`${pathname}?${params.toString()}`)
-                        router
+                    <div className="grid h-full grid-rows-[25px_1fr]">
+                        <div onClick={()=>{
+                            // CloseApp(openedApp)
+                            const params = new URLSearchParams(searchParams)
+                            params.delete('iosApp')
+                            router.push(`${pathname}?${params.toString()}`)
+                            router
 
-                    }} className="text-start text-sm flex items-center w-full h-[25px] bg-black">
-                        X Close
+                        }} className="text-start text-sm flex items-center w-full h-[25px] bg-black">
+                            X Close
+                        </div>
+                        <div className="h-full">
+                            {appSelector[openedApp-1]}
+                        </div>
                     </div>
-                    {appSelector[openedApp-1]}
-                    </>
                 )}
             </div>
       
