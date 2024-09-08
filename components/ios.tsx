@@ -187,7 +187,7 @@ const IOS = ({ loaded, setIsLoaded }: { loaded: boolean, setIsLoaded: Dispatch<S
                 />
             </div>
             <div ref={drawerRef} className="absolute w-full bottom-4 z-[0]">
-                <div className="h-full bg-black bg-opacity-60 mx-4 rounded-[2rem]"></div>
+                <div className="h-full bg-black bg-opacity-40 mx-4 rounded-[2rem]"></div>
             </div>
 
             {/* grid-rows-8 */}
