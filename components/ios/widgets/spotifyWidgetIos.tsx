@@ -3,7 +3,7 @@ import { PersonalInfo } from "@/utils/personalInfo";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-const IOSSpotifyWidget = ({ loaded }: { loaded: boolean }) => {
+const IOSSpotifyWidget = ({ loaded, onClick }: { loaded: boolean, onClick?:any }) => {
     const [playingSong, setPlayingSong] = useState<any>(null)
     const [ind, setInd] = useState(0);
 
@@ -25,7 +25,7 @@ const IOSSpotifyWidget = ({ loaded }: { loaded: boolean }) => {
         })
       }, [ind, playingSong, loaded])
     return (
-        <div className="col-span-2 row-span-2 flex flex-col gap-1 items-center justify-center">
+        <div onClick={onClick} className="spotify col-span-2 row-span-2 flex flex-col gap-1 items-center justify-center">
             <div style={{
                 textShadow: "0px 0px 15px black, 0px 0px 30px black, 0px 0px 45px black"
                 // textShadow:" 10px 10px 20px #000000, 10px 10px 20px #000000, 10px 10px 20px #000000"

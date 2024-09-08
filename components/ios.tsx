@@ -16,12 +16,16 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import GPTPage from "./apps/gpt";
 import IOSGPT from "./ios/apps/gptIos";
 import IOSGame from "./ios/apps/gameIos";
+import { convertRemToPixels } from "@/utils/func";
+import SpotifyApp from "./apps/spotify";
 
 
 const IOS = ({ loaded, setIsLoaded }: { loaded: boolean, setIsLoaded: Dispatch<SetStateAction<boolean>> }) => {
     const [openedApp, setOpenedApp] = useState<number>(0)
     const modelRef = useRef<HTMLDivElement>(null);
     const gridBoxRef = useRef<HTMLDivElement>(null)
+    const drawerRef = useRef<HTMLDivElement>(null)
+
     const [flag, setFlag] = useState(true)
     const [appStates, setAppStates] = useState<any>({
         'gpt':{
@@ -38,8 +42,18 @@ const IOS = ({ loaded, setIsLoaded }: { loaded: boolean, setIsLoaded: Dispatch<S
 
     const getCoords = (appNum: number): [number, number, number, number] => {
         let appCoord = document.querySelectorAll('.iosApp')
-        let rect = appCoord[appNum - 1].getBoundingClientRect();
-        return [rect.top + 30, rect.left + 30, window.innerHeight - rect.bottom + 30, window.innerWidth - rect.right + 30]
+        try {
+            let rect = appCoord[appNum - 1].getBoundingClientRect();
+            return [rect.top + 30, rect.left + 30, window.innerHeight - rect.bottom + 30, window.innerWidth - rect.right + 30]
+        } catch (error) {
+            let rect = document.querySelector('.spotify')?.getBoundingClientRect()
+            if(rect)
+                return [rect.top + 120, rect.left + 120, window.innerHeight - rect.bottom + 120, window.innerWidth - rect.right + 120]
+            else
+                return [0,0,0,0]
+        }
+
+        
     }
 
     useEffect(()=>{
@@ -60,6 +74,7 @@ const IOS = ({ loaded, setIsLoaded }: { loaded: boolean, setIsLoaded: Dispatch<S
         }
 
     },[searchParams, pathname])
+
     useEffect(()=>{
         if(gridBoxRef.current){
             console.log(gridBoxRef.current.clientWidth, gridBoxRef.current.clientHeight)
@@ -71,6 +86,15 @@ const IOS = ({ loaded, setIsLoaded }: { loaded: boolean, setIsLoaded: Dispatch<S
             }
         }
     },[])
+
+    useEffect(()=>{
+        if(gridBoxRef.current){
+            console.log(gridBoxRef.current.clientWidth, gridBoxRef.current.clientHeight)
+            if(drawerRef.current){
+                drawerRef.current.style.height = (gridBoxRef.current.clientHeight + convertRemToPixels(0.5))+'px'
+            }
+        }
+    },[flag])
 
     const OpenApp = (appNum:number)=>{
         setOpenedApp(appNum)
@@ -140,7 +164,8 @@ const IOS = ({ loaded, setIsLoaded }: { loaded: boolean, setIsLoaded: Dispatch<S
     <LinkedInPage key={2}/>,
     <IOSInsta key={3}/>,
     <IOSGame key={4}/>,
-    <IOSGPT key={5} appStates={appStates} setAppStates={setAppStates}/>
+    <IOSGPT key={5} appStates={appStates} setAppStates={setAppStates}/>,
+    <SpotifyApp key={6}/>
   ]
 
       
@@ -161,12 +186,22 @@ const IOS = ({ loaded, setIsLoaded }: { loaded: boolean, setIsLoaded: Dispatch<S
                     quality={90}
                 />
             </div>
+            <div ref={drawerRef} className="absolute w-full bottom-4 z-[0]">
+                <div className="h-full bg-black bg-opacity-60 mx-4 rounded-[2rem]"></div>
+            </div>
+
             {/* grid-rows-8 */}
             <div className={cn("h-full w-full select-none absolute z-1 p-5 grid grid-cols-4 gap-3", flag?"grid-rows-8":"grid-rows-7")}>
                 <IOSNameWidget loaded={loaded} />
-                <IOSSpotifyWidget loaded={loaded} />
 
-                {iosApps.map((app, key)=>(
+                <IOSSpotifyWidget onClick={()=>{
+                     const params = new URLSearchParams(searchParams)
+                     params.set('iosApp', ''+(appSelector.length))
+                     // replace(`${pathname}?${params.toString()}`)
+                     router.push(`${pathname}?${params.toString()}`)
+                }} loaded={loaded} />
+
+                {iosApps.slice(0,4).map((app, key)=>(
                     <div key={key} className=" h-full w-full flex flex-col gap-1 items-center justify-center">
                         <div onClick={()=>{
                            
@@ -192,6 +227,30 @@ const IOS = ({ loaded, setIsLoaded }: { loaded: boolean, setIsLoaded: Dispatch<S
                 <div ref={gridBoxRef} className=" h-full w-full flex flex-col gap-1 items-center justify-center">
                     
                 </div>
+
+                {iosApps.slice(4).map((app, key)=>(
+                    <div key={key} className={cn("h-full w-full flex flex-col gap-1 items-center justify-center",flag?"row-start-8":"row-start-7")}>
+                        <div onClick={()=>{
+                           
+                            const params = new URLSearchParams(searchParams)
+                            params.set('iosApp', ''+(4+key+1))
+                            // replace(`${pathname}?${params.toString()}`)
+                            router.push(`${pathname}?${params.toString()}`)
+
+                        }} className="iosApp w-[16vw] max-h-[70%] relative aspect-square">
+                            <Image
+                                src={app.imageSrc}
+                                style={{
+                                    scale:app.scale?'1.2':'1'
+                                }}
+                                className="object-contain"
+                                alt='github'
+                                fill
+                            />
+                        </div>
+                        {/* <p className="text-xs">{app.tooltip}</p> */}
+                    </div>
+                ))}
             </div>
             
             <div
