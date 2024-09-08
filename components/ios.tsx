@@ -274,7 +274,7 @@ const IOS = ({ loaded, setIsLoaded }: { loaded: boolean, setIsLoaded: Dispatch<S
                         }} className="text-start text-sm flex items-center w-full h-[25px] bg-black">
                             X Close
                         </div>
-                        <div className="h-full">
+                        <div className="h-full overflow-scroll">
                             {appSelector[openedApp-1]}
                         </div>
                     </div>
