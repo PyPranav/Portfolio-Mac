@@ -35,6 +35,26 @@ export const dockAppList = [
 
 
   export const iosApps = [
+
+    {
+      'imageSrc':'/dock_icons/finder.webp',
+      'scale':true,
+      'tooltip':'Projects'
+    },
+    {
+      'imageSrc':'/dock_icons/settings.webp',
+      'scale':true,
+      'tooltip':'About'
+    },
+    {
+      'imageSrc':'/ios/chatgpt.png',
+      'tooltip':'GPT'
+    },
+    {
+      'imageSrc':'/dock_icons/mail.webp',
+      'scale':true,
+      'tooltip':'Contact Me'
+    },
     {
       'imageSrc':'/ios/github.png',
       'tooltip':'Github'
@@ -51,9 +71,5 @@ export const dockAppList = [
       'imageSrc':'/dock_icons/2048.png',
       'scale':true,
       'tooltip':'2048'
-    },
-    {
-      'imageSrc':'/ios/chatgpt.png',
-      'tooltip':'GPT'
     }
   ]

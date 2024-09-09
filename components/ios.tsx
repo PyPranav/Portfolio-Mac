@@ -160,12 +160,15 @@ const IOS = ({ loaded, setIsLoaded }: { loaded: boolean, setIsLoaded: Dispatch<S
 
       
   const appSelector = [
-    <GithubPage key={1}/>,
-    <LinkedInPage key={2}/>,
-    <IOSInsta key={3}/>,
-    <IOSGame key={4}/>,
-    <IOSGPT key={5} appStates={appStates} setAppStates={setAppStates}/>,
-    <SpotifyApp key={6}/>
+    <IOSGPT key={1} appStates={appStates} setAppStates={setAppStates}/>,
+    <IOSGPT key={2} appStates={appStates} setAppStates={setAppStates}/>,
+    <IOSGPT key={3} appStates={appStates} setAppStates={setAppStates}/>,
+    <IOSGPT key={4} appStates={appStates} setAppStates={setAppStates}/>,
+    <GithubPage key={5}/>,
+    <LinkedInPage key={6}/>,
+    <IOSInsta key={7}/>,
+    <IOSGame key={8}/>,
+    <SpotifyApp key={9}/>
   ]
 
       
@@ -274,7 +277,9 @@ const IOS = ({ loaded, setIsLoaded }: { loaded: boolean, setIsLoaded: Dispatch<S
                         }} className="text-start text-sm flex items-center w-full h-[25px] bg-black">
                             X Close
                         </div>
-                        <div className="h-full overflow-scroll">
+                        <div style={{
+                            overflow:'overlay'
+                        }} className="h-full overflow-y-scroll">
                             {appSelector[openedApp-1]}
                         </div>
                     </div>
