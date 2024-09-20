@@ -10,7 +10,6 @@ const IOSNameWidget = ({loaded}:{loaded:boolean}) => {
         new Promise(resolve => setTimeout(resolve, 20)).then(() => {
           if (ind <= Math.max(PersonalInfo.name.length ?? 0, PersonalInfo.tag.length ?? 0))
             setInd(ind + 1)
-    
         })
       }, [ind, loaded])
 
@@ -36,7 +35,8 @@ const IOSNameWidget = ({loaded}:{loaded:boolean}) => {
 
                     </div>
                 </div>
-                <p className="text-xs">Hey 👋</p>
+                <p className="text-xs">Photos</p>
+                {/* <p className="text-xs">Hey 👋</p> */}
             </div>
      );
 }

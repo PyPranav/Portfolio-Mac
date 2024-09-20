@@ -53,7 +53,7 @@ export const dockAppList = [
     {
       'imageSrc':'/dock_icons/mail.webp',
       'scale':true,
-      'tooltip':'Contact Me'
+      'tooltip':'Contact'
     },
     {
       'imageSrc':'/ios/github.png',
