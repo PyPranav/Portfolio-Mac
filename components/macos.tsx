@@ -16,11 +16,18 @@ import { PhotoDetails } from "@/utils/photos";
 import Finder from "./apps/finder";
 import GamePage from "./apps/game";
 import GPTPage from "./apps/gpt";
+import { useSearchParams } from 'next/navigation';
+
 
 const maxAdditionalSize = 5;
 const MacOS = ({loaded,setIsLoaded}:{loaded:boolean, setIsLoaded:Dispatch<SetStateAction<boolean>>}) => {
   const dockRef = useRef<HTMLDivElement>(null);
   const modelRef = useRef<HTMLDivElement>(null);
+
+  const searchParams = useSearchParams();
+  const q = searchParams.get('q'); // Get the 'id' query parameter
+  
+  console.log(q);
 
   const [openedApp, setOpenedApp] = useState<number>(0)
   const [appStates, setAppStates] = useState<any>({
@@ -66,6 +73,13 @@ const MacOS = ({loaded,setIsLoaded}:{loaded:boolean, setIsLoaded:Dispatch<SetSta
   useEffect(()=>{
     console.log({appStates})
   },[appStates])
+
+  useEffect(()=>{
+    if(q=='resume'){
+      setAppStates({...appStates,[1]:{tabValue:'Home/Resume',openedDoc: "Resume", forwardStack:[]}})
+      OpenApp(1)
+    }
+  },[q])
 
 
   const handleAppHover = (ev: React.MouseEvent<HTMLLIElement>) => {

@@ -1,6 +1,6 @@
 import { wallpapers } from "@/utils/settingsOptions";
 import Image from "next/image";
-import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
+import { Dispatch, SetStateAction, use, useEffect, useRef, useState } from "react";
 import NameWidget from "./custom/Widgets/nameWidget";
 import SpotifyWidget from "./custom/Widgets/spotifyWidget";
 import { PersonalInfo } from "@/utils/personalInfo";
@@ -26,6 +26,8 @@ const IOS = ({ loaded, setIsLoaded }: { loaded: boolean, setIsLoaded: Dispatch<S
     const gridBoxRef = useRef<HTMLDivElement>(null)
     const drawerRef = useRef<HTMLDivElement>(null)
 
+
+
     const [flag, setFlag] = useState(true)
     const [appStates, setAppStates] = useState<any>({
         'gpt':{
@@ -36,6 +38,16 @@ const IOS = ({ loaded, setIsLoaded }: { loaded: boolean, setIsLoaded: Dispatch<S
     const searchParams = useSearchParams();
     const pathname = usePathname()
     const router = useRouter()
+
+    const q = searchParams.get('q'); // Get the 'id' query parameter
+    
+    console.log(q);
+    useEffect(() => {
+        if (q === 'resume') {
+            window.location.href = 'https://drive.google.com/file/d/13t7MdZ0BkNp1dvGeoOJmJLA1ThGsMtHZ/view?usp=sharing';
+        }
+    }, [q]);
+  
 
     
 
