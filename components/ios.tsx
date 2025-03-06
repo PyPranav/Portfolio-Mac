@@ -217,7 +217,7 @@ const IOS = ({ loaded, setIsLoaded }: { loaded: boolean, setIsLoaded: Dispatch<S
                 }} loaded={loaded} />
 
                 {iosApps.slice(0,4).map((app, key)=>(
-                    <div key={key} className=" h-full w-full flex flex-col gap-1 items-center justify-center">
+                    <div key={key} className=" h-full w-full flex flex-col gap-1 items-center justify-center hidden">
                         <div onClick={()=>{
                            
                             const params = new URLSearchParams(searchParams)
