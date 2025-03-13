@@ -1,8 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import TextComponent from "../custom/textComponent";
 import WindowCloseButtons from "../custom/windowCloseButtons";
 import { toast } from "@/hooks/use-toast";
 import { ToastAction } from "@radix-ui/react-toast";
+import { sendMessage } from "@/utils/fetchData";
+import { cn } from "@/lib/utils"
+
 
 const ContactMePage = ({
   CloseApp,
@@ -15,6 +18,7 @@ const ContactMePage = ({
   appStates: any;
   setAppStates: any;
 }) => {
+  const [sending, setSending] = useState(false);
   return (
     <div className="bg-[#232323] h-full overflow-y-scroll flex flex-col">
       <div className=" sticky top-0 z-[1000] bg-[#232323] mb-5">
@@ -34,12 +38,12 @@ const ContactMePage = ({
           </p>
           <form
             className="flex flex-col gap-4 mt-10"
-            onSubmit={(e) => {
+            onSubmit={async (e) => {
               e.preventDefault();
-              console.log(appStates[openedApp]);
-
-              // Add your logic here
-              //
+              if (sending) return;
+              setSending(true);
+              await sendMessage(appStates[openedApp]);
+              setSending(false);
 
               toast({
                 title: "Message Sent!",
@@ -118,20 +122,39 @@ const ContactMePage = ({
 
               <button
                 type="submit"
-                className={`flex flex-row items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-md  font-medium hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 `}
+                className={cn(
+                  `flex flex-row items-center gap-2 px-4 py-2 text-white rounded-md font-medium focus:outline-none focus:ring-2 focus:ring-offset-2`,
+                  sending 
+                    ? "bg-gray-500 cursor-not-allowed" 
+                    : "bg-blue-600 hover:bg-blue-700 focus:ring-blue-500"
+                )}
               >
-                {"Send Message"}
+                {sending ? "Sending..." : "Send Message"}
 
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  fill="currentColor"
-                  className="rotate-45"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576zm6.787-8.201L1.591 6.602l4.339 2.76z" />
-                </svg>
+                {sending ? (
+                  <svg 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    width="16" 
+                    height="16" 
+                    fill="currentColor"
+                    className="animate-spin" 
+                    viewBox="0 0 16 16"
+                  >
+                    <path d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
+                    <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
+                  </svg>
+                ) : (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    className="rotate-45"
+                    viewBox="0 0 16 16"
+                  >
+                    <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576zm6.787-8.201L1.591 6.602l4.339 2.76z" />
+                  </svg>
+                )}
               </button>
             </div>
           </form>
