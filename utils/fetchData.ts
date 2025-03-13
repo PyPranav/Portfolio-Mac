@@ -1,6 +1,6 @@
 import { cache } from 'react'
-const API_ROOT = 'http://127.0.0.1:5000/'
-// const API_ROOT = 'https://PyPMac.pythonanywhere.com/'
+// const API_ROOT = 'http://127.0.0.1:5000/'
+const API_ROOT = 'https://PyPMac.pythonanywhere.com/'
 
 
 export const getPlayigSong = async ()=>{
