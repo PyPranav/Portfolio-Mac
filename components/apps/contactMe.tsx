@@ -12,23 +12,25 @@ const ContactMePage = ({
   openedApp,
   appStates,
   setAppStates,
+  isMobile=false
 }: {
   CloseApp: (appNum: number) => void;
   openedApp: number;
   appStates: any;
   setAppStates: any;
+  isMobile?: boolean;
 }) => {
   const [sending, setSending] = useState(false);
   return (
-    <div className="bg-[#232323] h-full overflow-y-scroll flex flex-col">
+    <div className="bg-[#232323] h-full overflow-y-scroll flex flex-col text-base text-left">
       <div className=" sticky top-0 z-[1000] bg-[#232323] mb-5">
-        <div className="bg-[#1f1f1f] p-5 flex items-center relative">
+        <div className={cn("bg-[#1f1f1f] p-5 flex items-center relative", isMobile && "opacity-0")}>
           <div className=" absolute">
             <WindowCloseButtons CloseApp={CloseApp} openedApp={openedApp} />
           </div>
           <p className="w-full text-center">Contact Me</p>
         </div>
-        <hr className="border-black" />
+        <hr className={cn("border-black", isMobile && "opacity-0")} />
         <div className="p-5">
           <p className="text-center font-bold text-2xl mt-5">Drop Me a Line</p>
           <p className="text-center mt-4">

@@ -18,6 +18,7 @@ import IOSGPT from "./ios/apps/gptIos";
 import IOSGame from "./ios/apps/gameIos";
 import { convertRemToPixels } from "@/utils/func";
 import SpotifyApp from "./apps/spotify";
+import ContactMePage from "./apps/contactMe";
 
 
 const IOS = ({ loaded, setIsLoaded }: { loaded: boolean, setIsLoaded: Dispatch<SetStateAction<boolean>> }) => {
@@ -32,6 +33,11 @@ const IOS = ({ loaded, setIsLoaded }: { loaded: boolean, setIsLoaded: Dispatch<S
     const [appStates, setAppStates] = useState<any>({
         'gpt':{
             chats:[]
+        },
+        4:{
+            'name':'',
+            'email':'',
+            'message':''
         }
     })
 
@@ -175,7 +181,7 @@ const IOS = ({ loaded, setIsLoaded }: { loaded: boolean, setIsLoaded: Dispatch<S
     <IOSGPT key={1} appStates={appStates} setAppStates={setAppStates}/>,
     <IOSGPT key={2} appStates={appStates} setAppStates={setAppStates}/>,
     <IOSGPT key={3} appStates={appStates} setAppStates={setAppStates}/>,
-    <IOSGPT key={4} appStates={appStates} setAppStates={setAppStates}/>,
+    <ContactMePage key={4} isMobile={true} CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>,
     <GithubPage key={5}/>,
     <LinkedInPage key={6}/>,
     <IOSInsta key={7}/>,
@@ -217,7 +223,7 @@ const IOS = ({ loaded, setIsLoaded }: { loaded: boolean, setIsLoaded: Dispatch<S
                 }} loaded={loaded} />
 
                 {iosApps.slice(0,4).map((app, key)=>(
-                    <div key={key} className=" h-full w-full flex flex-col gap-1 items-center justify-center hidden">
+                    <div key={key} className=" h-full w-full flex flex-col gap-1 items-center justify-center ">
                         <div onClick={()=>{
                            
                             const params = new URLSearchParams(searchParams)
