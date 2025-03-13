@@ -125,7 +125,7 @@ const ArcPage = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseApp: (
                     <p className="text-xs mb-4 text-white opacity-50 font-light">🗂️ Hosted Projects</p>
                 </div>
                 {PersonalInfo.hostedProjects.map((project,key)=>{
-                    if(project.name=='Envision' && isFirfox)
+                    if(['Envision', 'Netflix Clone'].includes(project.name) && isFirfox)
                         return(<div className="hidden" key={key}></div>)
                     return (
                     <TabsTrigger key={key} className=" mb-2 flex w-full gap-2 justify-start py-2 data-[state=active]:bg-white data-[state=active]:bg-opacity-20 text-white data-[state=active]:text-white rounded-xl data-[state=inactive]:bg-white data-[state=inactive]:bg-opacity-0 data-[state=inactive]:hover:bg-opacity-10 " value={project.name} title={project.name}>
