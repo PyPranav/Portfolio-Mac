@@ -1,4 +1,4 @@
-import { getStats } from "@/utils/fetchData";
+// import { getStats } from "@/utils/fetchData";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { PersonalInfo } from "@/utils/personalInfo";
@@ -15,11 +15,11 @@ interface StatsData {
 const StatsTab = ({openedApp, appStates, setAppStates }: {openedApp:number, appStates: any, setAppStates: any }) => {
     const [stats, setStats] = useState<StatsData | null>(null);
     
-    useEffect(() => {
-        getStats().then((data) => {
-            setStats(data);
-        });
-    }, []);
+    // useEffect(() => {
+    //     getStats().then((data) => {
+    //         setStats(data);
+    //     });
+    // }, []);
 
     if (!stats) return <div className="flex justify-center items-center h-64">Loading...</div>;
 

@@ -88,13 +88,13 @@ export const sendMessage = async (data: any) => {
 //     }
 // }
 
-export const getStats = async () => {
-    try {
-        const response = await fetch(API_ROOT+'tracking/stats', {
-            method: 'GET',
-        });
-        return response.json()
-    } catch (error) {
-        console.error('Error fetching data from /tracking/stats:', error);
-    }
-}
+// export const getStats = async () => {
+//     try {
+//         const response = await fetch(API_ROOT+'tracking/stats', {
+//             method: 'GET',
+//         });
+//         return response.json()
+//     } catch (error) {
+//         console.error('Error fetching data from /tracking/stats:', error);
+//     }
+// }
