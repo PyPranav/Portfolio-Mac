@@ -77,26 +77,6 @@ const StatsTab = ({openedApp, appStates, setAppStates}: {openedApp:number, appSt
 
                                     <hr className="mx-5 border-[#3c3c3c]"/>
                                 </div>
-
-                                <div >
-                                    <div className="flex items-center justify-between">
-                                        <div className="px-5 py-3 flex gap-5 items-center">
-                                            <div className="bg-blue-600 rounded-xl w-12 h-12 flex items-center justify-center">
-                                                <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
-                                                </svg>
-                                            </div>
-                                            <div>
-                                                <p>Total Chats</p>
-                                                <p className="text-xs"><span className="font-bold text-sm text-blue-400">{appStates[openedApp]['statsData'].total_chats}</span> conversations have happened here</p>
-                                                <p className="text-xs opacity-75">With <span className="font-semibold">{appStates[openedApp]['statsData'].total_chats_in_last_24_hours}</span> fresh discussions in the last day alone</p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <hr className="mx-5 border-[#3c3c3c]"/>
-                                </div>
-
                                 <div >
                                     <div className="flex items-center justify-between">
                                         <div className="px-5 py-3 flex gap-5 items-center">
@@ -113,8 +93,28 @@ const StatsTab = ({openedApp, appStates, setAppStates}: {openedApp:number, appSt
                                         </div>
                                     </div>
 
+                                    <hr className="mx-5 border-[#3c3c3c]"/>
+                                </div>
+                                <div >
+                                    <div className="flex items-center justify-between">
+                                        <div className="px-5 py-3 flex gap-5 items-center">
+                                            <div className="bg-blue-600 rounded-xl w-12 h-12 flex items-center justify-center">
+                                                <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                                                </svg>
+                                            </div>
+                                            <div>
+                                                <p>Total Chats</p>
+                                                <p className="text-xs"><span className="font-bold text-sm text-blue-400">{appStates[openedApp]['statsData'].total_chats}</span> conversations have happened here</p>
+                                                <p className="text-xs opacity-75">With <span className="font-semibold">{appStates[openedApp]['statsData'].total_chats_in_last_24_hours}</span> fresh discussions in the last day alone</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     {/* <hr className="mx-5 border-[#3c3c3c]"/> */}
                                 </div>
+
+                                
                         </div>
                     </>
                 )}
