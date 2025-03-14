@@ -55,7 +55,9 @@ const MacOS = ({
         total_chats_in_last_24_hours: 0,
         total_unique_visitors: 0,
         total_visits: 0,
-        total_visits_in_last_24_hours: 0
+        total_visits_in_last_24_hours: 0,
+        total_mobile_visitors: 0,
+        total_desktop_visitors: 0,
       },
     },
     3: {
