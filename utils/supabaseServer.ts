@@ -159,10 +159,26 @@ export const getStats = async () => {
             return null;
         }
         
+        // Get mobile visitors count
+        const { data: mobileVisits, error: mobileVisitsError } = await supabase
+            .from("visits")
+            .select("*", { count: "exact" })
+            .eq('is_mobile', true);
+            
+        if (mobileVisitsError) {
+            console.error('Error getting mobile visits:', mobileVisitsError);
+            return null;
+        }
+        
+        // Calculate desktop visitors by subtracting mobile from total
+        const desktopVisits = totalVisits.length - mobileVisits.length;
+        
         return {
             total_visits: totalVisits.length,
             total_visits_in_last_24_hours: recentVisits.length,
             total_unique_visitors: uniqueIPs,
+            total_mobile_visitors: mobileVisits.length,
+            total_desktop_visitors: desktopVisits,
             total_chats: Math.ceil(totalChats.length/2),
             total_chats_in_last_24_hours: Math.ceil(recentChats.length/2)
         };

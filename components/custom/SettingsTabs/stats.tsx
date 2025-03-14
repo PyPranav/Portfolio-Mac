@@ -94,6 +94,25 @@ const StatsTab = ({openedApp, appStates, setAppStates}: {openedApp:number, appSt
                                         </div>
                                     </div>
 
+                                    <hr className="mx-5 border-[#3c3c3c]"/>
+                                </div>
+
+                                <div >
+                                    <div className="flex items-center justify-between">
+                                        <div className="px-5 py-3 flex gap-5 items-center">
+                                            <div className="bg-orange-600 rounded-xl w-12 h-12 flex items-center justify-center">
+                                                <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                                                </svg>
+                                            </div>
+                                            <div>
+                                                <p>Device Breakdown</p>
+                                                <p className="text-xs"><span className="font-bold text-sm text-orange-400">{appStates[openedApp]['statsData'].total_mobile_visitors || 0}</span> mobile and <span className="font-bold text-sm text-orange-400">{appStates[openedApp]['statsData'].total_desktop_visitors || 0}</span> desktop visitors</p>
+                                                <p className="text-xs opacity-75">Experiencing this portfolio across different devices</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     {/* <hr className="mx-5 border-[#3c3c3c]"/> */}
                                 </div>
                         </div>
