@@ -9,9 +9,15 @@ export const settingsOptions = [
         name: 'Experience & Education',
         allowed: true,
     },
+    // {
+    //     icon: '/settings_icon/network.png',
+    //     name: 'Collaborate',
+    //     allowed: true,
+    // },
+    
     {
-        icon: '/settings_icon/network.png',
-        name: 'Collaborate',
+        icon: '/settings_icon/screentime.png',
+        name: 'Website Stats',
         allowed: true,
     },
     {
@@ -27,11 +33,6 @@ export const settingsOptions = [
     {
         icon: '/settings_icon/sound.png',
         name: 'Sound',
-        allowed: false,
-    },
-    {
-        icon: '/settings_icon/screentime.png',
-        name: 'Screen Time',
         allowed: false,
     },
 

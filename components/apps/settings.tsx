@@ -9,6 +9,7 @@ import { PersonalInfo } from "@/utils/personalInfo";
 import SkillTab from "../custom/SettingsTabs/skills";
 import ExperienceTab from "../custom/SettingsTabs/experience";
 import WallpaperTab from "../custom/SettingsTabs/wallpaper";
+import StatsTab from "../custom/SettingsTabs/stats";
 
 
 function SearchIcon(props: any) {
@@ -100,7 +101,7 @@ const SettingsPage = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseA
       <TabsContent value="experience" className="overflow-y-scroll"><ExperienceTab openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/></TabsContent>
       <TabsContent value="collaborate" className="overflow-y-scroll"><div>Collaborate </div></TabsContent>
       <TabsContent value="wallpaper" className="overflow-y-scroll"><WallpaperTab openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/></TabsContent>
-
+      <TabsContent value="website" className="overflow-y-scroll"><StatsTab openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/></TabsContent>
     </Tabs>
   );
 }

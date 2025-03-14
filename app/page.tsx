@@ -5,6 +5,7 @@ import { toast } from "@/hooks/use-toast";
 import { ToastAction } from "@radix-ui/react-toast";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import {sendVisit } from "@/utils/fetchData";
 
 function App() {
   const [isMobile, setIsMobile] = useState<boolean|null>(null)
@@ -71,6 +72,10 @@ function App() {
       window.removeEventListener('resize', handleResize);
     };
 
+  },[])
+
+  useEffect(()=>{
+    sendVisit()
   },[])
   
   

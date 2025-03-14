@@ -1,6 +1,6 @@
 import { cache } from 'react'
-// const API_ROOT = 'http://127.0.0.1:5000/'
-const API_ROOT = 'https://PyPMac.pythonanywhere.com/'
+const API_ROOT = 'http://127.0.0.1:5000/'
+// const API_ROOT = 'https://PyPMac.pythonanywhere.com/'
 
 
 export const getPlayigSong = async ()=>{
@@ -13,7 +13,7 @@ export const getPlayigSong = async ()=>{
 }
 
 export const getInstaDetails = cache(async ()=>{
-    const data = await fetch(API_ROOT+'insta',{
+    const data = await fetch(API_ROOT+'social/insta',{
         method: 'POST'
     }).then((res) =>
         res.json()
@@ -22,7 +22,7 @@ export const getInstaDetails = cache(async ()=>{
 })
 
 export const getGithubDetails = cache(async ()=>{
-    const data = await fetch(API_ROOT+'github',{
+    const data = await fetch(API_ROOT+'social/github',{
         method: 'POST'
     }).then((res) =>
         res.json()
@@ -57,7 +57,7 @@ export const getGroqResponse = async (chats: any) => {
 
 export const sendMessage = async (data: any) => {
     try {
-        const response = await fetch(API_ROOT+'send-message', {
+        const response = await fetch(API_ROOT+'social/send-message', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -74,5 +74,27 @@ export const sendMessage = async (data: any) => {
         return res;
     } catch (error) {
         console.error('Error fetching data from /groq/response:', error);
+    }
+}
+
+export const sendVisit = async () => {
+    try {
+        const response = await fetch(API_ROOT+'tracking/visit', {
+            method: 'POST',
+        });
+        return response.json()
+    } catch (error) {
+        console.error('Error recording visit at /tracking/visit:', error);
+    }
+}
+
+export const getStats = async () => {
+    try {
+        const response = await fetch(API_ROOT+'tracking/stats', {
+            method: 'GET',
+        });
+        return response.json()
+    } catch (error) {
+        console.error('Error fetching data from /tracking/stats:', error);
     }
 }

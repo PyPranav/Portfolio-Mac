@@ -46,6 +46,7 @@ const MacOS = ({
       tabValue: "id",
       wifi: true,
       bluetooth: true,
+      stats: true,
       bg: wallpapers[0],
       bgChanged: true,
     },
