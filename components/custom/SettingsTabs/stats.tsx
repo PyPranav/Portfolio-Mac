@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { PersonalInfo } from "@/utils/personalInfo";
 import { Switch } from "@/components/ui/switch";
-
+import { getStats } from "@/utils/supabaseServer";
 interface StatsData {
     total_chats: number;
     total_chats_in_last_24_hours: number;
@@ -15,11 +15,11 @@ interface StatsData {
 const StatsTab = ({openedApp, appStates, setAppStates }: {openedApp:number, appStates: any, setAppStates: any }) => {
     const [stats, setStats] = useState<StatsData | null>(null);
     
-    // useEffect(() => {
-    //     getStats().then((data) => {
-    //         setStats(data);
-    //     });
-    // }, []);
+    useEffect(() => {
+        getStats().then((data) => {
+            setStats(data);
+        });
+    }, []);
 
     if (!stats) return <div className="flex justify-center items-center h-64">Loading...</div>;
 

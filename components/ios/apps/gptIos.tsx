@@ -7,6 +7,7 @@ import rehypeHighlight from "rehype-highlight";
 import remarkParse from 'remark-parse'
 import remarkRehype from 'remark-rehype'
 import style from '../../apps/markdown-styles.module.css';
+import { recordChat } from "@/utils/supabaseServer";
 
 const IOSGPT = ({appStates, setAppStates }: { appStates: any, setAppStates: any }) => {
     const [inputVal, setInputVal] = useState('')
@@ -21,6 +22,7 @@ const IOSGPT = ({appStates, setAppStates }: { appStates: any, setAppStates: any 
         const chats = appStates['gpt']['chats'] || []
         chats.push({ role: 'user', content: inputVal })
         chats.push({ role: 'assistant', content: '...' })
+        recordChat(inputVal, 'user')
         setAppStates({ ...appStates, ['gpt']: { ...appStates['gpt'], chats: chats } })
         setInputVal('')
         const response = await getGroqResponse(chats)
@@ -35,6 +37,7 @@ const IOSGPT = ({appStates, setAppStates }: { appStates: any, setAppStates: any 
                 await new Promise(resolve => setTimeout(resolve, 10))
                 c++
             }
+            recordChat(response, 'assistant')
             console.log({c, 'len': response.length})
         }
         setDisabled(false)

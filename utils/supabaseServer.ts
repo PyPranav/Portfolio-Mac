@@ -41,6 +41,7 @@ export async function recordVisit() {
         const supabase = await createClient();
         const headersList = headers();
         const xForwardedFor = headersList.get('x-forwarded-for');
+        
         const ip = xForwardedFor || 'unknown';
         const userAgent = headersList.get('user-agent') || 'unknown';
         
@@ -52,7 +53,6 @@ export async function recordVisit() {
                 ip: ip,
                 user_agent: userAgent
             })
-            .select('*');
             
         if (error) {
             console.error('Error recording visit:', error);
@@ -67,3 +67,106 @@ export async function recordVisit() {
     }
 }
 
+export const recordChat = async (chat: string, author: string  ) => {
+    try {
+        const supabase = await createClient();
+        const headersList = headers();
+        const xForwardedFor = headersList.get('x-forwarded-for');
+        const ip = xForwardedFor || 'unknown';
+
+        const { data, error } = await supabase
+            .from("chats")
+            .insert({
+                text: chat,
+                author: author,
+                ip: ip
+            })
+            
+        if (error) {
+            console.error('Error recording chat:', error);
+            return { success: false, error };
+        }
+        
+        // console.log('Chat recorded successfully:', data);
+        return { success: true, data };
+    } catch (err) {
+        console.error('Exception recording chat:', err);
+        return { success: false, error: err };
+    }
+}
+
+export const getStats = async () => {
+    try {
+        const supabase = await createClient();
+        
+        // Get total visits
+        const { data: totalVisits, error: totalVisitsError } = await supabase
+            .from("visits")
+            .select("*", { count: "exact" });
+            
+        if (totalVisitsError) {
+            console.error('Error getting total visits:', totalVisitsError);
+            return null;
+        }
+        
+        // Get visits in the last 24 hours
+        const yesterday = new Date();
+        yesterday.setDate(yesterday.getDate() - 1);
+        
+        const { data: recentVisits, error: recentVisitsError } = await supabase
+            .from("visits")
+            .select("*", { count: "exact" })
+            .gte('created_at', yesterday.toISOString());
+            
+        if (recentVisitsError) {
+            console.error('Error getting recent visits:', recentVisitsError);
+            return null;
+        }
+        
+        // Get unique visitors (count distinct IPs)
+        const { data: uniqueVisitors, error: uniqueVisitorsError } = await supabase
+            .from("visits")
+            .select("ip")
+            .limit(1000); // Limit to avoid excessive data
+            
+        if (uniqueVisitorsError) {
+            console.error('Error getting unique visitors:', uniqueVisitorsError);
+            return null;
+        }
+        
+        // Count unique IPs
+        const uniqueIPs = new Set(uniqueVisitors.map(visit => visit.ip)).size;
+        
+        // Get total chats
+        const { data: totalChats, error: totalChatsError } = await supabase
+            .from("chats")
+            .select("*", { count: "exact" });
+            
+        if (totalChatsError) {
+            console.error('Error getting total chats:', totalChatsError);
+            return null;
+        }
+        
+        // Get chats in the last 24 hours
+        const { data: recentChats, error: recentChatsError } = await supabase
+            .from("chats")
+            .select("*", { count: "exact" })
+            .gte('created_at', yesterday.toISOString());
+            
+        if (recentChatsError) {
+            console.error('Error getting recent chats:', recentChatsError);
+            return null;
+        }
+        
+        return {
+            total_visits: totalVisits.length,
+            total_visits_in_last_24_hours: recentVisits.length,
+            total_unique_visitors: uniqueIPs,
+            total_chats: totalChats.length,
+            total_chats_in_last_24_hours: recentChats.length
+        };
+    } catch (err) {
+        console.error('Exception getting stats:', err);
+        return null;
+    }
+}

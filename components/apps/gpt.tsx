@@ -9,6 +9,7 @@ import remarkGfm from "remark-gfm";
 import remarkParse from 'remark-parse'
 import remarkRehype from 'remark-rehype'
 import style from './markdown-styles.module.css';
+import { recordChat } from "@/utils/supabaseServer";
 
 const GPTPage = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseApp: any, openedApp: number, appStates: any, setAppStates: any }) => {
     const [inputVal, setInputVal] = useState('')
@@ -22,6 +23,7 @@ const GPTPage = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseApp: a
 
         const chats = (appStates[openedApp] as personalGptType)['chats'] || []
         chats.push({ role: 'user', content: inputVal })
+        recordChat(inputVal, 'user')
         chats.push({ role: 'assistant', content: '...' })
         setAppStates({ ...appStates, [openedApp]: { ...appStates[openedApp], chats: chats } })
         setInputVal('')
@@ -37,6 +39,7 @@ const GPTPage = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseApp: a
                 await new Promise(resolve => setTimeout(resolve, 10))
                 c++
             }
+            recordChat(response, 'assistant')
             console.log({c, 'len': response.length})
         }
         setDisabled(false)
