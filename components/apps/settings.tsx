@@ -44,15 +44,19 @@ interface StatsData {
 
 const SettingsPage = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseApp: any, openedApp: number, appStates: any, setAppStates: any }) => {
 
-
+  const [statsData, setStatsData] = useState<StatsData | null>(null);
   useEffect(() => {
       getStats().then((data) => {
-        setAppStates({
-          ...appStates,
-          [2]: { ...appStates[2], statsData: data },
-        });
+        setStatsData(data);
     });
   }, []);
+
+  useEffect(() => {
+    setAppStates({
+      ...appStates,
+      [2]: { ...appStates[2], statsData: statsData },
+    });
+  }, [statsData]);
   return (
 
     <Tabs value={appStates[openedApp]['tabValue']} onValueChange={(val) => setAppStates({ ...appStates, [openedApp]: { ...appStates[openedApp], 'tabValue': val } })} defaultValue="account" className="grid grid-cols-[300px_2px_1fr] h-full w-full  color-white bg-[#2d2d2d]">
