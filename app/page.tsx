@@ -5,7 +5,8 @@ import { toast } from "@/hooks/use-toast";
 import { ToastAction } from "@radix-ui/react-toast";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import {sendVisit } from "@/utils/fetchData";
+// import {sendVisit } from "@/utils/fetchData";
+import { recordVisit } from "@/utils/supabaseServer";
 
 function App() {
   const [isMobile, setIsMobile] = useState<boolean|null>(null)
@@ -75,7 +76,10 @@ function App() {
   },[])
 
   useEffect(()=>{
-    sendVisit()
+    (async () => {
+      console.log("Recording visit")
+      console.log(await recordVisit(), ';)')
+    })()
   },[])
   
   

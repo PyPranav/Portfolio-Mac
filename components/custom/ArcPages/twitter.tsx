@@ -1,16 +1,16 @@
 'use client'
 // import { createClient } from "@supabase/supabase-js";
-import { getTweets } from "@/utils/tweetsServer";
+// import { getTweets } from "@/utils/supabaseServer";
 import { useEffect, useState } from "react";
 // const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!,process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!);
 const TwitterPage =  () => {
     const [tweets, setTweets] = useState<any>([])
-    useEffect(()=>{
-        getTweets().then((data)=>{
-            console.log(data)
-            setTweets(data)
-        })
-    },[])
+    // useEffect(()=>{
+    //     getTweets().then((data)=>{
+    //         console.log(data)
+    //         setTweets(data)
+    //     })
+    // },[])
 
     return ( 
         <section className=" bg-black h-full text-white overflow-y-scroll px-20">

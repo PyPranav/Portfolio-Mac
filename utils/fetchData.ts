@@ -1,6 +1,6 @@
 import { cache } from 'react'
-// const API_ROOT = 'http://127.0.0.1:5000/'
-const API_ROOT = 'https://PyPMac.pythonanywhere.com/'
+const API_ROOT = 'http://127.0.0.1:5000/'
+// const API_ROOT = 'https://PyPMac.pythonanywhere.com/'
 
 
 export const getPlayigSong = async ()=>{
@@ -77,16 +77,16 @@ export const sendMessage = async (data: any) => {
     }
 }
 
-export const sendVisit = async () => {
-    try {
-        const response = await fetch(API_ROOT+'tracking/visit', {
-            method: 'POST',
-        });
-        return response.json()
-    } catch (error) {
-        console.error('Error recording visit at /tracking/visit:', error);
-    }
-}
+// export const sendVisit = async () => {
+//     try {
+//         const response = await fetch(API_ROOT+'tracking/visit', {
+//             method: 'POST',
+//         });
+//         return response.json()
+//     } catch (error) {
+//         console.error('Error recording visit at /tracking/visit:', error);
+//     }
+// }
 
 export const getStats = async () => {
     try {
