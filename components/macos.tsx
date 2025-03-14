@@ -94,14 +94,21 @@ const MacOS = ({
     console.log({ appStates });
   }, [appStates]);
 
+  const [statsData, setStatsData] = useState<any>(null);
+
   useEffect(() => {
     getStats().then((data) => {
-      setAppStates({
-        ...appStates,
-        [2]: { ...appStates[2], statsData: data },
-      });
+      setStatsData(data);
     });
   }, []);
+
+  useEffect(() => {
+    if (statsData === null) return;
+    setAppStates({
+      ...appStates,
+      [2]: { ...appStates[2], statsData: statsData },
+    });
+  }, [statsData]);
 
   useEffect(() => {
     if (q == "resume") {
