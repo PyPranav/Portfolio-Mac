@@ -15,6 +15,21 @@ const GPTPage = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseApp: a
     const [inputVal, setInputVal] = useState('')
     const [delayLoad, setDelayLoad] = useState(false)
     const [disabled, setDisabled] = useState(false)
+    const [location, setLocation] = useState<any>(null)
+
+    const getClientLocation = async () => {
+        const res = await fetch('https://ipinfo.io/json');
+        const locationData = await res.json();
+        return locationData
+      };
+
+    useEffect(() => {
+        const getLocation = async () => {
+            const loc = await getClientLocation()
+            setLocation(loc)
+        }
+        getLocation()
+    }, [])
     const submitQuerry = async () => {
         if (inputVal === '' || disabled)
             return
@@ -23,7 +38,7 @@ const GPTPage = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseApp: a
 
         const chats = (appStates[openedApp] as personalGptType)['chats'] || []
         chats.push({ role: 'user', content: inputVal })
-        recordChat(inputVal, 'user')
+        recordChat(inputVal, 'user', location?.ip)
         chats.push({ role: 'assistant', content: '...' })
         setAppStates({ ...appStates, [openedApp]: { ...appStates[openedApp], chats: chats } })
         setInputVal('')
@@ -39,7 +54,7 @@ const GPTPage = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseApp: a
                 await new Promise(resolve => setTimeout(resolve, 10))
                 c++
             }
-            recordChat(response, 'assistant')
+            recordChat(response, 'assistant', location?.ip)
             console.log({c, 'len': response.length})
         }
         setDisabled(false)
@@ -49,7 +64,14 @@ const GPTPage = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseApp: a
     useEffect(() => {
         setTimeout(() => setDelayLoad(true), 250)
     }, [])
-
+    if (location === null)
+        return <div className="h-full bg-[#242424] overflow-hidden">
+            <div className="bg-[#242424] p-5 flex items-center relative">
+                <div className=" absolute">
+                    <WindowCloseButtons CloseApp={CloseApp} openedApp={openedApp} />
+                </div>
+            </div>
+        </div>
     return (
         <div className="h-full bg-[#242424] overflow-hidden">
             <div className="bg-[#242424] p-5 flex items-center relative">

@@ -12,6 +12,21 @@ import { recordChat } from "@/utils/supabaseServer";
 const IOSGPT = ({appStates, setAppStates }: { appStates: any, setAppStates: any }) => {
     const [inputVal, setInputVal] = useState('')
     const [disabled, setDisabled] = useState(false)
+    const [location, setLocation] = useState<any>(null)
+
+    const getClientLocation = async () => {
+        const res = await fetch('https://ipinfo.io/json');
+        const locationData = await res.json();
+        return locationData
+      };
+
+    useEffect(() => {
+        const getLocation = async () => {
+            const loc = await getClientLocation()
+            setLocation(loc)
+        }
+        getLocation()
+    }, [])
 
     const submitQuerry = async () => {
         if (inputVal === '' || disabled)
@@ -22,7 +37,7 @@ const IOSGPT = ({appStates, setAppStates }: { appStates: any, setAppStates: any 
         const chats = appStates['gpt']['chats'] || []
         chats.push({ role: 'user', content: inputVal })
         chats.push({ role: 'assistant', content: '...' })
-        recordChat(inputVal, 'user')
+        recordChat(inputVal, 'user', location?.ip)
         setAppStates({ ...appStates, ['gpt']: { ...appStates['gpt'], chats: chats } })
         setInputVal('')
         const response = await getGroqResponse(chats)
@@ -37,13 +52,12 @@ const IOSGPT = ({appStates, setAppStates }: { appStates: any, setAppStates: any 
                 await new Promise(resolve => setTimeout(resolve, 10))
                 c++
             }
-            recordChat(response, 'assistant')
+            recordChat(response, 'assistant', location?.ip)
             console.log({c, 'len': response.length})
         }
         setDisabled(false)
         
     }
-
 
     return ( 
     <div style={{

@@ -76,13 +76,21 @@ function App() {
 
   },[])
 
+  const getClientLocation = async () => {
+    const res = await fetch('https://ipinfo.io/json');
+    const locationData = await res.json();
+    return locationData
+  };
+
   useEffect(()=>{
     if(isMobile==null || visitDone)
       return
 
     (async () => {
       console.log("Recording visit")
-      console.log(await recordVisit(isMobile!), ';)')
+      const loc = await getClientLocation()
+      console.log(loc)
+      console.log(await recordVisit(isMobile!, loc.ip, loc.city, loc.region,loc.country), ';)')
       setVisitDone(true)
     })()
   },[isMobile])

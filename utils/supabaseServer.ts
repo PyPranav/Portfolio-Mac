@@ -36,23 +36,18 @@ return createServerClient(
 //     return tweets
 // }
 
-export async function recordVisit(isMobile: boolean) {
+export async function recordVisit(isMobile: boolean, ip: string, city: string, region: string, country: string) {
     try {
         const supabase = await createClient();
-        const headersList = headers();
-        const xForwardedFor = headersList.get('x-forwarded-for');
-        
-        const ip = xForwardedFor || 'unknown';
-        const userAgent = headersList.get('user-agent') || 'unknown';
-        
-        console.log('Attempting to record visit with:', { ip, userAgent });
         
         const { data, error } = await supabase
             .from("visits")
             .insert({
                 ip: ip,
-                user_agent: userAgent,
-                is_mobile: isMobile
+                is_mobile: isMobile,
+                city: city,
+                region: region,
+                country: country
             })
             
         if (error) {
@@ -68,12 +63,9 @@ export async function recordVisit(isMobile: boolean) {
     }
 }
 
-export const recordChat = async (chat: string, author: string  ) => {
+export const recordChat = async (chat: string, author: string, ip: string) => {
     try {
         const supabase = await createClient();
-        const headersList = headers();
-        const xForwardedFor = headersList.get('x-forwarded-for');
-        const ip = xForwardedFor || 'unknown';
 
         const { data, error } = await supabase
             .from("chats")
