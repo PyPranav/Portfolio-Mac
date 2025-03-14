@@ -52,6 +52,7 @@ const SettingsPage = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseA
   }, []);
 
   useEffect(() => {
+    if (statsData === null) return;
     setAppStates({
       ...appStates,
       [2]: { ...appStates[2], statsData: statsData },
