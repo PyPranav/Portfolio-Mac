@@ -12,6 +12,7 @@ function App() {
   const [isMobile, setIsMobile] = useState<boolean|null>(null)
   const [isLoaded, setIsLoaded] = useState(false)
   const [twoSecondDone, setTwoSecondDone] = useState<boolean>(false)
+  const [visitDone, setVisitDone] = useState<boolean>(false)
 
   useEffect(()=>{
     console.log(isLoaded, ';)')
@@ -76,11 +77,15 @@ function App() {
   },[])
 
   useEffect(()=>{
+    if(isMobile==null || visitDone)
+      return
+
     (async () => {
       console.log("Recording visit")
       console.log(await recordVisit(isMobile!), ';)')
+      setVisitDone(true)
     })()
-  },[])
+  },[isMobile])
   
   
   return isMobile!==null?(
