@@ -78,7 +78,7 @@ function App() {
   useEffect(()=>{
     (async () => {
       console.log("Recording visit")
-      console.log(await recordVisit(), ';)')
+      console.log(await recordVisit(isMobile!), ';)')
     })()
   },[])
   

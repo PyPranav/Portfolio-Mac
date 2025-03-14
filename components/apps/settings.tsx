@@ -44,11 +44,13 @@ interface StatsData {
 
 const SettingsPage = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseApp: any, openedApp: number, appStates: any, setAppStates: any }) => {
 
-  const [stats, setStats] = useState<StatsData | null>(null);
 
   useEffect(() => {
-    getStats().then((data) => {
-      setStats(data);
+      getStats().then((data) => {
+        setAppStates({
+          ...appStates,
+          [2]: { ...appStates[2], statsData: data },
+        });
     });
   }, []);
   return (
@@ -118,7 +120,7 @@ const SettingsPage = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseA
       <TabsContent value="experience" className="overflow-y-scroll"><ExperienceTab openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/></TabsContent>
       <TabsContent value="collaborate" className="overflow-y-scroll"><div>Collaborate </div></TabsContent>
       <TabsContent value="wallpaper" className="overflow-y-scroll"><WallpaperTab openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/></TabsContent>
-      <TabsContent value="website" className="overflow-y-scroll"><StatsTab openedApp={openedApp} appStates={appStates} setAppStates={setAppStates} stats={stats}/></TabsContent>
+      <TabsContent value="website" className="overflow-y-scroll"><StatsTab openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/></TabsContent>
     </Tabs>
   );
 }

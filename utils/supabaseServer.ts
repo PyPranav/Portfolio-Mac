@@ -36,7 +36,7 @@ return createServerClient(
 //     return tweets
 // }
 
-export async function recordVisit() {
+export async function recordVisit(isMobile: boolean) {
     try {
         const supabase = await createClient();
         const headersList = headers();
@@ -51,7 +51,8 @@ export async function recordVisit() {
             .from("visits")
             .insert({
                 ip: ip,
-                user_agent: userAgent
+                user_agent: userAgent,
+                is_mobile: isMobile
             })
             
         if (error) {

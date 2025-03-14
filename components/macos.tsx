@@ -18,6 +18,7 @@ import GamePage from "./apps/game";
 import GPTPage from "./apps/gpt";
 import ContactMePage from "./apps/contactMe";
 import { useSearchParams } from "next/navigation";
+import { getStats } from "@/utils/supabaseServer";
 
 const maxAdditionalSize = 5;
 const MacOS = ({
@@ -49,6 +50,13 @@ const MacOS = ({
       stats: true,
       bg: wallpapers[0],
       bgChanged: true,
+      statsData: {
+        total_chats: 0,
+        total_chats_in_last_24_hours: 0,
+        total_unique_visitors: 0,
+        total_visits: 0,
+        total_visits_in_last_24_hours: 0
+      },
     },
     3: {
       tabValue: "instagram",
@@ -85,6 +93,15 @@ const MacOS = ({
   useEffect(() => {
     console.log({ appStates });
   }, [appStates]);
+
+  useEffect(() => {
+    getStats().then((data) => {
+      setAppStates({
+        ...appStates,
+        [2]: { ...appStates[2], statsData: data },
+      });
+    });
+  }, []);
 
   useEffect(() => {
     if (q == "resume") {

@@ -6,9 +6,8 @@ import { Switch } from "@/components/ui/switch";
 import { getStats } from "@/utils/supabaseServer";
 
 
-const StatsTab = ({openedApp, appStates, setAppStates, stats }: {openedApp:number, appStates: any, setAppStates: any, stats: any }) => {
+const StatsTab = ({openedApp, appStates, setAppStates}: {openedApp:number, appStates: any, setAppStates: any}) => {
 
-    if (!stats) return <div className="flex justify-center items-center h-64">Loading...</div>;
 
     return (
         <section className="w-full px-10 py-2 ">
@@ -52,8 +51,8 @@ const StatsTab = ({openedApp, appStates, setAppStates, stats }: {openedApp:numbe
                                             </div>
                                             <div>
                                                 <p>Total Visits</p>
-                                                <p className="text-xs"><span className="font-bold text-sm text-green-400">{stats.total_visits}</span> visitors have explored this portfolio!</p>
-                                                <p className="text-xs opacity-75">Including <span className="font-semibold ">{stats.total_visits_in_last_24_hours}</span> curious minds in the last 24 hours</p>
+                                                <p className="text-xs"><span className="font-bold text-sm text-green-400">{appStates[openedApp]['statsData'].total_visits}</span> visitors have explored this portfolio!</p>
+                                                <p className="text-xs opacity-75">Including <span className="font-semibold ">{appStates[openedApp]['statsData'].total_visits_in_last_24_hours}</span> curious minds in the last 24 hours</p>
                                             </div>
                                         </div>
                                     </div>
@@ -70,7 +69,7 @@ const StatsTab = ({openedApp, appStates, setAppStates, stats }: {openedApp:numbe
                                             </div>
                                             <div>
                                                 <p>Unique Visitors</p>
-                                                <p className="text-xs"><span className="font-bold text-sm text-purple-400">{stats.total_unique_visitors}</span> different people discovered this site</p>
+                                                <p className="text-xs"><span className="font-bold text-sm text-purple-400">{appStates[openedApp]['statsData'].total_unique_visitors}</span> different people discovered this site</p>
                                                 <p className="text-xs opacity-75">Each bringing their unique perspective to my digital showcase</p>
                                             </div>
                                         </div>
@@ -89,8 +88,8 @@ const StatsTab = ({openedApp, appStates, setAppStates, stats }: {openedApp:numbe
                                             </div>
                                             <div>
                                                 <p>Total Chats</p>
-                                                <p className="text-xs"><span className="font-bold text-sm text-blue-400">{stats.total_chats}</span> conversations have happened here</p>
-                                                <p className="text-xs opacity-75">With <span className="font-semibold">{stats.total_chats_in_last_24_hours}</span> fresh discussions in the last day alone</p>
+                                                <p className="text-xs"><span className="font-bold text-sm text-blue-400">{appStates[openedApp]['statsData'].total_chats}</span> conversations have happened here</p>
+                                                <p className="text-xs opacity-75">With <span className="font-semibold">{appStates[openedApp]['statsData'].total_chats_in_last_24_hours}</span> fresh discussions in the last day alone</p>
                                             </div>
                                         </div>
                                     </div>
