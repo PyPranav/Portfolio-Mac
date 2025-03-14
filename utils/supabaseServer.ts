@@ -162,8 +162,8 @@ export const getStats = async () => {
             total_visits: totalVisits.length,
             total_visits_in_last_24_hours: recentVisits.length,
             total_unique_visitors: uniqueIPs,
-            total_chats: totalChats.length,
-            total_chats_in_last_24_hours: recentChats.length
+            total_chats: Math.ceil(totalChats.length/2),
+            total_chats_in_last_24_hours: Math.ceil(recentChats.length/2)
         };
     } catch (err) {
         console.error('Exception getting stats:', err);

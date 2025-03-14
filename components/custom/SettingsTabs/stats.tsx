@@ -4,22 +4,9 @@ import Image from "next/image";
 import { PersonalInfo } from "@/utils/personalInfo";
 import { Switch } from "@/components/ui/switch";
 import { getStats } from "@/utils/supabaseServer";
-interface StatsData {
-    total_chats: number;
-    total_chats_in_last_24_hours: number;
-    total_unique_visitors: number;
-    total_visits: number;
-    total_visits_in_last_24_hours: number;
-}
 
-const StatsTab = ({openedApp, appStates, setAppStates }: {openedApp:number, appStates: any, setAppStates: any }) => {
-    const [stats, setStats] = useState<StatsData | null>(null);
-    
-    useEffect(() => {
-        getStats().then((data) => {
-            setStats(data);
-        });
-    }, []);
+
+const StatsTab = ({openedApp, appStates, setAppStates, stats }: {openedApp:number, appStates: any, setAppStates: any, stats: any }) => {
 
     if (!stats) return <div className="flex justify-center items-center h-64">Loading...</div>;
 

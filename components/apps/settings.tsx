@@ -10,6 +10,8 @@ import SkillTab from "../custom/SettingsTabs/skills";
 import ExperienceTab from "../custom/SettingsTabs/experience";
 import WallpaperTab from "../custom/SettingsTabs/wallpaper";
 import StatsTab from "../custom/SettingsTabs/stats";
+import { useEffect, useState } from "react";
+import { getStats } from "@/utils/supabaseServer";
 
 
 function SearchIcon(props: any) {
@@ -32,8 +34,23 @@ function SearchIcon(props: any) {
   )
 }
 
+interface StatsData {
+  total_chats: number;
+  total_chats_in_last_24_hours: number;
+  total_unique_visitors: number;
+  total_visits: number;
+  total_visits_in_last_24_hours: number;
+}
+
 const SettingsPage = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseApp: any, openedApp: number, appStates: any, setAppStates: any }) => {
 
+  const [stats, setStats] = useState<StatsData | null>(null);
+
+  useEffect(() => {
+    getStats().then((data) => {
+      setStats(data);
+    });
+  }, []);
   return (
 
     <Tabs value={appStates[openedApp]['tabValue']} onValueChange={(val) => setAppStates({ ...appStates, [openedApp]: { ...appStates[openedApp], 'tabValue': val } })} defaultValue="account" className="grid grid-cols-[300px_2px_1fr] h-full w-full  color-white bg-[#2d2d2d]">
@@ -101,7 +118,7 @@ const SettingsPage = ({ CloseApp, openedApp, appStates, setAppStates }: { CloseA
       <TabsContent value="experience" className="overflow-y-scroll"><ExperienceTab openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/></TabsContent>
       <TabsContent value="collaborate" className="overflow-y-scroll"><div>Collaborate </div></TabsContent>
       <TabsContent value="wallpaper" className="overflow-y-scroll"><WallpaperTab openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/></TabsContent>
-      <TabsContent value="website" className="overflow-y-scroll"><StatsTab openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/></TabsContent>
+      <TabsContent value="website" className="overflow-y-scroll"><StatsTab openedApp={openedApp} appStates={appStates} setAppStates={setAppStates} stats={stats}/></TabsContent>
     </Tabs>
   );
 }
