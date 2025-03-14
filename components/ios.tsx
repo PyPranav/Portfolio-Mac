@@ -19,6 +19,7 @@ import IOSGame from "./ios/apps/gameIos";
 import { convertRemToPixels } from "@/utils/func";
 import SpotifyApp from "./apps/spotify";
 import ContactMePage from "./apps/contactMe";
+import IOSFinder from "./ios/apps/finderIos";
 
 
 const IOS = ({ loaded, setIsLoaded }: { loaded: boolean, setIsLoaded: Dispatch<SetStateAction<boolean>> }) => {
@@ -33,6 +34,12 @@ const IOS = ({ loaded, setIsLoaded }: { loaded: boolean, setIsLoaded: Dispatch<S
     const [appStates, setAppStates] = useState<any>({
         'gpt':{
             chats:[]
+        },
+        'finder':{
+            'fav_toggle':true,
+            'languages_toggle':true,
+            'tabValue':'home',
+            'openedDoc':null
         },
         4:{
             'name':'',
@@ -89,6 +96,13 @@ const IOS = ({ loaded, setIsLoaded }: { loaded: boolean, setIsLoaded: Dispatch<S
         }
         else{
             CloseApp(openedApp)
+        }
+
+        const finderAppState = params.get('finderAppState')
+        if(finderAppState){
+            const updatedParams = new URLSearchParams(searchParams);
+            updatedParams.delete('finderAppState');
+            router.replace(`${pathname}?${updatedParams.toString()}`, { scroll: false });
         }
 
     },[searchParams, pathname])
@@ -178,7 +192,7 @@ const IOS = ({ loaded, setIsLoaded }: { loaded: boolean, setIsLoaded: Dispatch<S
 
       
   const appSelector = [
-    <IOSGPT key={1} appStates={appStates} setAppStates={setAppStates}/>,
+    <IOSFinder key={1} appStates={appStates} setAppStates={setAppStates}/>,
     <IOSGPT key={2} appStates={appStates} setAppStates={setAppStates}/>,
     <IOSGPT key={3} appStates={appStates} setAppStates={setAppStates}/>,
     <ContactMePage key={4} isMobile={true} CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>,
@@ -188,6 +202,10 @@ const IOS = ({ loaded, setIsLoaded }: { loaded: boolean, setIsLoaded: Dispatch<S
     <IOSGame key={8}/>,
     <SpotifyApp key={9}/>
   ]
+
+  useEffect(()=>{
+    console.log({appStates})
+  },[appStates])
 
       
     return (
