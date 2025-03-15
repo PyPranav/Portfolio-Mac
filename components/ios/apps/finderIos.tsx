@@ -115,7 +115,28 @@ const IOSFinder = ({appStates, setAppStates}: {appStates: any, setAppStates: any
     else if(appStates['finder']['tabValue']==='home/projects'){
         render = (
             <div className="bg-black h-full p-5 rounded-[12px] text-base">
-                <p className="text-white text-3xl font-bold text-left pt-0">Projects</p>
+                <div className="flex flex-row" onClick={() => {
+                    const params = new URLSearchParams(searchParams)
+                    params.set('iosApp', '1')
+                    let cur = params.get('finderAppState')
+                    if(cur){
+                        let curArr = cur.split('/')
+                        curArr.pop()
+                        params.set('finderAppState', curArr.join('/'))
+                    }
+                    else
+                        params.set('finderAppState', 'home')
+                    router.push(`${pathname}?${params.toString()}`)
+                }}>
+                    <Image
+                            src={'/back.svg'}
+                            className={cn("mr-1 object-cover rounded-xl opacity-100 cursor-pointer py-1 invert")}
+                            height={25}
+                            width={25}
+                            alt={'back'}
+                        />
+                    <p className="text-white text-3xl font-bold text-left pt-0">Projects</p>
+                </div>
                 <div className="relative">
                     <div className="text-white text-xl font-bold text-left pt-5 flex flex-row justify-between" onClick={() => {
                         setAppStates({...appStates, 'finder': {...appStates['finder'], 'languages_toggle': !appStates['finder']['languages_toggle']}})
@@ -173,7 +194,28 @@ const IOSFinder = ({appStates, setAppStates}: {appStates: any, setAppStates: any
     else if(appStates['finder']['tabValue']==='home/resume'){
         render = (
             <div className="bg-black h-full p-5 rounded-[12px] text-base">
-                <p className="text-white text-3xl font-bold text-left pt-0">Resume</p>
+                <div className="flex flex-row" onClick={() => {
+                    const params = new URLSearchParams(searchParams)
+                    params.set('iosApp', '1')
+                    let cur = params.get('finderAppState')
+                    if(cur){
+                        let curArr = cur.split('/')
+                        curArr.pop()
+                        params.set('finderAppState', curArr.join('/'))
+                    }
+                    else
+                        params.set('finderAppState', 'home')
+                    router.push(`${pathname}?${params.toString()}`)
+                }}>
+                    <Image
+                            src={'/back.svg'}
+                            className={cn("mr-1 object-cover rounded-xl opacity-100 cursor-pointer py-1 invert")}
+                            height={25}
+                            width={25}
+                            alt={'back'}
+                        />
+                    <p className="text-white text-3xl font-bold text-left pt-0">Resume</p>
+                </div>
                 <div className="grid grid-cols-3 gap-5 mt-5">
                     <DocumentComponent fileName={'Resume'} tabIndex={1} appStates={appStates} openedApp={'finder'} setAppStates={setAppStates} mobile={true} />
                     <DocumentComponent fileName={'Daynt_Certificate'} tabIndex={2} appStates={appStates} openedApp={'finder'} setAppStates={setAppStates} mobile={true} />
@@ -188,7 +230,28 @@ const IOSFinder = ({appStates, setAppStates}: {appStates: any, setAppStates: any
         if (lang && languages.hasOwnProperty(lang)){
         render = (
             <div className="bg-black h-full p-5 rounded-[12px] text-base">
-                <p className="text-white text-3xl font-bold text-left pt-0">{lang}</p>
+                <div className="flex flex-row" onClick={() => {
+                    const params = new URLSearchParams(searchParams)
+                    params.set('iosApp', '1')
+                    let cur = params.get('finderAppState')
+                    if(cur){
+                        let curArr = cur.split('/')
+                        curArr.pop()
+                        params.set('finderAppState', curArr.join('/'))
+                    }
+                    else
+                        params.set('finderAppState', 'home')
+                    router.push(`${pathname}?${params.toString()}`)
+                }}>
+                    <Image
+                            src={'/back.svg'}
+                            className={cn("mr-1 object-cover rounded-xl opacity-100 cursor-pointer py-1 invert")}
+                            height={25}
+                            width={25}
+                            alt={'back'}
+                        />
+                    <p className="text-white text-3xl font-bold text-left pt-0">{lang}</p>
+                </div>
                 <div className="grid grid-cols-3 gap-5 mt-5">
                     {languages[lang as keyof typeof languages].map((language:any, index:number) => (
                         <DocumentComponent mobile={true} key={index} fileName={language.title} content={language.readme} tabIndex={index+1} appStates={appStates} openedApp={'finder'} setAppStates={setAppStates}/>

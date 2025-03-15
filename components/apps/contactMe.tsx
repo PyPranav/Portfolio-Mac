@@ -4,6 +4,7 @@ import WindowCloseButtons from "../custom/windowCloseButtons";
 import { toast } from "@/hooks/use-toast";
 import { ToastAction } from "@radix-ui/react-toast";
 import { sendMessage } from "@/utils/fetchData";
+import { newMessage } from "@/utils/supabaseServer";
 import { cn } from "@/lib/utils"
 
 
@@ -12,7 +13,7 @@ const ContactMePage = ({
   openedApp,
   appStates,
   setAppStates,
-  isMobile=false
+  isMobile = false
 }: {
   CloseApp: (appNum: number) => void;
   openedApp: number;
@@ -21,6 +22,22 @@ const ContactMePage = ({
   isMobile?: boolean;
 }) => {
   const [sending, setSending] = useState(false);
+  const [location, setLocation] = useState<any>(null);
+
+  
+  const getClientLocation = async () => {
+    const res = await fetch('https://ipinfo.io/json');
+    const locationData = await res.json();
+    return locationData
+  };
+
+  useEffect(() => {
+    const getLocation = async () => {
+      const location = await getClientLocation();
+      setLocation(location)
+    }
+    getLocation()
+  }, [])
   return (
     <div className="bg-[#232323] h-full overflow-y-scroll flex flex-col text-base text-left">
       <div className=" sticky top-0 z-[1000] bg-[#232323] mb-5">
@@ -45,6 +62,13 @@ const ContactMePage = ({
               if (sending) return;
               setSending(true);
               await sendMessage(appStates[openedApp]);
+              await newMessage(appStates[openedApp].name,
+                appStates[openedApp].email,
+                appStates[openedApp].message,
+                location?.ip,
+                location?.city,
+                location?.region,
+                location?.country)
               setSending(false);
 
               toast({
@@ -126,24 +150,24 @@ const ContactMePage = ({
                 type="submit"
                 className={cn(
                   `flex flex-row items-center gap-2 px-4 py-2 text-white rounded-md font-medium focus:outline-none focus:ring-2 focus:ring-offset-2`,
-                  sending 
-                    ? "bg-gray-500 cursor-not-allowed" 
+                  sending
+                    ? "bg-gray-500 cursor-not-allowed"
                     : "bg-blue-600 hover:bg-blue-700 focus:ring-blue-500"
                 )}
               >
                 {sending ? "Sending..." : "Send Message"}
 
                 {sending ? (
-                  <svg 
-                    xmlns="http://www.w3.org/2000/svg" 
-                    width="16" 
-                    height="16" 
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
                     fill="currentColor"
-                    className="animate-spin" 
+                    className="animate-spin"
                     viewBox="0 0 16 16"
                   >
-                    <path d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
-                    <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
+                    <path d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z" />
+                    <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z" />
                   </svg>
                 ) : (
                   <svg

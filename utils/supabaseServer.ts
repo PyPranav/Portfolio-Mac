@@ -179,3 +179,34 @@ export const getStats = async () => {
         return null;
     }
 }
+
+export const newMessage = async (name: string, email: string, message: string, ip: string, city: string, region: string, country: string) => {
+    try {
+
+        const supabase = await createClient();
+        
+        // Get total visits
+        const { data, error } = await supabase
+            .from("contact_me")
+            .insert({
+                name: name,
+                email: email,
+                message: message,
+                ip: ip,
+                city: city,
+                region: region,
+                country: country
+            })
+            
+        if (error) {
+            console.error('Error adding new contact message:', error);
+            return { success: false, error };
+        }
+        
+        return { success: true, data };
+    } catch (err) {
+        console.error('Exception adding new contact message:', err);
+        return { success: false, error: err };
+    }
+}
+
