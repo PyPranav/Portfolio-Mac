@@ -27,6 +27,8 @@ Beyond just a portfolio, this serves as a **sandbox** for me to experiment with 
 ![image](https://github.com/user-attachments/assets/66988b20-c4da-4836-a7f9-0c9d2227e12c)
 ![image](https://github.com/user-attachments/assets/c257e0fe-0b95-47f3-9d7c-4586405d9019)
 ![image](https://github.com/user-attachments/assets/26670833-e3e4-4155-be71-e1d2530477db)
+![image](https://github.com/user-attachments/assets/5f905ade-cc41-4f4b-bf5a-8432ef945b5e)
+
 
 
 
