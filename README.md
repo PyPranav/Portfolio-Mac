@@ -1,36 +1,41 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🚀 MacOS-Themed Portfolio  
 
-## Getting Started
+Welcome to my **personal portfolio**, designed to mimic **MacOS** for an interactive and immersive experience. This project showcases my **skills, projects, and creativity** with a fully responsive and dynamic interface.  
 
-First, run the development server:
+## 🎨 Features  
+- **MacOS-Inspired UI** – Windowed apps, a dock, a menu bar, and smooth transitions.  
+- **Dynamic Apps** – Each app highlights a different skill or project.  
+- **Custom Animations** – Hand-crafted animations for smooth interactions.  
+- **Easter Eggs & Fun Details** – Explore and discover hidden surprises!  
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🛠️ Tech Stack  
+- **Frontend:** [Next.js](https://nextjs.org/) (React Framework)  
+- **Backend:** [Flask](https://flask.palletsprojects.com/) (Python Microframework)  
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/) for efficient and responsive design  
+- **Animations:** Fully custom-built animations 
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 💡 Inspiration & Why I Built This  
+I've always been a fan of **MacOS's clean, intuitive, and polished design**. So, I thought—why not turn my portfolio into a **fully interactive desktop environment**? This project was a way for me to combine **UI/UX design, frontend development, and backend logic** into a fun and engaging experience.  
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Beyond just a portfolio, this serves as a **sandbox** for me to experiment with **performance optimization, animation techniques, and interactive web experiences**. Every part of this project—from the **window management** to the **animations**—is handcrafted to mimic the real MacOS feel.  
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## 📸 Screenshots  
+![image](https://github.com/user-attachments/assets/d18369ce-a7a8-43d5-ad77-78e0c8819f35)
+![image](https://github.com/user-attachments/assets/69f2bd15-b99f-4128-a36b-57ed8eff84c6)
+![image](https://github.com/user-attachments/assets/2d1804ce-f661-4fc2-ad30-c36a91d01986)
 
-## Learn More
+![image](https://github.com/user-attachments/assets/66988b20-c4da-4836-a7f9-0c9d2227e12c)
+![image](https://github.com/user-attachments/assets/c257e0fe-0b95-47f3-9d7c-4586405d9019)
+![image](https://github.com/user-attachments/assets/26670833-e3e4-4155-be71-e1d2530477db)
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## 🚀 Live Demo  
+🔗 [View Portfolio](https://www.pypranav.com/)  
 
-## Deploy on Vercel
+## 🤝 Contributing  
+This is a personal project, but if you have any cool ideas or suggestions, feel free to **open an issue** or **reach out to me**!  
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## 📬 Contact  
+📧 Email: [pypranav.sunil@gmail.com](mailto:pypranav.sunil@gmail.com)  
+💼 LinkedIn: [Pranav Sunil](https://www.linkedin.com/in/pypranav)  
