@@ -33,7 +33,13 @@ const DocumentComponent = ({ openedApp, appStates, setAppStates, tabIndex, fileN
             <p className="text-sm text-center group-focus:bg-blue-700 rounded text-wrap max-w-[90px]">{fileName.split(/[-,_]/).join(' ')}</p>
             <Dialog open={appStates[openedApp].openedDoc === fileName} onOpenChange={()=>setAppStates({ ...appStates, [openedApp]: { ...appStates[openedApp], 'openedDoc':null} })}>
                 <DialogContent className={cn("bg-[#0d1117] w-[60%] max-w-[60%]", mobile&&"w-full max-w-full ")}>
-                    <DialogTitle className="sticky [&>svg]:size-10">{fileName}</DialogTitle>
+                    <DialogTitle className="sticky [&>svg]:size-10">
+                        {mobile&&!content?(
+                            <a className="underline text-blue-500" href={'/finder/'+fileName+'.pdf'} target="_blank">{fileName}</a>
+                        ):(
+                            <>{fileName}</>
+                        )}
+                    </DialogTitle>
                     <DialogDescription className={cn(" overflow-y-scroll max-h-[80vh]", mobile&&"max-h-[65vh]")}>
                         {content&&(
                             <MarkdownDisplay markdownContent={content}/>
