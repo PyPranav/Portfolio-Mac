@@ -20,7 +20,7 @@ I've always been a fan of **MacOS's clean, intuitive, and polished design**. So,
 Beyond just a portfolio, this serves as a **sandbox** for me to experiment with **performance optimization, animation techniques, and interactive web experiences**. Every part of this project—from the **window management** to the **animations**—is handcrafted to mimic the real MacOS feel.  
 
 ## 📸 Screenshots  
-![image](https://github.com/user-attachments/assets/d18369ce-a7a8-43d5-ad77-78e0c8819f35)
+![image](https://github.com/user-attachments/assets/f12e7055-c513-4801-91a7-85230de760fb)
 ![image](https://github.com/user-attachments/assets/69f2bd15-b99f-4128-a36b-57ed8eff84c6)
 ![image](https://github.com/user-attachments/assets/2d1804ce-f661-4fc2-ad30-c36a91d01986)
 
