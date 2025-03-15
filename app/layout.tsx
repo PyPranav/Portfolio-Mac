@@ -7,6 +7,8 @@ import { Analytics } from "@vercel/analytics/react"
 import Loader from "@/components/custom/loader";
 import { Toaster } from "@/components/ui/toaster";
 
+import { headers } from "next/headers";
+
 const inter = Inter({ subsets: ["latin"] });
 // const inter = Poppins({ subsets: ["latin"] , weight:['300','400','500','600']});
 
@@ -15,11 +17,18 @@ export const metadata: Metadata = {
   description: "Portfolio of Pranav Sunil",
 };
 
+function isMobileDevice(userAgent: string) {
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const headersList = headers();
+  const userAgent = headersList.get('user-agent') || '';
+  const isMobile = isMobileDevice(userAgent);
   return (
     <html lang="en">
       <head>
@@ -37,7 +46,7 @@ export default function RootLayout({
       <body 
       className={inter.className}
       >
-        <Loader/>
+        <Loader isMobile={isMobile} />
         {children}
         <Toaster />
         <SpeedInsights />

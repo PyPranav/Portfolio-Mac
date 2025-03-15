@@ -1,5 +1,5 @@
 'use server'
-const Loader = ({ speed = 4 }) => {
+const Loader = ({ speed = 4, isMobile = false }: { speed?: number, isMobile?: boolean }) => {
   const greetings = [
     { id: 'en', text: 'Hello' },
     { id: 'hi', text: 'नमस्ते' },
@@ -31,6 +31,8 @@ const Loader = ({ speed = 4 }) => {
         </div>
 
         <div className="absolute bottom-10 w-full h-10 grid place-items-center">
+          {isMobile && <p className="text-sm text-gray-400 mb-2">View on desktop for optimal experience</p>}
+          
           <div className="h-2 w-[200px] bg-gray-400 rounded-xl">
             <div className="h-full rounded-xl animate-pulse duration-700">
               <div
