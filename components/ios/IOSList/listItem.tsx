@@ -3,7 +3,7 @@ import Image from "next/image"
 const IOSListItem = ({onClick, start_icon, end_icon, label, last = false }: {onClick: () => void, start_icon: React.ReactNode, end_icon: React.ReactNode, label: string, last?: boolean}) => {
     return ( 
 
-        <div onClick={onClick} className="grid grid-cols-[50px_1fr_40px] py-2   w-full">
+        <button onClick={onClick} className="grid grid-cols-[50px_1fr_40px] py-2 w-full focus:bg-white focus:bg-opacity-10 ">
             <div className="flex items-center justify-center">
                 {start_icon}
             </div>
@@ -15,7 +15,7 @@ const IOSListItem = ({onClick, start_icon, end_icon, label, last = false }: {onC
                 {end_icon}
                 {!last && <hr className="opacity-10 mt-1"/>}
             </div>
-        </div>
+        </button>
      );
 }
  
