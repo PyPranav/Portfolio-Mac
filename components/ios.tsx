@@ -110,7 +110,7 @@ const IOS = ({ loaded, setIsLoaded }: { loaded: boolean, setIsLoaded: Dispatch<S
         if (statsData === null) return;
         setAppStates({
         ...appStates,
-        'settings': { ...appStates[2], statsData: statsData },
+        'settings': { ...appStates['settings'], statsData: statsData },
         });
     }, [statsData]);
 
