@@ -20,6 +20,8 @@ import { convertRemToPixels } from "@/utils/func";
 import SpotifyApp from "./apps/spotify";
 import ContactMePage from "./apps/contactMe";
 import IOSFinder from "./ios/apps/finderIos";
+import IOSSettings from "./ios/apps/settingsIos";
+import { getStats } from "@/utils/supabaseServer";
 
 
 const IOS = ({ loaded, setIsLoaded }: { loaded: boolean, setIsLoaded: Dispatch<SetStateAction<boolean>> }) => {
@@ -40,6 +42,21 @@ const IOS = ({ loaded, setIsLoaded }: { loaded: boolean, setIsLoaded: Dispatch<S
             'languages_toggle':true,
             'tabValue':'home',
             'openedDoc':null
+        },
+        'settings':{
+            'tabValue': 'home',
+            'wifi':true,
+            'bluetooth':true,
+            'stats':true,
+            "statsData": {
+                total_chats: 0,
+                total_chats_in_last_24_hours: 0,
+                total_unique_visitors: 0,
+                total_visits: 0,
+                total_visits_in_last_24_hours: 0,
+                total_mobile_visitors: 0,
+                total_desktop_visitors: 0,
+              }
         },
         4:{
             'name':'',
@@ -80,6 +97,22 @@ const IOS = ({ loaded, setIsLoaded }: { loaded: boolean, setIsLoaded: Dispatch<S
 
         
     }
+
+    const [statsData, setStatsData] = useState<any>(null);
+
+    useEffect(() => {
+        getStats().then((data) => {
+        setStatsData(data);
+        });
+    }, []);
+
+    useEffect(() => {
+        if (statsData === null) return;
+        setAppStates({
+        ...appStates,
+        'settings': { ...appStates[2], statsData: statsData },
+        });
+    }, [statsData]);
 
     useEffect(()=>{
         const params = new URLSearchParams(searchParams)
@@ -193,7 +226,7 @@ const IOS = ({ loaded, setIsLoaded }: { loaded: boolean, setIsLoaded: Dispatch<S
       
   const appSelector = [
     <IOSFinder key={1} appStates={appStates} setAppStates={setAppStates}/>,
-    <IOSGPT key={2} appStates={appStates} setAppStates={setAppStates}/>,
+    <IOSSettings key={2} appStates={appStates} setAppStates={setAppStates}/>,
     <IOSGPT key={3} appStates={appStates} setAppStates={setAppStates}/>,
     <ContactMePage key={4} isMobile={true} CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>,
     <GithubPage key={5}/>,

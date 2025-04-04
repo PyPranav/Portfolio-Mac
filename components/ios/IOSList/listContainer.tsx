@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-const IOSListContainer = ({toggle, children, className}: {toggle?: boolean, children: React.ReactNode, className?: string}) => {
+const IOSListContainer = ({toggle, children, className}: {toggle?: boolean, children?: React.ReactNode, className?: string}) => {
     if (toggle!=undefined)
         return ( 
             <div 
