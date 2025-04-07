@@ -9,6 +9,7 @@ const IOSWallpaperSettings = ({ changeAppState, appStates, setAppStates }: { cha
     const [showStickyHeader, setShowStickyHeader] = useState(false);
     const [currentWallpaperIndex, setCurrentWallpaperIndex] = useState(wallpapers.findIndex((wallpaper) => wallpaper === appStates['settings']['bg']));
     const titleRef = useRef<HTMLDivElement>(null);
+    const touchStartXRef = useRef<number | null>(null);
     
     useEffect(() => {
         // setCurrentWallpaperIndex(wallpapers.findIndex((wallpaper) => wallpaper === appStates['settings']['bg']))
@@ -58,6 +59,28 @@ const IOSWallpaperSettings = ({ changeAppState, appStates, setAppStates }: { cha
             ...appStates,
             selectedWallpaper: wallpapers[index]
         });
+    };
+
+    const handleTouchStart = (e: React.TouchEvent) => {
+        touchStartXRef.current = e.touches[0].clientX;
+    };
+
+    const handleTouchEnd = (e: React.TouchEvent) => {
+        if (touchStartXRef.current === null) return;
+        
+        const touchEndX = e.changedTouches[0].clientX;
+        const diffX = touchEndX - touchStartXRef.current;
+        
+        // If the swipe distance is significant enough (more than 50px)
+        if (Math.abs(diffX) > 50) {
+            if (diffX > 0) {
+                goToPrevWallpaper(); // Swipe right goes to previous
+            } else {
+                goToNextWallpaper(); // Swipe left goes to next
+            }
+        }
+        
+        touchStartXRef.current = null;
     };
 
     return (
@@ -126,7 +149,11 @@ const IOSWallpaperSettings = ({ changeAppState, appStates, setAppStates }: { cha
                         </button>
                         
                         {/* Wallpaper Display */}
-                        <div className="relative w-[240px] h-[480px] rounded-3xl overflow-hidden">
+                        <div 
+                            className="relative w-[240px] h-[480px] rounded-3xl overflow-hidden"
+                            onTouchStart={handleTouchStart}
+                            onTouchEnd={handleTouchEnd}
+                        >
                             {wallpapers.map((wallpaper, index) => (
                                 <div 
                                     key={index}
