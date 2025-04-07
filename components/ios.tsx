@@ -358,7 +358,7 @@ const IOS = ({ loaded, setIsLoaded }: { loaded: boolean, setIsLoaded: Dispatch<S
                             router.push(`${pathname}?${params.toString()}`)
                             router
 
-                        }} className="cursor-pointer select-none ml-2 text-start text-sm flex items-center w-full h-[25px] bg-black">
+                        }} className="cursor-pointer select-none pl-2 text-start text-sm flex items-center w-full h-[25px] bg-black">
                             X Close
                         </div>
                         <div style={{
