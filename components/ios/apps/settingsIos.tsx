@@ -10,6 +10,7 @@ import IOSHomeSettings from "./settingsPages/home";
 import IOSWifiSettings from "./settingsPages/wifi";
 import IOSBluetoothSettings from "./settingsPages/bluetooth";
 import IOSStatsSettings from "./settingsPages/stats";
+import IOSWallpaperSettings from "./settingsPages/wallpaper";
 
 const IOSSettings = ({ appStates, setAppStates }: { appStates: any, setAppStates: any }) => {
     const searchParams = useSearchParams();
@@ -57,6 +58,9 @@ const IOSSettings = ({ appStates, setAppStates }: { appStates: any, setAppStates
             break
         case 'website':
             render=<IOSStatsSettings changeAppState={changeAppState} appStates={appStates} setAppStates={setAppStates} />
+            break
+        case 'wallpaper':
+            render=<IOSWallpaperSettings changeAppState={changeAppState} appStates={appStates} setAppStates={setAppStates} />
             break
         default:
             render = <></>

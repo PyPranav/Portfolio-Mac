@@ -48,6 +48,8 @@ const IOS = ({ loaded, setIsLoaded }: { loaded: boolean, setIsLoaded: Dispatch<S
             'wifi':true,
             'bluetooth':true,
             'stats':true,
+            'bg':wallpapers[0],
+            "bgChanged": true,
             "statsData": {
                 total_chats: 0,
                 total_chats_in_last_24_hours: 0,
@@ -240,12 +242,25 @@ const IOS = ({ loaded, setIsLoaded }: { loaded: boolean, setIsLoaded: Dispatch<S
     console.log({appStates})
   },[appStates])
 
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const url = localStorage.getItem("background");
+      if (url && wallpapers.includes(url)) {
+        setAppStates({
+          ...appStates,
+          'settings': { ...appStates['settings'], bg: url, bgChanged: false },
+        });
+      }
+    }
+  }, []);
+
       
     return (
         <div className="bg-black h-full font-normal text-white text-3xl text-center  grid place-items-center">
             <div className="h-full w-full select-none absolute z-0">
                 <Image
-                    src={wallpapers[1]}
+                    src={appStates?.settings?.bg??wallpapers[0]}
                     id={'bgImage'}
                     onLoad={() => {
                         setIsLoaded(true)
@@ -343,7 +358,7 @@ const IOS = ({ loaded, setIsLoaded }: { loaded: boolean, setIsLoaded: Dispatch<S
                             router.push(`${pathname}?${params.toString()}`)
                             router
 
-                        }} className="text-start text-sm flex items-center w-full h-[25px] bg-black">
+                        }} className="cursor-pointer select-none ml-2 text-start text-sm flex items-center w-full h-[25px] bg-black">
                             X Close
                         </div>
                         <div style={{

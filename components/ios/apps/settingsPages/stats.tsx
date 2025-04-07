@@ -1,7 +1,6 @@
 import Image from "next/image";
 import IOSListItem from "../../IOSList/listItem";
 import IOSListContainer from "../../IOSList/listContainer";
-import { PersonalInfo } from "@/utils/personalInfo";
 import { Switch } from "@/components/ui/switch";
 import { useEffect, useRef, useState } from "react";
 

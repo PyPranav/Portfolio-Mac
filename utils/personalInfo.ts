@@ -94,7 +94,25 @@ export const PersonalInfo = {
         {
             position:'AI ML Engineer',
             companyName:'Penpixel LLP',
-            duration:'Jun 2024 - Present',
+            duration: (() => {
+                const startYear = 2024;
+                const startMonth = 6; // June
+                const currentYear = new Date().getFullYear();
+                const currentMonth = new Date().getMonth() + 1; // Months are 0-indexed
+
+                const totalMonths = (currentYear - startYear) * 12 + (currentMonth - startMonth) + 1;
+                if (totalMonths < 12) {
+                    return `Jun 2024 - Present · ${totalMonths} mos`;
+                } else {
+                    const years = Math.floor(totalMonths / 12);
+                    const months = totalMonths % 12;
+                    if (years==1)
+                        return `Jun 2024 - Present · ${years} yr${months > 0 ? `, ${months} mos` : ''}`;
+                    else
+                        return `Jun 2024 - Present · ${years} yrs${months > 0 ? `, ${months} mos` : ''}`;
+
+                }
+            })(),
             icon:'/settings_icon/experience/penpixel.jpeg',
             loc:'Thane, Maharashtra, India'
         },
