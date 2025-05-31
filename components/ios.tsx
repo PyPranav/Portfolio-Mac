@@ -20,6 +20,8 @@ import { convertRemToPixels } from "@/utils/func";
 import SpotifyApp from "./apps/spotify";
 import ContactMePage from "./apps/contactMe";
 import IOSFinder from "./ios/apps/finderIos";
+import IOSSettings from "./ios/apps/settingsIos";
+import { getStats } from "@/utils/supabaseServer";
 
 
 const IOS = ({ loaded, setIsLoaded }: { loaded: boolean, setIsLoaded: Dispatch<SetStateAction<boolean>> }) => {
@@ -32,19 +34,36 @@ const IOS = ({ loaded, setIsLoaded }: { loaded: boolean, setIsLoaded: Dispatch<S
 
     const [flag, setFlag] = useState(true)
     const [appStates, setAppStates] = useState<any>({
-        'gpt':{
-            chats:[]
+        'gpt': {
+            chats: []
         },
-        'finder':{
-            'fav_toggle':true,
-            'languages_toggle':true,
-            'tabValue':'home',
-            'openedDoc':null
+        'finder': {
+            'fav_toggle': true,
+            'languages_toggle': true,
+            'tabValue': 'home',
+            'openedDoc': null
         },
-        4:{
-            'name':'',
-            'email':'',
-            'message':''
+        'settings': {
+            'tabValue': 'home',
+            'wifi': true,
+            'bluetooth': true,
+            'stats': true,
+            'bg': wallpapers[0],
+            "bgChanged": true,
+            "statsData": {
+                total_chats: 0,
+                total_chats_in_last_24_hours: 0,
+                total_unique_visitors: 0,
+                total_visits: 0,
+                total_visits_in_last_24_hours: 0,
+                total_mobile_visitors: 0,
+                total_desktop_visitors: 0,
+            }
+        },
+        4: {
+            'name': '',
+            'email': '',
+            'message': ''
         }
     })
 
@@ -53,16 +72,16 @@ const IOS = ({ loaded, setIsLoaded }: { loaded: boolean, setIsLoaded: Dispatch<S
     const router = useRouter()
 
     const q = searchParams.get('q'); // Get the 'id' query parameter
-    
+
     console.log(q);
     useEffect(() => {
         if (q === 'resume') {
             window.location.href = 'https://drive.google.com/file/d/13t7MdZ0BkNp1dvGeoOJmJLA1ThGsMtHZ/view?usp=sharing';
         }
     }, [q]);
-  
 
-    
+
+
 
 
     const getCoords = (appNum: number): [number, number, number, number] => {
@@ -72,147 +91,176 @@ const IOS = ({ loaded, setIsLoaded }: { loaded: boolean, setIsLoaded: Dispatch<S
             return [rect.top + 30, rect.left + 30, window.innerHeight - rect.bottom + 30, window.innerWidth - rect.right + 30]
         } catch (error) {
             let rect = document.querySelector('.spotify')?.getBoundingClientRect()
-            if(rect)
+            if (rect)
                 return [rect.top + 120, rect.left + 120, window.innerHeight - rect.bottom + 120, window.innerWidth - rect.right + 120]
             else
-                return [0,0,0,0]
+                return [0, 0, 0, 0]
         }
 
-        
+
     }
 
-    useEffect(()=>{
+    const [statsData, setStatsData] = useState<any>(null);
+
+    useEffect(() => {
+        getStats().then((data) => {
+            setStatsData(data);
+        });
+    }, []);
+
+    useEffect(() => {
+        if (statsData === null) return;
+        setAppStates({
+            ...appStates,
+            'settings': { ...appStates['settings'], statsData: statsData },
+        });
+    }, [statsData]);
+
+    useEffect(() => {
         const params = new URLSearchParams(searchParams)
-        const iosApps = parseInt(params.get('iosApp')??"0")??0
-        if (iosApps!==0){
-            if(openedApp===iosApps)
-            return 
-                CloseApp(openedApp)
-            if (openedApp!=0)
-                setTimeout(()=>{
+        const iosApps = parseInt(params.get('iosApp') ?? "0") ?? 0
+        if (iosApps !== 0) {
+            if (openedApp === iosApps)
+                return
+            CloseApp(openedApp)
+            if (openedApp != 0)
+                setTimeout(() => {
                     OpenApp(iosApps)
-                },400)
+                }, 400)
             else OpenApp(iosApps)
         }
-        else{
+        else {
             CloseApp(openedApp)
         }
 
         const finderAppState = params.get('finderAppState')
-        if(finderAppState){
+        if (finderAppState) {
             const updatedParams = new URLSearchParams(searchParams);
             updatedParams.delete('finderAppState');
             router.replace(`${pathname}?${updatedParams.toString()}`, { scroll: false });
         }
 
-    },[searchParams, pathname])
+    }, [searchParams, pathname])
 
-    useEffect(()=>{
-        if(gridBoxRef.current){
+    useEffect(() => {
+        if (gridBoxRef.current) {
             console.log(gridBoxRef.current.clientWidth, gridBoxRef.current.clientHeight)
-            if(gridBoxRef.current.clientWidth-5<=gridBoxRef.current.clientHeight){
+            if (gridBoxRef.current.clientWidth - 5 <= gridBoxRef.current.clientHeight) {
                 setFlag(true)
             }
-            else{
+            else {
                 setFlag(false)
             }
         }
-    },[])
+    }, [])
 
-    useEffect(()=>{
-        if(gridBoxRef.current){
+    useEffect(() => {
+        if (gridBoxRef.current) {
             console.log(gridBoxRef.current.clientWidth, gridBoxRef.current.clientHeight)
-            if(drawerRef.current){
-                drawerRef.current.style.height = (gridBoxRef.current.clientHeight + convertRemToPixels(0.5))+'px'
+            if (drawerRef.current) {
+                drawerRef.current.style.height = (gridBoxRef.current.clientHeight + convertRemToPixels(0.5)) + 'px'
             }
         }
-    },[flag])
+    }, [flag])
 
-    const OpenApp = (appNum:number)=>{
+    const OpenApp = (appNum: number) => {
         setOpenedApp(appNum)
-        console.log({'opened': appNum})
+        console.log({ 'opened': appNum })
         let appCoord = getCoords(appNum)
-        console.log({appCoord})
-        if (modelRef.current){
-          modelRef.current.style.transition = "all 0s ease-in-out";
-          setTimeout(()=>{
-            if (modelRef.current){
-              modelRef.current.style.top = `${appCoord[0]}px`;
-              modelRef.current.style.left = `${appCoord[1]}px`;
-              modelRef.current.style.bottom = `${appCoord[2]}px`;
-              modelRef.current.style.right = `${appCoord[3]}px`;
-              modelRef.current.style.opacity = "0.5"
-              // modelRef.current.style.clipPath = 'polygon(0 0, 100% 0, 50% 100%, 50% 100%)';
-            }
-          },10)
-          setTimeout(()=>{
-            if (modelRef.current)
-              modelRef.current.style.transition = "all 0.3s ease-in-out";
-    
-          },20)
-    
-          setTimeout(() => {
-            if(modelRef.current){
-              modelRef.current.style.top = `${0}px`; // Adjust these values to control the final size
-              modelRef.current.style.left = `${0}px`;
-              modelRef.current.style.bottom = `${0}px`;
-              modelRef.current.style.right = `${0}px`;
-              modelRef.current.style.opacity = "1";
-              // modelRef.current.style.clipPath = 'polygon(0 0, 100% 0, 100% 100%, 0 100%)';
-            }
-          }, 30);
-        }
-      }
+        console.log({ appCoord })
+        if (modelRef.current) {
+            modelRef.current.style.transition = "all 0s ease-in-out";
+            setTimeout(() => {
+                if (modelRef.current) {
+                    modelRef.current.style.top = `${appCoord[0]}px`;
+                    modelRef.current.style.left = `${appCoord[1]}px`;
+                    modelRef.current.style.bottom = `${appCoord[2]}px`;
+                    modelRef.current.style.right = `${appCoord[3]}px`;
+                    modelRef.current.style.opacity = "0.5"
+                    // modelRef.current.style.clipPath = 'polygon(0 0, 100% 0, 50% 100%, 50% 100%)';
+                }
+            }, 10)
+            setTimeout(() => {
+                if (modelRef.current)
+                    modelRef.current.style.transition = "all 0.3s ease-in-out";
 
-      const CloseApp = (appNum:number)=>{
-        if(appNum===0)
+            }, 20)
+
+            setTimeout(() => {
+                if (modelRef.current) {
+                    modelRef.current.style.top = `${0}px`; // Adjust these values to control the final size
+                    modelRef.current.style.left = `${0}px`;
+                    modelRef.current.style.bottom = `${0}px`;
+                    modelRef.current.style.right = `${0}px`;
+                    modelRef.current.style.opacity = "1";
+                    // modelRef.current.style.clipPath = 'polygon(0 0, 100% 0, 100% 100%, 0 100%)';
+                }
+            }, 30);
+        }
+    }
+
+    const CloseApp = (appNum: number) => {
+        if (appNum === 0)
             return
         let appCoord = getCoords(appNum)
         // setOpenedApp(0)
-        setTimeout(()=>setOpenedApp(0),170)
-        
-        console.log({appCoord})
-        if (modelRef.current){
-            
-          modelRef.current.style.top = `${appCoord[0]}px`;
-          modelRef.current.style.left = `${appCoord[1]}px`;
-          modelRef.current.style.bottom = `${appCoord[2]}px`;
-          modelRef.current.style.right = `${appCoord[3]}px`;
-          modelRef.current.style.opacity = "0.5"
-          // modelRef.current.style.clipPath = 'polygon(0 0, 100% 0, 50% 100%, 50% 100%)';
-          modelRef.current.style.transition = "all 0.3s ease-in-out";    
+        setTimeout(() => setOpenedApp(0), 170)
+
+        console.log({ appCoord })
+        if (modelRef.current) {
+
+            modelRef.current.style.top = `${appCoord[0]}px`;
+            modelRef.current.style.left = `${appCoord[1]}px`;
+            modelRef.current.style.bottom = `${appCoord[2]}px`;
+            modelRef.current.style.right = `${appCoord[3]}px`;
+            modelRef.current.style.opacity = "0.5"
+            // modelRef.current.style.clipPath = 'polygon(0 0, 100% 0, 50% 100%, 50% 100%)';
+            modelRef.current.style.transition = "all 0.3s ease-in-out";
         }
-        setTimeout(()=>{
-            if(modelRef.current)
+        setTimeout(() => {
+            if (modelRef.current)
                 modelRef.current.style.opacity = "0"
 
-        },150)
-        
-      }
+        }, 150)
 
-      
-  const appSelector = [
-    <IOSFinder key={1} appStates={appStates} setAppStates={setAppStates}/>,
-    <IOSGPT key={2} appStates={appStates} setAppStates={setAppStates}/>,
-    <IOSGPT key={3} appStates={appStates} setAppStates={setAppStates}/>,
-    <ContactMePage key={4} isMobile={true} CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates}/>,
-    <GithubPage key={5}/>,
-    <LinkedInPage key={6}/>,
-    <IOSInsta key={7}/>,
-    <IOSGame key={8}/>,
-    <SpotifyApp key={9}/>
-  ]
+    }
 
-  useEffect(()=>{
-    console.log({appStates})
-  },[appStates])
 
-      
+    const appSelector = [
+        <IOSFinder key={1} appStates={appStates} setAppStates={setAppStates} />,
+        <IOSSettings key={2} appStates={appStates} setAppStates={setAppStates} />,
+        <IOSGPT key={3} appStates={appStates} setAppStates={setAppStates} />,
+        <ContactMePage key={4} isMobile={true} CloseApp={CloseApp} openedApp={openedApp} appStates={appStates} setAppStates={setAppStates} />,
+        <GithubPage key={5} />,
+        <LinkedInPage key={6} />,
+        <IOSInsta key={7} />,
+        <IOSGame key={8} />,
+        <SpotifyApp key={9} />
+    ]
+
+    useEffect(() => {
+        console.log({ appStates })
+    }, [appStates])
+
+
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            const url = localStorage.getItem("background");
+            if (url && wallpapers.includes(url)) {
+                setAppStates({
+                    ...appStates,
+                    'settings': { ...appStates['settings'], bg: url, bgChanged: false },
+                });
+            }
+        }
+    }, []);
+
+
     return (
         <div className="bg-black h-full font-normal text-white text-3xl text-center  grid place-items-center">
             <div className="h-full w-full select-none absolute z-0">
                 <Image
-                    src={wallpapers[1]}
+                    src={appStates?.settings?.bg ?? wallpapers[0]}
                     id={'bgImage'}
                     onLoad={() => {
                         setIsLoaded(true)
@@ -230,22 +278,22 @@ const IOS = ({ loaded, setIsLoaded }: { loaded: boolean, setIsLoaded: Dispatch<S
             </div>
 
             {/* grid-rows-8 */}
-            <div className={cn("h-full w-full select-none absolute z-1 p-5 grid grid-cols-4 gap-3", flag?"grid-rows-8":"grid-rows-7")}>
+            <div className={cn("h-full w-full select-none absolute z-1 p-5 grid grid-cols-4 gap-3", flag ? "grid-rows-8" : "grid-rows-7")}>
                 <IOSNameWidget loaded={loaded} />
 
-                <IOSSpotifyWidget onClick={()=>{
-                     const params = new URLSearchParams(searchParams)
-                     params.set('iosApp', ''+(appSelector.length))
-                     // replace(`${pathname}?${params.toString()}`)
-                     router.push(`${pathname}?${params.toString()}`)
+                <IOSSpotifyWidget onClick={() => {
+                    const params = new URLSearchParams(searchParams)
+                    params.set('iosApp', '' + (appSelector.length))
+                    // replace(`${pathname}?${params.toString()}`)
+                    router.push(`${pathname}?${params.toString()}`)
                 }} loaded={loaded} />
 
-                {iosApps.slice(0,4).map((app, key)=>(
+                {iosApps.slice(0, 4).map((app, key) => (
                     <div key={key} className=" h-full w-full flex flex-col gap-1 items-center justify-center ">
-                        <div onClick={()=>{
-                           
+                        <div onClick={() => {
+
                             const params = new URLSearchParams(searchParams)
-                            params.set('iosApp', ''+(key+1))
+                            params.set('iosApp', '' + (key + 1))
                             // replace(`${pathname}?${params.toString()}`)
                             router.push(`${pathname}?${params.toString()}`)
 
@@ -253,7 +301,7 @@ const IOS = ({ loaded, setIsLoaded }: { loaded: boolean, setIsLoaded: Dispatch<S
                             <Image
                                 src={app.imageSrc}
                                 style={{
-                                    scale:app.scale?'1.2':'1'
+                                    scale: app.scale ? '1.2' : '1'
                                 }}
                                 className="object-contain"
                                 alt='github'
@@ -264,15 +312,15 @@ const IOS = ({ loaded, setIsLoaded }: { loaded: boolean, setIsLoaded: Dispatch<S
                     </div>
                 ))}
                 <div ref={gridBoxRef} className=" h-full w-full flex flex-col gap-1 items-center justify-center">
-                    
+
                 </div>
 
-                {iosApps.slice(4).map((app, key)=>(
-                    <div key={key} className={cn("h-full w-full flex flex-col gap-1 items-center justify-center",flag?"row-start-8":"row-start-7")}>
-                        <div onClick={()=>{
-                           
+                {iosApps.slice(4).map((app, key) => (
+                    <div key={key} className={cn("h-full w-full flex flex-col gap-1 items-center justify-center", flag ? "row-start-8" : "row-start-7")}>
+                        <div onClick={() => {
+
                             const params = new URLSearchParams(searchParams)
-                            params.set('iosApp', ''+(4+key+1))
+                            params.set('iosApp', '' + (4 + key + 1))
                             // replace(`${pathname}?${params.toString()}`)
                             router.push(`${pathname}?${params.toString()}`)
 
@@ -280,7 +328,7 @@ const IOS = ({ loaded, setIsLoaded }: { loaded: boolean, setIsLoaded: Dispatch<S
                             <Image
                                 src={app.imageSrc}
                                 style={{
-                                    scale:app.scale?'1.2':'1'
+                                    scale: app.scale ? '1.2' : '1'
                                 }}
                                 className="object-contain"
                                 alt='github'
@@ -291,37 +339,47 @@ const IOS = ({ loaded, setIsLoaded }: { loaded: boolean, setIsLoaded: Dispatch<S
                     </div>
                 ))}
             </div>
-            
+
             <div
-            ref={modelRef}
-            style={{
-                position:'absolute',
-                background:'black',
-                opacity:0,
-                zIndex:5
-            }}
+                ref={modelRef}
+                style={{
+                    position: 'absolute',
+                    background: 'black',
+                    opacity: 0,
+                    zIndex: 5
+                }}
             >
-                {openedApp!=0&&(
+                {openedApp != 0 && (
                     <div className="grid h-full grid-rows-[25px_1fr]">
-                        <div onClick={()=>{
+                        <div onClick={() => {
                             // CloseApp(openedApp)
                             const params = new URLSearchParams(searchParams)
                             params.delete('iosApp')
                             router.push(`${pathname}?${params.toString()}`)
                             router
 
-                        }} className="text-start text-sm flex items-center w-full h-[25px] bg-black">
-                            X Close
+                        }} className="cursor-pointer select-none pl-2 text-start text-sm flex items-center w-full h-[25px] bg-black">
+                            <div className="w-[17px] h-[17px]">
+                                <svg className="invert" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
+                                    <path d="M125,125 L375,375 M375,125 L125,375"
+                                        stroke="black"
+                                        stroke-width="60"
+                                        stroke-linecap="round" />
+                                </svg>
+                            </div>
+                            <p className=" font-semibold ">
+                                Close
+                            </p>
                         </div>
                         <div style={{
-                            overflow:'overlay'
+                            overflow: 'overlay'
                         }} className="h-full overflow-y-scroll">
-                            {appSelector[openedApp-1]}
+                            {appSelector[openedApp - 1]}
                         </div>
                     </div>
                 )}
             </div>
-      
+
         </div>
     );
 }
