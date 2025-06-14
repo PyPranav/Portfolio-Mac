@@ -28,7 +28,7 @@ const SpotifyWidget = ({ loaded }: { loaded: boolean }) => {
   }, [playingSong])
 
   return (
-    <div className='w-full group relative' title={(playingSong?.track_name ?? '') + ' - ' + (playingSong?.artist_name ?? '')}>
+    <div style={{fontFamily: "San Francisco"}} className='w-full group relative' title={(playingSong?.track_name ?? '') + ' - ' + (playingSong?.artist_name ?? '')}>
       <Image
         src={"/spotify.png"}
         className="object-cover rounded-2xl absolute top-5 right-5 z-[5] opacity-80 group-hover:opacity-100 duration-500"

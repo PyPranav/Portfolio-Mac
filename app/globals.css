@@ -63,7 +63,7 @@
 
 
 
-/* @font-face {
+@font-face {
   font-family: "San Francisco";
   font-weight: 300;
   src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscotext-light-webfont.woff");
@@ -82,7 +82,7 @@
   font-family: "San Francisco";
   font-weight: 600;
   src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscotext-bold-webfont.woff");
-} */
+}
 /* *{
   font-family: 'San Francisco';
 } */

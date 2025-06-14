@@ -15,7 +15,7 @@ const NameWidget = ({loaded}:{loaded:boolean}) => {
       })
     },[ind, loaded])
     return ( 
-         <div className='group h-[130px] sm:h-[170px] flex bg-black bg-opacity-10 backdrop-blur-[100px] rounded-2xl p-4 text-white items-center ' >
+         <div style={{fontFamily: "San Francisco"}} className='group h-[130px] sm:h-[170px] flex bg-black bg-opacity-10 backdrop-blur-[100px] rounded-2xl p-4 text-white items-center ' >
             <Image
                 src={PersonalInfo.profilePic}
                 className="object-cover rounded-[130px] w-[117px] h-[117px] sm:w-[139px] sm:h-[139px] opacity-80 group-hover:opacity-100 duration-500"
