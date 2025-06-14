@@ -27,10 +27,10 @@ const NameWidget = ({loaded}:{loaded:boolean}) => {
               <p className="text-3xl sm:text-5xl opacity-80 font-medium group-hover:opacity-100 duration-500 text-start">
                 {PersonalInfo.name.slice(0,ind)}
               </p>
-              <p className="font-light text-lg text-[1rem] sm:text-xl opacity-50  group-hover:opacity-70 duration-500 text-start">
+              <p className="font-light text-2xl opacity-50  group-hover:opacity-70 duration-500 text-start">
                 {PersonalInfo.tag.slice(0,ind)}
               </p>
-              <p className="font-light hidden text-xs sm:block opacity-50 group-hover:opacity-70 duration-500 text-start">
+              <p className="font-light hidden text-sm sm:block opacity-50 group-hover:opacity-70 duration-500 text-start">
                 {PersonalInfo.descriptiveTag.slice(0,ind*2)}
 
               </p>
