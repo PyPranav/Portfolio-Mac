@@ -61,7 +61,7 @@ const MacOS = ({
       },
     },
     3: {
-      tabValue: "instagram",
+      tabValue: "github",
     },
     4: {
       chats: [
@@ -133,17 +133,17 @@ const MacOS = ({
     const offsetPixels = scaleValue(
       cursorDistance,
       [0, 1],
-      [maxAdditionalSize * -1, maxAdditionalSize],
+      [maxAdditionalSize * -1, maxAdditionalSize]
     );
 
     dockRef.current.style.setProperty(
       "--dock-offset-left",
-      `${offsetPixels * -1}px`,
+      `${offsetPixels * -1}px`
     );
 
     dockRef.current.style.setProperty(
       "--dock-offset-right",
-      `${offsetPixels}px`,
+      `${offsetPixels}px`
     );
   };
   const getCoords = (appNum: number): [number, number, number, number] => {
